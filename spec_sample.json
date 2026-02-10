@@ -1,0 +1,59 @@
+{
+  "Metadata": {
+    "Project_Name": "Semantic-Thermal Alignment - MultiZone",
+    "Date": "2026-02-10",
+    "Description": "Full floor scan with multiple zones"
+  },
+  "Zones": [
+    {
+      "Zone_ID": "Z001",
+      "Zone_Name": "Zone_1_Office", 
+      "Zone_Properties": {
+        "Floor_Area_m2": 25.0,
+        "Ceiling_Height_m": 2.8
+      },
+      "Objects": [
+        {
+          "ID": "obj_101_desk",
+          "Type": "desk",
+          "Geometry": { "Surface_Area_m2": 3.2, "Volume_m3": 0.08 },
+          "Material_Info": { "Category": "Wood" }
+        },
+        {
+          "ID": "obj_102_column",
+          "Type": "column",
+          "Geometry": { "Surface_Area_m2": 6.4, "Volume_m3": 0.8 },
+          "Material_Info": { "Category": "Concrete" }
+        }
+      ]
+    },
+    {
+      "Zone_ID": "Z002",
+      "Zone_Name": "Zone_2_Conference",
+      "Zone_Properties": {
+        "Floor_Area_m2": 40.0,
+        "Ceiling_Height_m": 2.8
+      },
+      "Objects": [
+        {
+          "ID": "obj_201_conf_table",
+          "Type": "table",
+          "Geometry": { "Surface_Area_m2": 8.5, "Volume_m3": 0.25 },
+          "Material_Info": { "Category": "Wood" }
+        },
+        {
+          "ID": "obj_202_bookshelf_wall",
+          "Type": "books",
+          "Geometry": { "Surface_Area_m2": 12.0, "Volume_m3": 1.5 },
+          "Material_Info": { "Category": "Books" }
+        },
+        {
+          "ID": "obj_203_chairs_total",
+          "Type": "chair_group",
+          "Geometry": { "Surface_Area_m2": 10.0, "Volume_m3": 0.2 },
+          "Material_Info": { "Category": "Plastic" }
+        }
+      ]
+    }
+  ]
+}

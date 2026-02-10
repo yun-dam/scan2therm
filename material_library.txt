@@ -1,0 +1,67 @@
+# ==============================================================================
+# 1. Standard Material Library (ASHRAE 2005 HOF & CIBSE Guide A Based)
+# ==============================================================================
+STD_MAT_LIB = {
+    # [Furniture] General Wood (Desks, Chairs, Bookshelves)
+    "Wood": { 
+        "Conductivity": 0.15,       # Unit: W/m-K
+        "Density": 608,             # Unit: kg/m3
+        "Specific_Heat": 1630,      # Unit: J/kg-K
+        "Roughness": "MediumSmooth", 
+        "Description": "General Medium Density Wood (ASHRAE)" 
+    },
+    
+    # [Structural] Columns, Beams, Thick Internal Walls
+    "Concrete": { 
+        "Conductivity": 1.95,       # Unit: W/m-K
+        "Density": 2240,            # Unit: kg/m3
+        "Specific_Heat": 900,       # Unit: J/kg-K
+        "Roughness": "MediumRough", 
+        "Description": "Heavyweight Concrete / Columns (ASHRAE M14a)" 
+    },
+    
+    # [Metal/Steel] Cabinets, Server Racks, Appliances
+    "Metal": { 
+        "Conductivity": 45.28,      # Unit: W/m-K
+        "Density": 7824,            # Unit: kg/m3
+        "Specific_Heat": 500,       # Unit: J/kg-K
+        "Roughness": "Smooth", 
+        "Description": "Steel / Metal Furniture (ASHRAE F08)" 
+    },
+    
+    # [Books] Books on shelves, Stacked Paper
+    "Books": { 
+        "Conductivity": 0.15,       # Unit: W/m-K
+        "Density": 850,             # Unit: kg/m3
+        "Specific_Heat": 1400,      # Unit: J/kg-K
+        "Roughness": "MediumSmooth", 
+        "Description": "Compressed Paper / Books (CIBSE Guide A)" 
+    },
+    
+    # [Partitions] Gypsum Board, Drywall
+    "Gypsum": { 
+        "Conductivity": 0.16,       # Unit: W/m-K
+        "Density": 800,             # Unit: kg/m3
+        "Specific_Heat": 1090,      # Unit: J/kg-K
+        "Roughness": "MediumSmooth", 
+        "Description": "Gypsum Board / Partitions (ASHRAE G01)" 
+    },
+    
+    # [Misc] Plastic, Accessories
+    "Plastic": { 
+        "Conductivity": 0.2,        # Unit: W/m-K
+        "Density": 1000,            # Unit: kg/m3
+        "Specific_Heat": 1500,      # Unit: J/kg-K
+        "Roughness": "Smooth", 
+        "Description": "ABS / General Plastic" 
+    },
+
+    # [Textile] Carpet, Curtains, Cushions
+    "Fabric": { 
+        "Conductivity": 0.06,       # Unit: W/m-K
+        "Density": 288,             # Unit: kg/m3
+        "Specific_Heat": 1380,      # Unit: J/kg-K
+        "Roughness": "Rough", 
+        "Description": "Carpet / Textile / Upholstery" 
+    }
+}
