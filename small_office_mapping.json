@@ -1,0 +1,137 @@
+{
+  "Metadata": {
+    "Project_Name": "Small Office Mapping",
+    "Date": "2026-02-10",
+    "Description": "Full floor scan with 5 zones (1 Core + 4 Perimeters)"
+  },
+  "Zones": [
+    {
+      "Zone_ID": "Z001",
+      "Zone_Name": "Core_ZN",
+      "Zone_Properties": {
+        "Floor_Area_m2": 149.66,
+        "Ceiling_Height_m": 2.8
+      },
+      "Objects": [
+        {
+          "ID": "Z001_O001",
+          "Type": "table",
+          "Geometry": { "Surface_Area_m2": 8.5, "Volume_m3": 0.25 },
+          "Material_Info": { "Category": "Wood" }
+        },
+        {
+          "ID": "Z001_O002",
+          "Type": "chair",
+          "Geometry": { "Surface_Area_m2": 1.5, "Volume_m3": 0.05 },
+          "Material_Info": { "Category": "Fabric" }
+        },
+        {
+          "ID": "Z001_O003",
+          "Type": "bookshelf",
+          "Geometry": { "Surface_Area_m2": 6.0, "Volume_m3": 0.5 },
+          "Material_Info": { "Category": "Wood" }
+        }
+      ]
+    },
+    {
+      "Zone_ID": "Z002",
+      "Zone_Name": "Perimeter_ZN_1",
+      "Zone_Properties": {
+        "Floor_Area_m2": 113.45,
+        "Ceiling_Height_m": 2.8
+      },
+      "Objects": [
+        {
+          "ID": "Z002_O001",
+          "Type": "desk",
+          "Geometry": { "Surface_Area_m2": 3.2, "Volume_m3": 0.08 },
+          "Material_Info": { "Category": "Wood" }
+        },
+        {
+          "ID": "Z002_O002",
+          "Type": "chair",
+          "Geometry": { "Surface_Area_m2": 1.2, "Volume_m3": 0.04 },
+          "Material_Info": { "Category": "Plastic" }
+        },
+        {
+          "ID": "Z002_O003",
+          "Type": "cabinet",
+          "Geometry": { "Surface_Area_m2": 4.5, "Volume_m3": 0.35 },
+          "Material_Info": { "Category": "Metal" }
+        }
+      ]
+    },
+    {
+      "Zone_ID": "Z003",
+      "Zone_Name": "Perimeter_ZN_2",
+      "Zone_Properties": {
+        "Floor_Area_m2": 67.30,
+        "Ceiling_Height_m": 2.8
+      },
+      "Objects": [
+        {
+          "ID": "Z003_O001",
+          "Type": "desk",
+          "Geometry": { "Surface_Area_m2": 2.8, "Volume_m3": 0.06 },
+          "Material_Info": { "Category": "Wood" }
+        },
+        {
+          "ID": "Z003_O002",
+          "Type": "chair",
+          "Geometry": { "Surface_Area_m2": 1.5, "Volume_m3": 0.05 },
+          "Material_Info": { "Category": "Fabric" }
+        }
+      ]
+    },
+    {
+      "Zone_ID": "Z004",
+      "Zone_Name": "Perimeter_ZN_3",
+      "Zone_Properties": {
+        "Floor_Area_m2": 113.45,
+        "Ceiling_Height_m": 2.8
+      },
+      "Objects": [
+        {
+          "ID": "Z004_O001",
+          "Type": "desk",
+          "Geometry": { "Surface_Area_m2": 3.0, "Volume_m3": 0.07 },
+          "Material_Info": { "Category": "Metal" }
+        },
+        {
+          "ID": "Z004_O002",
+          "Type": "chair",
+          "Geometry": { "Surface_Area_m2": 1.2, "Volume_m3": 0.04 },
+          "Material_Info": { "Category": "Plastic" }
+        },
+        {
+          "ID": "Z004_O003",
+          "Type": "trash_can",
+          "Geometry": { "Surface_Area_m2": 0.5, "Volume_m3": 0.02 },
+          "Material_Info": { "Category": "Plastic" }
+        }
+      ]
+    },
+    {
+      "Zone_ID": "Z005",
+      "Zone_Name": "Perimeter_ZN_4",
+      "Zone_Properties": {
+        "Floor_Area_m2": 67.30,
+        "Ceiling_Height_m": 2.8
+      },
+      "Objects": [
+        {
+          "ID": "Z005_O001",
+          "Type": "desk",
+          "Geometry": { "Surface_Area_m2": 3.2, "Volume_m3": 0.08 },
+          "Material_Info": { "Category": "Wood" }
+        },
+        {
+          "ID": "Z005_O002",
+          "Type": "chair",
+          "Geometry": { "Surface_Area_m2": 1.5, "Volume_m3": 0.05 },
+          "Material_Info": { "Category": "Fabric" }
+        }
+      ]
+    }
+  ]
+}
