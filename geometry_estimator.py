@@ -27,31 +27,31 @@ def volume(vertices: np.ndarray, faces: np.ndarray, object_ids: np.ndarray | Non
         out[int(oid)] = float((1.0 / 6.0) * np.einsum("fi,fi->f", p[:, 0], np.cross(p[:, 1], p[:, 2])).sum())
     return out
 
-# Small demo on one pointclud below
-DATA = Path(__file__).resolve().parent / "3RScan_Data"
-ply_path = next((d / "labels.instances.annotated.v2.ply" for d in DATA.iterdir()
-                    if d.is_dir() and (d / "labels.instances.annotated.v2.ply").exists()), None)
-if not ply_path:
-    raise FileNotFoundError("No 3RScan_Data/*/labels.instances.annotated.v2.ply")
-scan = ply_path.parent.name
+# # Small demo on one pointclud below
+# DATA = Path(__file__).resolve().parent / "3RScan_Data"
+# ply_path = next((d / "labels.instances.annotated.v2.ply" for d in DATA.iterdir()
+#                     if d.is_dir() and (d / "labels.instances.annotated.v2.ply").exists()), None)
+# if not ply_path:
+#     raise FileNotFoundError("No 3RScan_Data/*/labels.instances.annotated.v2.ply")
+# scan = ply_path.parent.name
 
-n_vertices = n_faces = 0
-with open(ply_path) as f:
-    for line in f:
-        line = line.strip()
-        if line.startswith("element vertex"):
-            n_vertices = int(line.split()[-1])
-        elif line.startswith("element face"):
-            n_faces = int(line.split()[-1])
-        elif line == "end_header":
-            break
-    verts = np.array([[float(p[0]), float(p[1]), float(p[2]), int(p[6])] for p in (next(f).split() for _ in range(n_vertices))])
-    faces = np.array([[int(p[1]), int(p[2]), int(p[3])] for p in (next(f).split() for _ in range(n_faces))])
-vertices = verts[:, :3].astype(np.float64)
-object_ids = verts[:, 3].astype(np.int64)
+# n_vertices = n_faces = 0
+# with open(ply_path) as f:
+#     for line in f:
+#         line = line.strip()
+#         if line.startswith("element vertex"):
+#             n_vertices = int(line.split()[-1])
+#         elif line.startswith("element face"):
+#             n_faces = int(line.split()[-1])
+#         elif line == "end_header":
+#             break
+#     verts = np.array([[float(p[0]), float(p[1]), float(p[2]), int(p[6])] for p in (next(f).split() for _ in range(n_vertices))])
+#     faces = np.array([[int(p[1]), int(p[2]), int(p[3])] for p in (next(f).split() for _ in range(n_faces))])
+# vertices = verts[:, :3].astype(np.float64)
+# object_ids = verts[:, 3].astype(np.int64)
 
-labels = {int(g.get("objectId", g.get("id", -1))): g.get("label", "?") for g in (json.load(open(DATA / scan / "semseg.v2.json")).get("segGroups") or [])} if (DATA / scan / "semseg.v2.json").exists() else {}
-sa, vol = surface_area(vertices, faces, object_ids), volume(vertices, faces, object_ids)
-skip = {"wall", "floor", "ceiling"}
-oid = max((i for i in vol if labels.get(i, "").lower() not in skip), key=vol.get, default=max(vol, key=vol.get))
-print(f"{labels.get(oid, oid)}: surface_area = {sa[oid]:.6f} m², volume = {vol[oid]:.6f} m³")
+# labels = {int(g.get("objectId", g.get("id", -1))): g.get("label", "?") for g in (json.load(open(DATA / scan / "semseg.v2.json")).get("segGroups") or [])} if (DATA / scan / "semseg.v2.json").exists() else {}
+# sa, vol = surface_area(vertices, faces, object_ids), volume(vertices, faces, object_ids)
+# skip = {"wall", "floor", "ceiling"}
+# oid = max((i for i in vol if labels.get(i, "").lower() not in skip), key=vol.get, default=max(vol, key=vol.get))
+# print(f"{labels.get(oid, oid)}: surface_area = {sa[oid]:.6f} m², volume = {vol[oid]:.6f} m³")
