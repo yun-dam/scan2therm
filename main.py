@@ -12,11 +12,14 @@ from geometry_estimator import surface_area, volume
 # Path defaults (relative)
 # -----------------------------
 SCAN2THERM_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCAN2THERM_DIR.parent 
+PROJECT_ROOT = SCAN2THERM_DIR.parent
 
 DEFAULT_RSCAN_ROOT = PROJECT_ROOT / "3RScan"
 DEFAULT_DSSG_ROOT = PROJECT_ROOT / "3DSSG"
-DEFAULT_BEDROOM_JSON = SCAN2THERM_DIR / "bedroom.json"
+DEFAULT_BEDROOM_JSON = SCAN2THERM_DIR / "office.json"
+
+# ✅ Default scan you asked for
+DEFAULT_SCAN_ID = "569d8f0d-72aa-2f24-8ac6-c6ee8d927c4b"
 
 
 # -----------------------------
@@ -87,7 +90,6 @@ def read_3rscan_instances_ply_ascii(ply_path: Path) -> tuple[np.ndarray, np.ndar
             if len(parts) < 4:
                 raise ValueError(f"Bad face row #{i} in {ply_path}: {parts}")
             if parts[0] != "3":
-                # 3RScan is typically triangulated here; if not, fail loudly.
                 raise ValueError(f"Non-triangle face row #{i} in {ply_path}: {parts[:6]}")
             faces[i, 0] = int(parts[1])
             faces[i, 1] = int(parts[2])
@@ -143,13 +145,6 @@ def find_one_scan_dir_3rscan(rscan_root: Path, scan_id: str | None = None) -> Pa
 # 3DSSG: ground truth materials
 # -----------------------------
 def find_objects_json_3dssg(dssg_root: Path) -> Path:
-    """
-    Common locations:
-      dssg_root/objects.json
-      dssg_root/3DSSG/objects.json
-      dssg_root/3DSSG/3DSSG/objects.json
-    Fallback: first objects.json found under dssg_root.
-    """
     candidates = [
         dssg_root / "objects.json",
         dssg_root / "3DSSG" / "objects.json",
@@ -166,11 +161,6 @@ def find_objects_json_3dssg(dssg_root: Path) -> Path:
 
 
 def load_3dssg_objects(objects_json_path: Path) -> dict[str, dict[int, dict]]:
-    """
-    Build mapping: scan_id -> { instance_id(int) -> object_record(dict) }
-    objects.json structure (simplified):
-      { "scans": [ { "scan": "<scan_id>", "objects": [ {"id": <int>, "label": ..., "attributes": {...}} ] } ] }
-    """
     data = json.loads(objects_json_path.read_text(encoding="utf-8"))
     scans = data.get("scans") or []
     out: dict[str, dict[int, dict]] = {}
@@ -217,12 +207,6 @@ def normalize_material_category(raw: str | None) -> str:
 
 
 def oid_to_raw_material(scan_obj_map: dict[int, dict]) -> dict[int, str | None]:
-    """
-    Pull attributes.material from 3DSSG object records.
-    - If list: take first
-    - If string: use directly
-    Else: None
-    """
     out: dict[int, str | None] = {}
     for oid, rec in scan_obj_map.items():
         attrs = rec.get("attributes") or {}
@@ -241,12 +225,14 @@ def oid_to_raw_material(scan_obj_map: dict[int, dict]) -> dict[int, str | None]:
 # -----------------------------
 def ensure_zone0(doc: dict) -> None:
     if "Zones" not in doc or not isinstance(doc["Zones"], list) or len(doc["Zones"]) == 0:
-        doc["Zones"] = [{
-            "Zone_ID": "Z001",
-            "Zone_Name": "Zone_1",
-            "Zone_Properties": {},
-            "Objects": []
-        }]
+        doc["Zones"] = [
+            {
+                "Zone_ID": "Z001",
+                "Zone_Name": "Zone_1",
+                "Zone_Properties": {},
+                "Objects": [],
+            }
+        ]
     doc["Zones"][0].setdefault("Objects", [])
 
 
@@ -254,30 +240,40 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--rscan_root", type=str, default=str(DEFAULT_RSCAN_ROOT))
     ap.add_argument("--dssg_root", type=str, default=str(DEFAULT_DSSG_ROOT))
-    ap.add_argument("--bedroom_json", type=str, default=str(DEFAULT_BEDROOM_JSON))
-    ap.add_argument("--scan", type=str, default=None, help="Scan folder name. If omitted, first available scan is used.")
-    ap.add_argument("--out", type=str, default=None, help="Output path. Default: bedroom_updated.json next to bedroom.json")
+    ap.add_argument("-office_json", type=str, default=str(DEFAULT_BEDROOM_JSON))
+
+    # ✅ easy scan switching:
+    # - default is your scan id
+    # - you can override via --scan <other_scan_id>
+    ap.add_argument(
+        "--scan",
+        type=str,
+        default=DEFAULT_SCAN_ID,
+        help=f"Scan folder name. Default: {DEFAULT_SCAN_ID}. Override: --scan <scan_id>",
+    )
+
+    ap.add_argument("--out", type=str, default=None, help="Output path. Default: office_updated.json next to o.json")
     ap.add_argument(
         "--skip",
         type=str,
         nargs="*",
         default=["wall", "floor", "ceiling"],
-        help="Lowercase labels to skip"
+        help="Lowercase labels to skip",
     )
     args = ap.parse_args()
 
     rscan_root = Path(args.rscan_root)
     dssg_root = Path(args.dssg_root)
-    bedroom_json_path = Path(args.bedroom_json)
+    office_json_path = Path(args.office_json)
 
     if not rscan_root.exists():
         raise FileNotFoundError(f"3RScan root not found: {rscan_root}")
     if not dssg_root.exists():
         raise FileNotFoundError(f"3DSSG root not found: {dssg_root}")
-    if not bedroom_json_path.exists():
-        raise FileNotFoundError(f"bedroom.json not found: {bedroom_json_path}")
+    if not office_json_path.exists():
+        raise FileNotFoundError(f"office.json not found: {office_json_path}")
 
-    # --- pick scan
+    # --- pick scan (defaults to your scan id)
     scan_dir = find_one_scan_dir_3rscan(rscan_root, args.scan)
     scan_id = scan_dir.name
 
@@ -314,23 +310,25 @@ def main():
             continue
 
         raw_mat = mats_by_oid.get(oid)
-        objects_out.append({
-            "ID": f"scanobj_{scan_id}_{oid:04d}",
-            "Type": label,
-            "Scan_Object_ID": int(oid),
-            "Geometry": {
-                "Surface_Area_m2": float(sa_by_oid.get(oid, 0.0)),
-                "Volume_m3": float(vol_by_oid.get(oid, 0.0)),
-            },
-            "Material_Info": {
-                "GroundTruth": raw_mat if raw_mat is not None else None,
-                "Category": normalize_material_category(raw_mat),
-                "Source": "3DSSG.attributes.material",
-            },
-        })
+        objects_out.append(
+            {
+                "ID": f"scanobj_{scan_id}_{oid:04d}",
+                "Type": label,
+                "Scan_Object_ID": int(oid),
+                "Geometry": {
+                    "Surface_Area_m2": float(sa_by_oid.get(oid, 0.0)),
+                    "Volume_m3": float(vol_by_oid.get(oid, 0.0)),
+                },
+                "Material_Info": {
+                    "GroundTruth": raw_mat if raw_mat is not None else None,
+                    "Category": normalize_material_category(raw_mat),
+                    "Source": "3DSSG.attributes.material",
+                },
+            }
+        )
 
-    # --- update bedroom.json
-    doc = json.loads(bedroom_json_path.read_text(encoding="utf-8"))
+    # --- update office.json
+    doc = json.loads(office_json_path.read_text(encoding="utf-8"))
 
     doc.setdefault("Metadata", {})
     doc["Metadata"]["Date"] = datetime.now().strftime("%Y-%m-%d")
@@ -348,7 +346,7 @@ def main():
     ensure_zone0(doc)
     doc["Zones"][0]["Objects"] = objects_out
 
-    out_path = Path(args.out) if args.out else bedroom_json_path.with_name("bedroom_updated.json")
+    out_path = Path(args.out) if args.out else office_json_path.with_name("office_updated.json")
     out_path.write_text(json.dumps(doc, indent=2), encoding="utf-8")
 
     print(f"[OK] scan_id={scan_id}")
