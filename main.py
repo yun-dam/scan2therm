@@ -5,7 +5,6 @@ from pathlib import Path
 
 import numpy as np
 
-# ✅ Use your existing estimator code (do NOT rewrite it)
 from geometry_estimator import surface_area, volume
 
 
@@ -13,7 +12,7 @@ from geometry_estimator import surface_area, volume
 # Path defaults (relative)
 # -----------------------------
 SCAN2THERM_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCAN2THERM_DIR.parent  # ✅ one directory outside scan2therm
+PROJECT_ROOT = SCAN2THERM_DIR.parent 
 
 DEFAULT_RSCAN_ROOT = PROJECT_ROOT / "3RScan"
 DEFAULT_DSSG_ROOT = PROJECT_ROOT / "3DSSG"
