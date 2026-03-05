@@ -279,10 +279,115 @@ def process_scan(
 
 
 # -----------------------------
+# Remap categories for inject_internal_mass MATERIAL_LIBRARY
+# -----------------------------
+CATEGORY_TO_LIBRARY = {
+    "Wood": "Wood",
+    "Concrete": "Concrete",
+    "Metal": "Metal",
+    "Plastic": "Plastic",
+    "Glass": "Plastic",       # closest thermal match
+    "Textile": "Fabric",
+    "Ceramic/Tile": "Concrete",
+    "Stone": "Concrete",
+    "Paper": "Books",
+    "Other": None,             # skip — no reliable material
+    "Unknown": None,           # skip — no material annotation
+}
+
+
+def remap_category(category: str) -> str:
+    """Map main.py category to inject_internal_mass MATERIAL_LIBRARY key."""
+    return CATEGORY_TO_LIBRARY.get(category, "Wood")
+
+
+# -----------------------------
+# Build combined mapping JSON
+# -----------------------------
+def build_mapping(scan_ids, output_dir, zone_mapping=None, zone_name="Core_ZN"):
+    """Combine per-scan JSONs into a single mapping JSON for inject_internal_mass.
+
+    Args:
+        scan_ids: list of scan IDs to include.
+        output_dir: directory containing per-scan JSONs.
+        zone_mapping: dict {zone_name: [scan_ids]} or None (all → one zone).
+        zone_name: fallback zone name if zone_mapping is None.
+
+    Returns:
+        mapping dict.
+    """
+    if zone_mapping is None:
+        zone_mapping = {zone_name: scan_ids}
+
+    ZONE_IDS = {}
+    for i, zn in enumerate(zone_mapping.keys(), 1):
+        ZONE_IDS[zn] = f"Z{i:03d}"
+
+    zones = []
+    total_objects = 0
+
+    for zn, zn_scan_ids in zone_mapping.items():
+        zid = ZONE_IDS[zn]
+        zone_objects = []
+
+        for scan_id in zn_scan_ids:
+            scan_json = output_dir / f"{scan_id}.json"
+            if not scan_json.exists():
+                continue
+
+            data = json.loads(scan_json.read_text())
+            for zone in data.get("Zones", []):
+                for obj in zone.get("Objects", []):
+                    mi = obj.get("Material_Info", {})
+                    raw_category = mi.get("Category", "Unknown")
+                    remapped = remap_category(raw_category)
+                    if remapped is None:
+                        continue  # skip Other/Unknown — no reliable material
+                    zone_objects.append({
+                        "ID": obj["ID"],
+                        "Type": obj["Type"],
+                        "Scan_Object_ID": obj.get("Scan_Object_ID"),
+                        "Geometry": obj["Geometry"],
+                        "Material_Info": {
+                            "GroundTruth": mi.get("GroundTruth"),
+                            "Category": remapped,
+                            "Source": mi.get("Source", "3DSSG.attributes.material"),
+                            "Forecast": mi.get("Forecast"),
+                        },
+                    })
+
+        zones.append({
+            "Zone_ID": zid,
+            "Zone_Name": zn,
+            "Zone_Properties": {},
+            "Objects": zone_objects,
+        })
+        total_objects += len(zone_objects)
+        print(f"  Zone {zn} ({zid}): {len(zone_objects)} objects")
+
+    mapping = {
+        "Metadata": {
+            "Project_Name": "scan2therm (baseline)",
+            "Date": datetime.now().strftime("%Y-%m-%d"),
+            "Description": f"{len(scan_ids)} 3RScan scenes — raw scanned geometry + 3DSSG GT materials",
+            "Num_Scans": len(scan_ids),
+            "Num_Objects": total_objects,
+            "Num_Zones": len(zones),
+        },
+        "Zones": zones,
+    }
+
+    print(f"  Total: {total_objects} objects across {len(zones)} zones")
+    return mapping
+
+
+# -----------------------------
 # Main
 # -----------------------------
 def main():
-    ap = argparse.ArgumentParser()
+    ap = argparse.ArgumentParser(
+        description="scan2therm baseline: 3RScan raw geometry + 3DSSG GT materials → EnergyPlus IDF"
+    )
     ap.add_argument("--rscan_root", type=str, default=str(DEFAULT_RSCAN_ROOT))
     ap.add_argument("--dssg_root", type=str, default=str(DEFAULT_DSSG_ROOT))
     ap.add_argument("--office_json", type=str, default=str(DEFAULT_OFFICE_JSON))
@@ -294,6 +399,21 @@ def main():
                     help="Process a single scan ID instead of the full scenes list.")
     ap.add_argument("--skip", type=str, nargs="*", default=["wall", "floor", "ceiling"],
                     help="Lowercase labels to skip")
+
+    # Mapping + IDF injection
+    ap.add_argument("--zone_mapping", type=str, default=None,
+                    help="JSON file mapping zone names to scan IDs")
+    ap.add_argument("--mapping_output", type=str, default=None,
+                    help="Output path for combined mapping JSON")
+    ap.add_argument("--idf", type=str,
+                    default=str(SCAN2THERM_DIR / "energyplus" / "small-office.idf"),
+                    help="Input EnergyPlus IDF file")
+    ap.add_argument("--idd", type=str,
+                    default=str(SCAN2THERM_DIR / "energyplus" / "Energy+.idd"),
+                    help="EnergyPlus IDD file")
+    ap.add_argument("--idf_output", type=str, default=None,
+                    help="Output IDF file path")
+
     args = ap.parse_args()
 
     rscan_root = Path(args.rscan_root)
@@ -329,13 +449,70 @@ def main():
         ]
         print(f"[INFO] Found {len(scan_ids)} scan IDs in {scenes_txt_path.name}")
 
-    # Process each scan
+    # ── Step 1: Process each scan → per-scan JSONs ──
+    print("\n" + "=" * 60)
+    print("STEP 1: Extract objects from 3RScan + 3DSSG GT materials")
+    print("=" * 60)
     for i, scan_id in enumerate(scan_ids, 1):
         print(f"[{i}/{len(scan_ids)}] Processing {scan_id} ...")
         process_scan(scan_id, rscan_root, dssg, objects_json_path,
                      office_template, output_dir, skip)
 
-    print(f"\n[DONE] Output folder: {output_dir}")
+    print(f"\n[DONE] Per-scan JSONs → {output_dir}")
+
+    # ── Step 2: Build combined mapping JSON ──
+    print("\n" + "=" * 60)
+    print("STEP 2: Build combined mapping JSON")
+    print("=" * 60)
+
+    zone_mapping = None
+    if args.zone_mapping:
+        zm_path = Path(args.zone_mapping)
+        zone_mapping = json.loads(zm_path.read_text())
+        print(f"  Loaded zone mapping: {len(zone_mapping)} zones from {zm_path}")
+
+    mapping = build_mapping(scan_ids, output_dir, zone_mapping=zone_mapping)
+
+    mapping_output = Path(args.mapping_output) if args.mapping_output \
+        else output_dir / "mapping_baseline.json"
+    mapping_output.parent.mkdir(parents=True, exist_ok=True)
+    mapping_output.write_text(json.dumps(mapping, indent=2))
+    print(f"  Mapping JSON → {mapping_output}")
+
+    # ── Step 3: Inject into EnergyPlus IDF ──
+    if args.idf_output:
+        print("\n" + "=" * 60)
+        print("STEP 3: Inject InternalMass into EnergyPlus IDF")
+        print("=" * 60)
+
+        idf_path = Path(args.idf)
+        idd_path = Path(args.idd)
+        idf_output = Path(args.idf_output)
+
+        if not idf_path.is_file():
+            print(f"  [SKIP] IDF not found: {idf_path}")
+        elif not idd_path.is_file():
+            print(f"  [SKIP] IDD not found: {idd_path}")
+        else:
+            from inject_internal_mass import inject
+            from eppy.modeleditor import IDF
+
+            IDF.setiddname(str(idd_path))
+            idf = IDF(str(idf_path))
+
+            idf_zones = {z.Name for z in idf.idfobjects["ZONE"]}
+            for zone in mapping["Zones"]:
+                zn = zone["Zone_Name"]
+                if zn not in idf_zones:
+                    print(f"  WARNING: Zone '{zn}' not found in IDF. "
+                          f"Available: {idf_zones}")
+
+            inject(idf, mapping)
+            idf_output.parent.mkdir(parents=True, exist_ok=True)
+            idf.saveas(str(idf_output))
+            print(f"  IDF written → {idf_output}")
+    else:
+        print("\n[INFO] No --idf_output provided, skipping IDF injection.")
 
 
 if __name__ == "__main__":

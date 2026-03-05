@@ -109,6 +109,11 @@ STRUCTURAL_LABELS = {
     'pipe', 'beam', 'column', 'railing', 'staircase',
 }
 
+# If CAD-scaled surface area exceeds the scanned convex hull area by more than
+# this factor, the scanned OBB is likely unreliable (bad instance segmentation)
+# and the CAD scaling amplifies the error.  Fall back to scanned geometry.
+CAD_AREA_RATIO_THRESHOLD = 5.0
+
 # ---------------------------------------------------------------------------
 # ShapeNet model cache
 # ---------------------------------------------------------------------------
@@ -292,6 +297,19 @@ def process_scan(scan_id, data_dir, shapenet_dir, out_dir,
 
         try:
             area, volume, scale = compute_cad_geometry(scan_obb, cad_mesh, cad_extents)
+
+            # Guard: if CAD area >> scanned area, the OBB is likely from bad
+            # instance segmentation and CAD scaling amplifies the error.
+            scanned_area = obj['surface_area_m2']
+            if scanned_area > 0 and area / scanned_area > CAD_AREA_RATIO_THRESHOLD:
+                print(f"  [FALLBACK] obj {obj['object_id']} ({label}): "
+                      f"CAD area {area:.1f} m² >> scanned {scanned_area:.1f} m² "
+                      f"(ratio {area/scanned_area:.1f}x > {CAD_AREA_RATIO_THRESHOLD}x), "
+                      f"keeping scanned geometry")
+                obj['cad_source'] = 'scanned_geometry (cad_ratio_fallback)'
+                cad_miss += 1
+                continue
+
             obj['surface_area_m2'] = round(area, 4)
             obj['volume_m3'] = round(volume, 4)
 

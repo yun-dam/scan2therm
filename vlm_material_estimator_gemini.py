@@ -5,6 +5,11 @@ VLM material estimator using Vertex AI Gemini.
 For each non-structural object in a scan, sends its cropped 2D image to
 Gemini to classify the primary material. Updates objects.json in-place.
 
+Uses the same constrained-material logic as run_vlm_batch.py:
+  - Maps jpg filenames to object IDs via build_jpg_to_object_id()
+  - Constrains VLM output to VALID_MATERIALS
+  - Parses response with parse_material()
+
 Usage:
     python scan2therm/vlm_material_estimator_gemini.py \
         --scene_list scan2therm/office_scenes_105.txt \
@@ -18,11 +23,10 @@ Requires:
 """
 
 import argparse
-import base64
 import json
 import os
-import os.path as osp
 import time
+from collections import defaultdict
 from pathlib import Path
 
 
@@ -31,15 +35,41 @@ STRUCTURAL_LABELS = {
     'pipe', 'beam', 'column', 'railing', 'staircase',
 }
 
+VALID_MATERIALS = ["Wood", "Metal", "Plastic", "Fabric", "Books", "Gypsum", "Concrete"]
+
 MATERIAL_PROMPT = (
-    "This is a cropped image of a '{label}' from a 3D room scan. "
-    "Identify the primary material of this object. "
-    "Reply with one word or short lowercase phrase only with no punctuation "
-    "(e.g. wood, metal, fabric, plastic, leather, glass, ceramic, stone, concrete, carpet, cardboard, padded)."
+    "This is a mesh from a 3D room scan. "
+    "Identify the primary material of the '{label}' object visible in the texture. "
+    "Reply with with one of the following materials: Wood, Metal, Plastic, Fabric, Books, Gypsum, Concrete. "
+    "Answer with exactly one of these materials."
+    "If the object is not made of one of these materials, reply with the material "
+    "that is most similar to the object in terms of thermodynamic properties."
 )
 
 
-def identify_material(model, label: str, image_path: str) -> str:
+def parse_material(text: str) -> str | None:
+    """Extract the first valid material keyword from a free-form response."""
+    for mat in VALID_MATERIALS:
+        if mat.lower() in text.lower():
+            return mat
+    return None
+
+
+def build_jpg_to_object_id(objects_path: Path) -> dict[str, tuple[str, int]]:
+    """Return {jpg_stem: (label, object_id)} using label+counter ordering by object_id."""
+    data = json.loads(objects_path.read_text())
+    by_label = defaultdict(list)
+    for obj in sorted(data["objects"], key=lambda x: x["object_id"]):
+        by_label[obj["label"]].append(obj["object_id"])
+    mapping = {}
+    for label, oids in by_label.items():
+        for i, oid in enumerate(oids, start=1):
+            stem = label.replace(" ", "_") + f"{i:02d}"
+            mapping[stem] = (label, oid)
+    return mapping
+
+
+def identify_material(model, label: str, image_path: str) -> str | None:
     """Ask Gemini to identify the primary material from a cropped object image."""
     from vertexai.generative_models import Image
     image = Image.load_from_file(image_path)
@@ -49,14 +79,15 @@ def identify_material(model, label: str, image_path: str) -> str:
         [image, prompt],
         generation_config={"max_output_tokens": 30, "temperature": 0.1},
     )
-    return response.text.strip().lower().rstrip('.')
+    return parse_material(response.text.strip())
 
 
 def process_scan(scan_id, data_dir, model, dry_run=False):
     """Classify materials for all objects in a scan via Gemini.
 
-    Reads objects.json (from cad_geometry.py), sends each object's cropped
-    image to Gemini, and updates the material + material_source fields.
+    Uses build_jpg_to_object_id() to map each jpg to its object,
+    then calls Gemini and parses the result into a VALID_MATERIALS category.
+    Updates objects.json in-place with vlm_material and vlm_material_source.
     """
     scan_dir = Path(data_dir) / scan_id
     objects_path = scan_dir / 'objects.json'
@@ -65,65 +96,55 @@ def process_scan(scan_id, data_dir, model, dry_run=False):
         print(f"  [SKIP] No objects.json for {scan_id}")
         return None
 
-    with open(objects_path) as f:
-        data = json.load(f)
+    stem_map = build_jpg_to_object_id(objects_path)
 
-    updated = 0
-    skipped = 0
-
-    # Pre-build image assignment: map each label to its sorted image list,
-    # then assign images round-robin to objects with that label.
-    label_images = {}  # label -> list of Path
-    label_counters = {}  # label -> next index to assign
-
-    for obj in data['objects']:
-        label = obj['label'].lower().strip()
-        if label in STRUCTURAL_LABELS or label in label_images:
+    # Run VLM on each jpg
+    vlm_results: dict[int, str] = {}
+    for jpg in sorted(scan_dir.glob("*.jpg")):
+        stem = jpg.stem
+        if stem not in stem_map:
             continue
-        label_slug = label.replace(' ', '_')
-        imgs = sorted(scan_dir.glob(f"{label_slug}*.jpg")) + \
-               sorted(scan_dir.glob(f"{label_slug}*.png"))
-        label_images[label] = imgs
-        label_counters[label] = 0
+        label, oid = stem_map[stem]
 
-    for obj in data['objects']:
-        label = obj['label'].lower().strip()
-
-        # Skip structural elements
-        if label in STRUCTURAL_LABELS:
-            skipped += 1
+        if label.lower().strip() in STRUCTURAL_LABELS:
             continue
-
-        # Assign next available image for this label
-        imgs = label_images.get(label, [])
-        if not imgs:
-            skipped += 1
-            continue
-        idx = label_counters[label]
-        image_path = imgs[idx % len(imgs)]
-        label_counters[label] = idx + 1
 
         if dry_run:
-            print(f"    obj {obj['object_id']:3d} | {label:20s} | would query: {image_path.name}")
+            print(f"    {jpg.name}: would query (label={label}, oid={oid})")
             continue
 
         try:
-            material = identify_material(model, label, str(image_path))
-            obj['vlm_material'] = material
-            obj['vlm_material_source'] = 'gemini'
-            updated += 1
+            material = identify_material(model, label, str(jpg))
+            if material:
+                vlm_results[oid] = material
+                print(f"    {jpg.name}: {material}")
+            else:
+                print(f"    {jpg.name}: no valid material parsed")
         except Exception as e:
-            print(f"    [WARN] Gemini failed for obj {obj['object_id']} ({label}): {e}")
-            skipped += 1
-            # Rate limit backoff
+            print(f"    [WARN] Gemini failed for {jpg.name}: {e}")
             if 'quota' in str(e).lower() or '429' in str(e):
                 print("    Backing off 30s for rate limit...")
                 time.sleep(30)
 
-    if not dry_run:
-        with open(objects_path, 'w') as f:
-            json.dump(data, f, indent=2)
+    if dry_run:
+        return {'updated': 0, 'skipped': 0}
 
+    # Patch objects.json with VLM results
+    with open(objects_path) as f:
+        data = json.load(f)
+
+    updated = 0
+    for obj in data['objects']:
+        oid = obj['object_id']
+        if oid in vlm_results:
+            obj['vlm_material'] = vlm_results[oid]
+            obj['vlm_material_source'] = 'vlm_estimate'
+            updated += 1
+
+    with open(objects_path, 'w') as f:
+        json.dump(data, f, indent=2)
+
+    skipped = len(stem_map) - updated
     print(f"  {scan_id}: {updated} classified, {skipped} skipped")
     return {'updated': updated, 'skipped': skipped}
 
@@ -134,17 +155,11 @@ def find_object_image(scan_dir: Path, label: str, object_id: int):
     Images follow the naming convention: {label}{index}.jpg
     e.g. chair01.jpg, desk_chair02.jpg
     """
-    # Normalize label for filename matching (spaces → underscores)
     label_slug = label.replace(' ', '_')
-
-    # Try exact match patterns
     for ext in ('jpg', 'png'):
-        # Try with various index patterns
         candidates = sorted(scan_dir.glob(f"{label_slug}*.{ext}"))
         if candidates:
-            # If multiple images for this label, just use the first
             return candidates[0]
-
     return None
 
 
