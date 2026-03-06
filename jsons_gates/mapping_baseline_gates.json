@@ -4,7 +4,7 @@
     "Date": "2026-03-06",
     "Description": "105 3RScan scenes \u2014 raw scanned geometry + 3DSSG GT materials",
     "Num_Scans": 105,
-    "Num_Objects": 606,
+    "Num_Objects": 441,
     "Num_Zones": 48
   },
   "Zones": [
@@ -74,51 +74,6 @@
           }
         },
         {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
           "ID": "scanobj_09582216-e2c2-2de1-97de-efcab1ef9c43_0017",
           "Type": "window",
           "Scan_Object_ID": 17,
@@ -128,51 +83,6 @@
           },
           "Material_Info": {
             "GroundTruth": "glass",
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
             "Category": "Plastic",
             "Source": "3DSSG.attributes.material",
             "Forecast": null
@@ -259,96 +169,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -357,96 +177,6 @@
       "Zone_Name": "Thermal Zone: Story 1 East Upper Perimeter Space",
       "Zone_Properties": {},
       "Objects": [
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
         {
           "ID": "obj_201_conf_table",
           "Type": "table",
@@ -560,51 +290,6 @@
           }
         },
         {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
           "ID": "scanobj_09582248-e2c2-2de1-94ff-edbe78c9c0b4_0010",
           "Type": "window",
           "Scan_Object_ID": 10,
@@ -614,51 +299,6 @@
           },
           "Material_Info": {
             "GroundTruth": "glass",
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
             "Category": "Plastic",
             "Source": "3DSSG.attributes.material",
             "Forecast": null
@@ -747,51 +387,6 @@
           }
         },
         {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
           "ID": "scanobj_0958224e-e2c2-2de1-943b-38e36345e2e7_0022",
           "Type": "window",
           "Scan_Object_ID": 22,
@@ -801,51 +396,6 @@
           },
           "Material_Info": {
             "GroundTruth": "glass",
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
             "Category": "Plastic",
             "Source": "3DSSG.attributes.material",
             "Forecast": null
@@ -934,51 +484,6 @@
           }
         },
         {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
           "ID": "scanobj_09582254-e2c2-2de1-9434-162187eb819e_0022",
           "Type": "window",
           "Scan_Object_ID": 22,
@@ -988,51 +493,6 @@
           },
           "Material_Info": {
             "GroundTruth": "glass",
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
             "Category": "Plastic",
             "Source": "3DSSG.attributes.material",
             "Forecast": null
@@ -1115,51 +575,6 @@
           },
           "Material_Info": {
             "GroundTruth": "glass",
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
             "Category": "Plastic",
             "Source": "3DSSG.attributes.material",
             "Forecast": null
@@ -1494,51 +909,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -1623,51 +993,6 @@
           }
         },
         {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
           "ID": "scanobj_0f2f271f-b736-2f71-8f74-15fd679c80d5_0014",
           "Type": "window",
           "Scan_Object_ID": 14,
@@ -1677,51 +1002,6 @@
           },
           "Material_Info": {
             "GroundTruth": "glass",
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
             "Category": "Plastic",
             "Source": "3DSSG.attributes.material",
             "Forecast": null
@@ -1900,51 +1180,6 @@
           }
         },
         {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
           "ID": "scanobj_10b17944-3938-2467-8bac-5552375e4467_0007",
           "Type": "armoire",
           "Scan_Object_ID": 7,
@@ -2048,51 +1283,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -2186,51 +1376,6 @@
           },
           "Material_Info": {
             "GroundTruth": "glass",
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
             "Category": "Plastic",
             "Source": "3DSSG.attributes.material",
             "Forecast": null
@@ -2377,51 +1522,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -2516,51 +1616,6 @@
           "Material_Info": {
             "GroundTruth": "wooden",
             "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
@@ -2676,51 +1731,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -2799,51 +1809,6 @@
           },
           "Material_Info": {
             "GroundTruth": "glass",
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
             "Category": "Plastic",
             "Source": "3DSSG.attributes.material",
             "Forecast": null
@@ -2960,51 +1925,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -3083,51 +2003,6 @@
           },
           "Material_Info": {
             "GroundTruth": "glass",
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
             "Category": "Plastic",
             "Source": "3DSSG.attributes.material",
             "Forecast": null
@@ -3241,51 +2116,6 @@
           "Material_Info": {
             "GroundTruth": "wooden",
             "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
@@ -3536,51 +2366,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -3753,51 +2538,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -3952,51 +2692,6 @@
           "Material_Info": {
             "GroundTruth": "metal",
             "Category": "Metal",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
@@ -4172,51 +2867,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -4311,51 +2961,6 @@
           "Material_Info": {
             "GroundTruth": "wooden",
             "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
@@ -4561,51 +3166,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -4793,51 +3353,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -4931,51 +3446,6 @@
           },
           "Material_Info": {
             "GroundTruth": "glass",
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
             "Category": "Plastic",
             "Source": "3DSSG.attributes.material",
             "Forecast": null
@@ -5122,51 +3592,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -5309,51 +3734,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -5362,51 +3742,6 @@
       "Zone_Name": "Thermal Zone: Story 3 East Core Space",
       "Zone_Properties": {},
       "Objects": [
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
         {
           "ID": "obj_201_conf_table",
           "Type": "table",
@@ -5742,51 +4077,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -5914,51 +4204,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -5993,51 +4238,6 @@
           "Material_Info": {
             "GroundTruth": "wooden",
             "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
@@ -6153,51 +4353,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -6306,51 +4461,6 @@
           },
           "Material_Info": {
             "GroundTruth": "glass",
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
             "Category": "Plastic",
             "Source": "3DSSG.attributes.material",
             "Forecast": null
@@ -6542,51 +4652,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -6744,51 +4809,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -6841,51 +4861,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -6894,51 +4869,6 @@
       "Zone_Name": "Thermal Zone: Story 5 East Upper Perimeter Space",
       "Zone_Properties": {},
       "Objects": [
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
         {
           "ID": "obj_201_conf_table",
           "Type": "table",
@@ -7380,51 +5310,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -7503,51 +5388,6 @@
           },
           "Material_Info": {
             "GroundTruth": "glass",
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
             "Category": "Plastic",
             "Source": "3DSSG.attributes.material",
             "Forecast": null
@@ -7736,51 +5576,6 @@
           "Material_Info": {
             "GroundTruth": "wooden",
             "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
@@ -7997,51 +5792,6 @@
           },
           "Material_Info": {
             "GroundTruth": "glass",
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
             "Category": "Plastic",
             "Source": "3DSSG.attributes.material",
             "Forecast": null
@@ -8653,51 +6403,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -8990,51 +6695,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -9117,51 +6777,6 @@
             "Source": "3DSSG.attributes.material",
             "Forecast": null
           }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
         }
       ]
     },
@@ -9240,51 +6855,6 @@
           },
           "Material_Info": {
             "GroundTruth": "glass",
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
             "Category": "Plastic",
             "Source": "3DSSG.attributes.material",
             "Forecast": null
@@ -9382,51 +6952,6 @@
           },
           "Material_Info": {
             "GroundTruth": "glass",
-            "Category": "Plastic",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_201_conf_table",
-          "Type": "table",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 8.5,
-            "Volume_m3": 0.25
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_202_bookshelf_wall",
-          "Type": "books",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 12.0,
-            "Volume_m3": 1.5
-          },
-          "Material_Info": {
-            "GroundTruth": null,
-            "Category": "Wood",
-            "Source": "3DSSG.attributes.material",
-            "Forecast": null
-          }
-        },
-        {
-          "ID": "obj_203_chairs_total",
-          "Type": "chair_group",
-          "Scan_Object_ID": null,
-          "Geometry": {
-            "Surface_Area_m2": 10.0,
-            "Volume_m3": 0.2
-          },
-          "Material_Info": {
-            "GroundTruth": null,
             "Category": "Plastic",
             "Source": "3DSSG.attributes.material",
             "Forecast": null

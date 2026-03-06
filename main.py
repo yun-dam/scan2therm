@@ -330,6 +330,7 @@ def build_mapping(scan_ids, output_dir, zone_mapping=None, zone_name="Core_ZN"):
         zid = ZONE_IDS[zn]
         zone_objects = []
 
+        seen_ids = set()
         for scan_id in zn_scan_ids:
             scan_json = output_dir / f"{scan_id}.json"
             if not scan_json.exists():
@@ -338,13 +339,17 @@ def build_mapping(scan_ids, output_dir, zone_mapping=None, zone_name="Core_ZN"):
             data = json.loads(scan_json.read_text())
             for zone in data.get("Zones", []):
                 for obj in zone.get("Objects", []):
+                    obj_id = obj["ID"]
+                    if obj_id in seen_ids:
+                        continue  # skip duplicate (e.g. template objects)
+                    seen_ids.add(obj_id)
                     mi = obj.get("Material_Info", {})
                     raw_category = mi.get("Category", "Unknown")
                     remapped = remap_category(raw_category)
                     if remapped is None:
                         continue  # skip Other/Unknown — no reliable material
                     zone_objects.append({
-                        "ID": obj["ID"],
+                        "ID": obj_id,
                         "Type": obj["Type"],
                         "Scan_Object_ID": obj.get("Scan_Object_ID"),
                         "Geometry": obj["Geometry"],
