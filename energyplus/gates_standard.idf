@@ -4,12 +4,363 @@
 !-NOTE: All comments with '!-' are ignored by the IDFEditor and are generated automatically.
 !-      Use '!' comments if they need to be retained when using the IDFEditor.
 
+Material,
+    Std Wood 6inch,          !- Name
+    MediumSmooth,            !- Roughness
+    0.15,                    !- Thickness {m}
+    0.12,                    !- Conductivity {W/m-K}
+    540,                     !- Density {kg/m3}
+    1210,                    !- Specific Heat {J/kg-K}
+    0.9,                     !- Thermal Absorptance
+    0.7,                     !- Solar Absorptance
+    0.7;                     !- Visible Absorptance
+
+Construction,
+    Interior Furnishings,    !- Name
+    Std Wood 6inch;          !- Outside Layer
+
+ZoneList,
+    AllZones,                !- Name
+    Thermal Zone: Story 1 East Core Space,  !- Zone 1 Name
+    Thermal Zone: Story 1 East Lower Perimeter Space;  !- Zone 2 Name
+
+!-   ===========  Internal Mass Objects (ASHRAE 90.1 / PNNL Prototype Based) ===========
+
 InternalMass,
-    InteriorFurnishings,     !- Name
-    256 - interior walls,    !- Construction Name
+    Thermal Zone: Story 1 East Core Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
     Thermal Zone: Story 1 East Core Space,  !- Zone or ZoneList Name
     ,                        !- Space or SpaceList Name
-    100;                     !- Surface Area {m2}
+    1271.34;                 !- Surface Area {m2} (635.67 * 2)
+
+InternalMass,
+    Thermal Zone: Story 1 East Lower Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 1 East Lower Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    163.88;                  !- Surface Area {m2} (81.94 * 2)
+
+InternalMass,
+    Thermal Zone: Story 1 East Upper Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 1 East Upper Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    373.82;                  !- Surface Area {m2} (186.91 * 2)
+
+InternalMass,
+    Thermal Zone: Story 1 North Lower Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 1 North Lower Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    373.82;                  !- Surface Area {m2} (186.91 * 2)
+
+InternalMass,
+    Thermal Zone: Story 1 North Upper Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 1 North Upper Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    163.88;                  !- Surface Area {m2} (81.94 * 2)
+
+InternalMass,
+    Thermal Zone: Story 1 South Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 1 South Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    537.70;                  !- Surface Area {m2} (268.85 * 2)
+
+InternalMass,
+    Thermal Zone: Story 1 West Core Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 1 West Core Space,  !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    1271.34;                 !- Surface Area {m2} (635.67 * 2)
+
+InternalMass,
+    Thermal Zone: Story 1 West Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 1 West Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    537.70;                  !- Surface Area {m2} (268.85 * 2)
+
+InternalMass,
+    Thermal Zone: Story 2 East Core Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 2 East Core Space,  !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    1271.34;                 !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 2 East Lower Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 2 East Lower Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    163.88;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 2 East Upper Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 2 East Upper Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    373.82;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 2 North Lower Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 2 North Lower Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    373.82;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 2 North Upper Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 2 North Upper Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    163.88;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 2 South Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 2 South Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    537.70;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 2 West Core Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 2 West Core Space,  !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    1271.34;                 !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 2 West Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 2 West Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    537.70;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 3 East Core Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 3 East Core Space,  !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    1271.34;                 !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 3 East Lower Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 3 East Lower Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    163.88;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 3 East Upper Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 3 East Upper Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    373.82;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 3 North Lower Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 3 North Lower Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    373.82;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 3 North Upper Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 3 North Upper Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    163.88;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 3 South Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 3 South Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    537.70;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 3 West Core Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 3 West Core Space,  !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    1271.34;                 !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 3 West Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 3 West Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    537.70;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 4 East Core Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 4 East Core Space,  !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    1271.34;                 !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 4 East Lower Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 4 East Lower Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    163.88;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 4 East Upper Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 4 East Upper Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    373.82;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 4 North Lower Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 4 North Lower Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    373.82;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 4 North Upper Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 4 North Upper Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    163.88;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 4 South Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 4 South Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    537.70;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 4 West Core Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 4 West Core Space,  !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    1271.34;                 !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 4 West Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 4 West Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    537.70;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 5 East Core Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 5 East Core Space,  !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    1271.34;                 !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 5 East Lower Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 5 East Lower Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    163.88;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 5 East Upper Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 5 East Upper Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    373.82;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 5 North Lower Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 5 North Lower Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    373.82;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 5 North Upper Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 5 North Upper Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    163.88;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 5 South Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 5 South Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    537.70;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 5 West Core Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 5 West Core Space,  !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    1271.34;                 !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 5 West Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 5 West Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    537.70;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 6 East Core Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 6 East Core Space,  !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    1271.34;                 !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 6 East Lower Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 6 East Lower Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    163.88;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 6 East Upper Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 6 East Upper Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    373.82;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 6 North Lower Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 6 North Lower Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    373.82;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 6 North Upper Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 6 North Upper Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    163.88;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 6 South Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 6 South Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    537.70;                  !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 6 West Core Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 6 West Core Space,  !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    1271.34;                 !- Surface Area {m2}
+
+InternalMass,
+    Thermal Zone: Story 6 West Perimeter Space_InternalMass, !- Name
+    Interior Furnishings,    !- Construction Name
+    Thermal Zone: Story 6 West Perimeter Space, !- Zone or ZoneList Name
+    ,                        !- Space or SpaceList Name
+    537.70;                  !- Surface Area {m2}
 
 EnergyManagementSystem:Sensor,
     ZoneMeanAirTemp,         !- Name
