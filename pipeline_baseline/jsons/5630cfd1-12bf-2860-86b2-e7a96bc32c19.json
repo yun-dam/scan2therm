@@ -1,0 +1,336 @@
+{
+  "Metadata": {
+    "Project_Name": "Semantic-Thermal Alignment - MultiZone",
+    "Date": "2026-03-05",
+    "Description": "Auto-filled from 3RScan scan 5630cfd1-12bf-2860-86b2-e7a96bc32c19 with 3DSSG GT materials",
+    "Source_Scan_ID": "5630cfd1-12bf-2860-86b2-e7a96bc32c19",
+    "Sources": {
+      "3RScan_root": "object_images",
+      "3DSSG_objects_json": "/home/yunda/CrossOver/3DSSG/files/objects.json",
+      "3RScan_scan_dir": "object_images/5630cfd1-12bf-2860-86b2-e7a96bc32c19",
+      "3RScan_instances_ply": "object_images/5630cfd1-12bf-2860-86b2-e7a96bc32c19/labels.instances.annotated.v2.ply",
+      "3RScan_semseg_json": null
+    }
+  },
+  "Zones": [
+    {
+      "Zone_ID": "Z001",
+      "Zone_Name": "Zone_1_Office",
+      "Zone_Properties": {
+        "Floor_Area_m2": 25.0,
+        "Ceiling_Height_m": 2.8
+      },
+      "Objects": [
+        {
+          "ID": "scanobj_5630cfd1-12bf-2860-86b2-e7a96bc32c19_0000",
+          "Type": "?",
+          "Scan_Object_ID": 0,
+          "Geometry": {
+            "Surface_Area_m2": 0.06815439726318065,
+            "Volume_m3": -0.005068377344310722
+          },
+          "Material_Info": {
+            "GroundTruth": null,
+            "Category": "Unknown",
+            "Source": "3DSSG.attributes.material"
+          }
+        },
+        {
+          "ID": "scanobj_5630cfd1-12bf-2860-86b2-e7a96bc32c19_0007",
+          "Type": "armoire",
+          "Scan_Object_ID": 7,
+          "Geometry": {
+            "Surface_Area_m2": 7.735066647409821,
+            "Volume_m3": -0.09727728364701083
+          },
+          "Material_Info": {
+            "GroundTruth": "wooden",
+            "Category": "Wood",
+            "Source": "3DSSG.attributes.material"
+          }
+        },
+        {
+          "ID": "scanobj_5630cfd1-12bf-2860-86b2-e7a96bc32c19_0008",
+          "Type": "curtain",
+          "Scan_Object_ID": 8,
+          "Geometry": {
+            "Surface_Area_m2": 2.5617403469653275,
+            "Volume_m3": 0.02178353853508948
+          },
+          "Material_Info": {
+            "GroundTruth": null,
+            "Category": "Unknown",
+            "Source": "3DSSG.attributes.material"
+          }
+        },
+        {
+          "ID": "scanobj_5630cfd1-12bf-2860-86b2-e7a96bc32c19_0009",
+          "Type": "window",
+          "Scan_Object_ID": 9,
+          "Geometry": {
+            "Surface_Area_m2": 1.659145135321984,
+            "Volume_m3": -0.11787104265876167
+          },
+          "Material_Info": {
+            "GroundTruth": null,
+            "Category": "Unknown",
+            "Source": "3DSSG.attributes.material"
+          }
+        },
+        {
+          "ID": "scanobj_5630cfd1-12bf-2860-86b2-e7a96bc32c19_0010",
+          "Type": "plant",
+          "Scan_Object_ID": 10,
+          "Geometry": {
+            "Surface_Area_m2": 0.2906916794818166,
+            "Volume_m3": 0.004169987753587434
+          },
+          "Material_Info": {
+            "GroundTruth": null,
+            "Category": "Unknown",
+            "Source": "3DSSG.attributes.material"
+          }
+        },
+        {
+          "ID": "scanobj_5630cfd1-12bf-2860-86b2-e7a96bc32c19_0011",
+          "Type": "plant",
+          "Scan_Object_ID": 11,
+          "Geometry": {
+            "Surface_Area_m2": 0.31067996980917495,
+            "Volume_m3": 0.002014821743306783
+          },
+          "Material_Info": {
+            "GroundTruth": null,
+            "Category": "Unknown",
+            "Source": "3DSSG.attributes.material"
+          }
+        },
+        {
+          "ID": "scanobj_5630cfd1-12bf-2860-86b2-e7a96bc32c19_0012",
+          "Type": "plant",
+          "Scan_Object_ID": 12,
+          "Geometry": {
+            "Surface_Area_m2": 0.18270205673539627,
+            "Volume_m3": 0.0011728625672061672
+          },
+          "Material_Info": {
+            "GroundTruth": null,
+            "Category": "Unknown",
+            "Source": "3DSSG.attributes.material"
+          }
+        },
+        {
+          "ID": "scanobj_5630cfd1-12bf-2860-86b2-e7a96bc32c19_0013",
+          "Type": "radiator",
+          "Scan_Object_ID": 13,
+          "Geometry": {
+            "Surface_Area_m2": 0.5450269415567962,
+            "Volume_m3": 0.02467863066573952
+          },
+          "Material_Info": {
+            "GroundTruth": "metal",
+            "Category": "Metal",
+            "Source": "3DSSG.attributes.material"
+          }
+        },
+        {
+          "ID": "scanobj_5630cfd1-12bf-2860-86b2-e7a96bc32c19_0014",
+          "Type": "side table",
+          "Scan_Object_ID": 14,
+          "Geometry": {
+            "Surface_Area_m2": 0.5764155645478521,
+            "Volume_m3": 0.019052482139163766
+          },
+          "Material_Info": {
+            "GroundTruth": "wooden",
+            "Category": "Wood",
+            "Source": "3DSSG.attributes.material"
+          }
+        },
+        {
+          "ID": "scanobj_5630cfd1-12bf-2860-86b2-e7a96bc32c19_0015",
+          "Type": "stool",
+          "Scan_Object_ID": 15,
+          "Geometry": {
+            "Surface_Area_m2": 0.22291066038454788,
+            "Volume_m3": 0.00670260761638599
+          },
+          "Material_Info": {
+            "GroundTruth": "wooden",
+            "Category": "Wood",
+            "Source": "3DSSG.attributes.material"
+          }
+        },
+        {
+          "ID": "scanobj_5630cfd1-12bf-2860-86b2-e7a96bc32c19_0017",
+          "Type": "tv",
+          "Scan_Object_ID": 17,
+          "Geometry": {
+            "Surface_Area_m2": 0.2086455728599676,
+            "Volume_m3": 0.001640573771944141
+          },
+          "Material_Info": {
+            "GroundTruth": null,
+            "Category": "Unknown",
+            "Source": "3DSSG.attributes.material"
+          }
+        },
+        {
+          "ID": "scanobj_5630cfd1-12bf-2860-86b2-e7a96bc32c19_0018",
+          "Type": "picture",
+          "Scan_Object_ID": 18,
+          "Geometry": {
+            "Surface_Area_m2": 0.3477973539907415,
+            "Volume_m3": -0.0022128439928453506
+          },
+          "Material_Info": {
+            "GroundTruth": null,
+            "Category": "Unknown",
+            "Source": "3DSSG.attributes.material"
+          }
+        },
+        {
+          "ID": "scanobj_5630cfd1-12bf-2860-86b2-e7a96bc32c19_0019",
+          "Type": "computer desk",
+          "Scan_Object_ID": 19,
+          "Geometry": {
+            "Surface_Area_m2": 3.886570829025554,
+            "Volume_m3": -0.07960539688551418
+          },
+          "Material_Info": {
+            "GroundTruth": "wooden",
+            "Category": "Wood",
+            "Source": "3DSSG.attributes.material"
+          }
+        },
+        {
+          "ID": "scanobj_5630cfd1-12bf-2860-86b2-e7a96bc32c19_0020",
+          "Type": "cabinet",
+          "Scan_Object_ID": 20,
+          "Geometry": {
+            "Surface_Area_m2": 0.7225612977857147,
+            "Volume_m3": 0.005263496384951284
+          },
+          "Material_Info": {
+            "GroundTruth": "wooden",
+            "Category": "Wood",
+            "Source": "3DSSG.attributes.material"
+          }
+        },
+        {
+          "ID": "scanobj_5630cfd1-12bf-2860-86b2-e7a96bc32c19_0021",
+          "Type": "storage bin",
+          "Scan_Object_ID": 21,
+          "Geometry": {
+            "Surface_Area_m2": 0.2099913937170743,
+            "Volume_m3": 0.0047672009493154865
+          },
+          "Material_Info": {
+            "GroundTruth": null,
+            "Category": "Unknown",
+            "Source": "3DSSG.attributes.material"
+          }
+        },
+        {
+          "ID": "scanobj_5630cfd1-12bf-2860-86b2-e7a96bc32c19_0022",
+          "Type": "object",
+          "Scan_Object_ID": 22,
+          "Geometry": {
+            "Surface_Area_m2": 0.2537037088368497,
+            "Volume_m3": -0.0008542433353755539
+          },
+          "Material_Info": {
+            "GroundTruth": null,
+            "Category": "Unknown",
+            "Source": "3DSSG.attributes.material"
+          }
+        },
+        {
+          "ID": "scanobj_5630cfd1-12bf-2860-86b2-e7a96bc32c19_0023",
+          "Type": "clock",
+          "Scan_Object_ID": 23,
+          "Geometry": {
+            "Surface_Area_m2": 0.04848358381811855,
+            "Volume_m3": 0.00012267214751046198
+          },
+          "Material_Info": {
+            "GroundTruth": null,
+            "Category": "Unknown",
+            "Source": "3DSSG.attributes.material"
+          }
+        },
+        {
+          "ID": "scanobj_5630cfd1-12bf-2860-86b2-e7a96bc32c19_0024",
+          "Type": "printer",
+          "Scan_Object_ID": 24,
+          "Geometry": {
+            "Surface_Area_m2": 0.2433221709803307,
+            "Volume_m3": 0.002148314665985509
+          },
+          "Material_Info": {
+            "GroundTruth": null,
+            "Category": "Unknown",
+            "Source": "3DSSG.attributes.material"
+          }
+        },
+        {
+          "ID": "scanobj_5630cfd1-12bf-2860-86b2-e7a96bc32c19_0028",
+          "Type": "door",
+          "Scan_Object_ID": 28,
+          "Geometry": {
+            "Surface_Area_m2": 0.5306272134861503,
+            "Volume_m3": 0.005042305209833087
+          },
+          "Material_Info": {
+            "GroundTruth": "wooden",
+            "Category": "Wood",
+            "Source": "3DSSG.attributes.material"
+          }
+        }
+      ]
+    },
+    {
+      "Zone_ID": "Z002",
+      "Zone_Name": "Zone_2_Conference",
+      "Zone_Properties": {
+        "Floor_Area_m2": 40.0,
+        "Ceiling_Height_m": 2.8
+      },
+      "Objects": [
+        {
+          "ID": "obj_201_conf_table",
+          "Type": "table",
+          "Geometry": {
+            "Surface_Area_m2": 8.5,
+            "Volume_m3": 0.25
+          },
+          "Material_Info": {
+            "Category": "Wood"
+          }
+        },
+        {
+          "ID": "obj_202_bookshelf_wall",
+          "Type": "books",
+          "Geometry": {
+            "Surface_Area_m2": 12.0,
+            "Volume_m3": 1.5
+          },
+          "Material_Info": {
+            "Category": "Books"
+          }
+        },
+        {
+          "ID": "obj_203_chairs_total",
+          "Type": "chair_group",
+          "Geometry": {
+            "Surface_Area_m2": 10.0,
+            "Volume_m3": 0.2
+          },
+          "Material_Info": {
+            "Category": "Plastic"
+          }
+        }
+      ]
+    }
+  ]
+}

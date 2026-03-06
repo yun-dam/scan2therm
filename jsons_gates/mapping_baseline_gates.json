@@ -1,0 +1,300 @@
+{
+  "Metadata": {
+    "Project_Name": "scan2therm (baseline)",
+    "Date": "2026-03-06",
+    "Description": "105 3RScan scenes \u2014 raw scanned geometry + 3DSSG GT materials",
+    "Num_Scans": 105,
+    "Num_Objects": 0,
+    "Num_Zones": 48
+  },
+  "Zones": [
+    {
+      "Zone_ID": "Z001",
+      "Zone_Name": "Story 1 West Core Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z002",
+      "Zone_Name": "Story 1 West Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z003",
+      "Zone_Name": "Story 1 East Upper Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z004",
+      "Zone_Name": "Story 6 East Upper Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z005",
+      "Zone_Name": "Story 1 North Lower Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z006",
+      "Zone_Name": "Story 1 North Upper Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z007",
+      "Zone_Name": "Story 1 East Lower Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z008",
+      "Zone_Name": "Story 1 South Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z009",
+      "Zone_Name": "Story 1 East Core Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z010",
+      "Zone_Name": "Story 4 East Core Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z011",
+      "Zone_Name": "Story 2 West Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z012",
+      "Zone_Name": "Story 3 East Lower Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z013",
+      "Zone_Name": "Story 2 South Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z014",
+      "Zone_Name": "Story 2 North Upper Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z015",
+      "Zone_Name": "Story 2 East Upper Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z016",
+      "Zone_Name": "Story 2 North Lower Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z017",
+      "Zone_Name": "Story 2 East Lower Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z018",
+      "Zone_Name": "Story 5 West Core Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z019",
+      "Zone_Name": "Story 2 East Core Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z020",
+      "Zone_Name": "Story 2 West Core Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z021",
+      "Zone_Name": "Story 5 South Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z022",
+      "Zone_Name": "Story 3 West Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z023",
+      "Zone_Name": "Story 3 North Upper Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z024",
+      "Zone_Name": "Story 3 East Upper Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z025",
+      "Zone_Name": "Story 3 North Lower Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z026",
+      "Zone_Name": "Story 3 South Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z027",
+      "Zone_Name": "Story 3 West Core Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z028",
+      "Zone_Name": "Story 3 East Core Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z029",
+      "Zone_Name": "Story 4 West Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z030",
+      "Zone_Name": "Story 4 North Upper Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z031",
+      "Zone_Name": "Story 4 East Upper Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z032",
+      "Zone_Name": "Story 4 North Lower Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z033",
+      "Zone_Name": "Story 4 East Lower Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z034",
+      "Zone_Name": "Story 5 North Lower Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z035",
+      "Zone_Name": "Story 4 South Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z036",
+      "Zone_Name": "Story 4 West Core Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z037",
+      "Zone_Name": "Story 5 West Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z038",
+      "Zone_Name": "Story 5 North Upper Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z039",
+      "Zone_Name": "Story 5 East Upper Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z040",
+      "Zone_Name": "Story 5 East Lower Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z041",
+      "Zone_Name": "Story 5 East Core Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z042",
+      "Zone_Name": "Story 6 West Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z043",
+      "Zone_Name": "Story 6 North Upper Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z044",
+      "Zone_Name": "Story 6 North Lower Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z045",
+      "Zone_Name": "Story 6 East Lower Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z046",
+      "Zone_Name": "Story 6 South Perimeter Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z047",
+      "Zone_Name": "Story 6 West Core Space",
+      "Zone_Properties": {},
+      "Objects": []
+    },
+    {
+      "Zone_ID": "Z048",
+      "Zone_Name": "Story 6 East Core Space",
+      "Zone_Properties": {},
+      "Objects": []
+    }
+  ]
+}

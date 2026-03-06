@@ -1,0 +1,1075 @@
+{
+  "scan_id": "5630cfd8-12bf-2860-8773-e3dde9da2aff",
+  "num_objects": 38,
+  "num_cad_augmented": 2,
+  "objects": [
+    {
+      "object_id": 1,
+      "label": "wall",
+      "nyu40_class": "wall",
+      "material": "concrete",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 15.868,
+      "obb_dimensions": [
+        2.0,
+        2.66,
+        3.176
+      ],
+      "centroid": [
+        -1.6954,
+        1.7153,
+        0.3104
+      ],
+      "num_points": 3073,
+      "attributes": {
+        "affordances": [
+          "leaning against",
+          "placing items on"
+        ]
+      },
+      "cad_source": "scanned_geometry"
+    },
+    {
+      "object_id": 3,
+      "label": "floor",
+      "nyu40_class": "floor",
+      "material": "concrete",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 23.0528,
+      "obb_dimensions": [
+        3.6532,
+        4.8246,
+        0.3083
+      ],
+      "centroid": [
+        -0.1552,
+        2.3028,
+        -1.4146
+      ],
+      "num_points": 3938,
+      "attributes": {
+        "affordances": [
+          "placing items on",
+          "walking on"
+        ]
+      },
+      "cad_source": "scanned_geometry"
+    },
+    {
+      "object_id": 4,
+      "label": "wardrobe",
+      "nyu40_class": "otherfurniture",
+      "material": "wooden",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 9.9586,
+      "obb_dimensions": [
+        1.52,
+        1.8,
+        2.1273
+      ],
+      "centroid": [
+        0.5114,
+        3.6958,
+        -0.4869
+      ],
+      "num_points": 5414,
+      "attributes": {
+        "affordances": [
+          "placing items in"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Fabric",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 5,
+      "label": "object",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.3795,
+      "obb_dimensions": [
+        0.6092,
+        0.348,
+        0.2015
+      ],
+      "centroid": [
+        0.9902,
+        3.0742,
+        0.6588
+      ],
+      "num_points": 298,
+      "attributes": {
+        "affordances": [
+          "carrying",
+          "holding",
+          "throwing away",
+          "moving"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Fabric",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 6,
+      "label": "cabinet",
+      "nyu40_class": "cabinet",
+      "material": "wooden",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 3.2832,
+      "obb_dimensions": [
+        0.82,
+        0.8539,
+        1.3387
+      ],
+      "centroid": [
+        1.5048,
+        2.6108,
+        -0.6483
+      ],
+      "num_points": 1169,
+      "attributes": {
+        "affordances": [
+          "placing items in",
+          "placing items on"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Wood",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 7,
+      "label": "picture",
+      "nyu40_class": "picture",
+      "material": "glass",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 1.7271,
+      "obb_dimensions": [
+        0.6263,
+        0.8949,
+        1.04
+      ],
+      "centroid": [
+        1.7427,
+        2.64,
+        0.2351
+      ],
+      "num_points": 365,
+      "attributes": {
+        "affordances": [
+          "hanging",
+          "moving",
+          "placing"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Plastic",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 8,
+      "label": "wall",
+      "nyu40_class": "wall",
+      "material": "concrete",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 18.3745,
+      "obb_dimensions": [
+        2.8459,
+        4.0121,
+        3.1038
+      ],
+      "centroid": [
+        2.0964,
+        2.2264,
+        0.1335
+      ],
+      "num_points": 3059,
+      "attributes": {
+        "affordances": [
+          "leaning against",
+          "placing items on"
+        ]
+      },
+      "cad_source": "scanned_geometry"
+    },
+    {
+      "object_id": 9,
+      "label": "wall",
+      "nyu40_class": "wall",
+      "material": "concrete",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 15.5728,
+      "obb_dimensions": [
+        2.865,
+        2.0321,
+        2.3702
+      ],
+      "centroid": [
+        -0.6521,
+        4.0174,
+        0.383
+      ],
+      "num_points": 2973,
+      "attributes": {
+        "affordances": [
+          "leaning against",
+          "placing items on"
+        ]
+      },
+      "cad_source": "scanned_geometry"
+    },
+    {
+      "object_id": 10,
+      "label": "curtain",
+      "nyu40_class": "curtain",
+      "material": "carpet",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 2.0538,
+      "obb_dimensions": [
+        0.4065,
+        0.3663,
+        2.1298
+      ],
+      "centroid": [
+        -0.3529,
+        4.0575,
+        -0.097
+      ],
+      "num_points": 1855,
+      "attributes": {
+        "affordances": [
+          "hanging",
+          "washing in general"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Fabric",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 11,
+      "label": "vase",
+      "nyu40_class": "otherprop",
+      "material": "glass",
+      "material_source": "3dssg",
+      "surface_area_m2": 0.2705,
+      "obb_dimensions": [
+        0.1243,
+        0.2201,
+        0.82
+      ],
+      "centroid": [
+        1.411,
+        3.0568,
+        0.0513
+      ],
+      "num_points": 99,
+      "attributes": {
+        "color": [
+          "black"
+        ],
+        "texture": [
+          "shiny"
+        ],
+        "affordances": [
+          "storing on",
+          "storing in",
+          "placing"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Plastic",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 12,
+      "label": "curtain",
+      "nyu40_class": "curtain",
+      "material": "carpet",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 6.0763,
+      "obb_dimensions": [
+        1.2676,
+        0.8515,
+        2.1621
+      ],
+      "centroid": [
+        -1.7162,
+        3.1292,
+        -0.1231
+      ],
+      "num_points": 4372,
+      "attributes": {
+        "affordances": [
+          "hanging",
+          "washing in general"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Fabric",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 13,
+      "label": "curtain rail",
+      "nyu40_class": "curtain",
+      "material": "carpet",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 1.201,
+      "obb_dimensions": [
+        2.2845,
+        1.5028,
+        0.18
+      ],
+      "centroid": [
+        -1.0137,
+        3.6307,
+        0.7211
+      ],
+      "num_points": 503,
+      "attributes": {
+        "affordances": [
+          "holding"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Metal",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 14,
+      "label": "window",
+      "nyu40_class": "window",
+      "material": "glass",
+      "material_source": "3dssg",
+      "surface_area_m2": 10.8473,
+      "obb_dimensions": [
+        1.9242,
+        1.6931,
+        2.06
+      ],
+      "centroid": [
+        -1.072,
+        4.0366,
+        -0.53
+      ],
+      "num_points": 6123,
+      "attributes": {
+        "shape": [
+          "rectangular"
+        ],
+        "state": [
+          "closed"
+        ],
+        "affordances": [
+          "looking outside",
+          "throwing out of"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Plastic",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 15,
+      "label": "clutter",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 2.8084,
+      "obb_dimensions": [
+        1.04,
+        1.1,
+        0.92
+      ],
+      "centroid": [
+        -1.1425,
+        4.4732,
+        -1.3001
+      ],
+      "num_points": 3754,
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Fabric",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 16,
+      "label": "radiator",
+      "nyu40_class": "otherfurniture",
+      "material": "wooden",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.9673,
+      "obb_dimensions": [
+        0.621,
+        0.7444,
+        0.48
+      ],
+      "centroid": [
+        -1.8883,
+        2.1625,
+        -0.5325
+      ],
+      "num_points": 296,
+      "attributes": {
+        "affordances": [
+          "placing items on"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Metal",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 17,
+      "label": "sofa chair",
+      "nyu40_class": "chair",
+      "material": "wooden",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 2.1237,
+      "obb_dimensions": [
+        1.0773,
+        1.0,
+        0.6989
+      ],
+      "centroid": [
+        -1.5969,
+        2.7256,
+        -1.0727
+      ],
+      "num_points": 869,
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Fabric",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 18,
+      "label": "sofa chair",
+      "nyu40_class": "chair",
+      "material": "wooden",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 2.0313,
+      "obb_dimensions": [
+        1.0445,
+        0.9687,
+        0.7043
+      ],
+      "centroid": [
+        -1.1615,
+        2.228,
+        -1.1106
+      ],
+      "num_points": 1112,
+      "cad_source": "scanned_geometry"
+    },
+    {
+      "object_id": 19,
+      "label": "clothes",
+      "nyu40_class": "clothes",
+      "material": "carpet",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.2614,
+      "obb_dimensions": [
+        0.4349,
+        0.4414,
+        0.1311
+      ],
+      "centroid": [
+        -1.6056,
+        2.0161,
+        -0.721
+      ],
+      "num_points": 151,
+      "attributes": {
+        "state": [
+          "folded together"
+        ],
+        "affordances": [
+          "washing clothes",
+          "wearing",
+          "hanging",
+          "folding"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Fabric",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 20,
+      "label": "office chair",
+      "nyu40_class": "chair",
+      "material": "wooden",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 6.4279,
+      "obb_dimensions": [
+        0.9269,
+        0.75,
+        1.0808
+      ],
+      "centroid": [
+        -0.3967,
+        1.6514,
+        -0.8019
+      ],
+      "num_points": 3016,
+      "attributes": {
+        "affordances": [
+          "placing items on"
+        ]
+      },
+      "volume_m3": 0.4927,
+      "cad_source": "shapenet:03001627/235c8ef29ef5fc5bafd49046c1129780",
+      "vlm_material": "Plastic",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 21,
+      "label": "desk",
+      "nyu40_class": "desk",
+      "material": "wooden",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 8.973,
+      "obb_dimensions": [
+        1.2851,
+        1.3577,
+        1.0776
+      ],
+      "centroid": [
+        -0.9079,
+        1.3576,
+        -0.7867
+      ],
+      "num_points": 3384,
+      "attributes": {
+        "affordances": [
+          "placing items on",
+          "moving"
+        ]
+      },
+      "volume_m3": 1.0368,
+      "cad_source": "shapenet:04379243/142060f848466cad97ef9a13efb5e3f7",
+      "vlm_material": "Wood",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 22,
+      "label": "stereo equipment",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.4373,
+      "obb_dimensions": [
+        0.3516,
+        0.5269,
+        0.2402
+      ],
+      "centroid": [
+        -0.9812,
+        1.0335,
+        -0.3172
+      ],
+      "num_points": 181,
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Plastic",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 23,
+      "label": "object",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.3804,
+      "obb_dimensions": [
+        0.4029,
+        0.3444,
+        0.3782
+      ],
+      "centroid": [
+        -0.8541,
+        0.871,
+        -0.2115
+      ],
+      "num_points": 417,
+      "attributes": {
+        "affordances": [
+          "carrying",
+          "holding",
+          "throwing away",
+          "moving"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Plastic",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 24,
+      "label": "monitor",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.7323,
+      "obb_dimensions": [
+        0.4367,
+        0.6866,
+        0.4363
+      ],
+      "centroid": [
+        -1.2871,
+        1.3634,
+        -0.2285
+      ],
+      "num_points": 646,
+      "attributes": {
+        "color": [
+          "black"
+        ],
+        "state": [
+          "off"
+        ],
+        "affordances": [
+          "placing"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Plastic",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 26,
+      "label": "object",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.0578,
+      "obb_dimensions": [
+        0.1213,
+        0.2308,
+        0.1134
+      ],
+      "centroid": [
+        -0.6257,
+        1.0761,
+        -0.5686
+      ],
+      "num_points": 55,
+      "attributes": {
+        "affordances": [
+          "carrying",
+          "holding",
+          "throwing away",
+          "moving"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Fabric",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 29,
+      "label": "bag",
+      "nyu40_class": "bag",
+      "material": "carpet",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.1797,
+      "obb_dimensions": [
+        0.2077,
+        0.2485,
+        0.3271
+      ],
+      "centroid": [
+        -0.5831,
+        0.5584,
+        -1.2217
+      ],
+      "num_points": 249,
+      "attributes": {
+        "affordances": [
+          "carrying",
+          "holding",
+          "placing items in",
+          "storing in"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Fabric",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 33,
+      "label": "wall",
+      "nyu40_class": "wall",
+      "material": "concrete",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 6.3956,
+      "obb_dimensions": [
+        1.8859,
+        1.3135,
+        1.9717
+      ],
+      "centroid": [
+        2.3519,
+        0.2181,
+        -0.3486
+      ],
+      "num_points": 1422,
+      "attributes": {
+        "affordances": [
+          "leaning against",
+          "placing items on"
+        ]
+      },
+      "cad_source": "scanned_geometry"
+    },
+    {
+      "object_id": 34,
+      "label": "ceiling",
+      "nyu40_class": "ceiling",
+      "material": "concrete",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 23.4433,
+      "obb_dimensions": [
+        4.1985,
+        4.5184,
+        1.0095
+      ],
+      "centroid": [
+        -0.0414,
+        2.3907,
+        1.4452
+      ],
+      "num_points": 4779,
+      "attributes": {
+        "affordances": [
+          "placing items on"
+        ]
+      },
+      "cad_source": "scanned_geometry"
+    },
+    {
+      "object_id": 35,
+      "label": "lamp",
+      "nyu40_class": "lamp",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.0378,
+      "obb_dimensions": [
+        0.1426,
+        0.1194,
+        0.1155
+      ],
+      "centroid": [
+        0.4117,
+        1.8483,
+        0.8105
+      ],
+      "num_points": 96,
+      "attributes": {
+        "affordances": [
+          "moving",
+          "lighting"
+        ]
+      },
+      "cad_source": "scanned_geometry"
+    },
+    {
+      "object_id": 36,
+      "label": "lamp",
+      "nyu40_class": "lamp",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.0452,
+      "obb_dimensions": [
+        0.1792,
+        0.1232,
+        0.1117
+      ],
+      "centroid": [
+        0.2888,
+        1.7414,
+        0.8275
+      ],
+      "num_points": 146,
+      "attributes": {
+        "affordances": [
+          "moving",
+          "lighting"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Plastic",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 37,
+      "label": "lamp",
+      "nyu40_class": "lamp",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.0353,
+      "obb_dimensions": [
+        0.1356,
+        0.1059,
+        0.1098
+      ],
+      "centroid": [
+        0.1247,
+        1.6385,
+        0.9044
+      ],
+      "num_points": 106,
+      "attributes": {
+        "affordances": [
+          "moving",
+          "lighting"
+        ]
+      },
+      "cad_source": "scanned_geometry"
+    },
+    {
+      "object_id": 38,
+      "label": "bed",
+      "nyu40_class": "bed",
+      "material": "padded",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 11.7696,
+      "obb_dimensions": [
+        2.7872,
+        2.4764,
+        0.6888
+      ],
+      "centroid": [
+        1.3627,
+        0.997,
+        -0.9953
+      ],
+      "num_points": 3378,
+      "attributes": {
+        "color": [
+          "blue"
+        ],
+        "shape": [
+          "octagon"
+        ],
+        "state": [
+          "messy"
+        ],
+        "affordances": [
+          "sleeping",
+          "laying on",
+          "placing items on"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Fabric",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 40,
+      "label": "blanket",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 4.0496,
+      "obb_dimensions": [
+        1.96,
+        1.2628,
+        0.3732
+      ],
+      "centroid": [
+        1.4937,
+        1.2769,
+        -0.8362
+      ],
+      "num_points": 2489,
+      "attributes": {
+        "affordances": [
+          "warming / making yourself comfortable",
+          "covering with",
+          "washing in general"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Fabric",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 41,
+      "label": "pillow",
+      "nyu40_class": "pillow",
+      "material": "padded",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 1.2624,
+      "obb_dimensions": [
+        0.92,
+        0.84,
+        0.2979
+      ],
+      "centroid": [
+        1.8197,
+        0.3359,
+        -0.8248
+      ],
+      "num_points": 591,
+      "attributes": {
+        "affordances": [
+          "laying on",
+          "holding",
+          "sleeping",
+          "carrying"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Fabric",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 42,
+      "label": "pillow",
+      "nyu40_class": "pillow",
+      "material": "padded",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.553,
+      "obb_dimensions": [
+        0.6985,
+        0.48,
+        0.2917
+      ],
+      "centroid": [
+        2.2828,
+        0.5093,
+        -0.8113
+      ],
+      "num_points": 199,
+      "attributes": {
+        "affordances": [
+          "laying on",
+          "holding",
+          "sleeping",
+          "carrying"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Fabric",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 43,
+      "label": "pillow",
+      "nyu40_class": "pillow",
+      "material": "padded",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.4779,
+      "obb_dimensions": [
+        0.5781,
+        0.6856,
+        0.2393
+      ],
+      "centroid": [
+        1.9465,
+        2.0222,
+        -0.9017
+      ],
+      "num_points": 281,
+      "attributes": {
+        "affordances": [
+          "laying on",
+          "holding",
+          "sleeping",
+          "carrying"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Fabric",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 44,
+      "label": "nightstand",
+      "nyu40_class": "nightstand",
+      "material": "wooden",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.8732,
+      "obb_dimensions": [
+        0.6747,
+        0.92,
+        0.2701
+      ],
+      "centroid": [
+        2.6999,
+        0.7985,
+        -0.7942
+      ],
+      "num_points": 1025,
+      "attributes": {
+        "affordances": [
+          "placing items on",
+          "storing in",
+          "placing items in",
+          "moving"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Wood",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 45,
+      "label": "box",
+      "nyu40_class": "box",
+      "material": "cardboard",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.3535,
+      "obb_dimensions": [
+        0.3,
+        0.341,
+        0.41
+      ],
+      "centroid": [
+        1.7847,
+        2.3471,
+        -1.1418
+      ],
+      "num_points": 176,
+      "attributes": {
+        "affordances": [
+          "carrying",
+          "throwing away"
+        ]
+      },
+      "cad_source": "scanned_geometry",
+      "vlm_material": "Metal",
+      "vlm_material_source": "vlm_estimate"
+    },
+    {
+      "object_id": 46,
+      "label": "box",
+      "nyu40_class": "box",
+      "material": "cardboard",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.21,
+      "obb_dimensions": [
+        0.313,
+        0.3134,
+        0.238
+      ],
+      "centroid": [
+        1.9083,
+        2.3149,
+        -1.1718
+      ],
+      "num_points": 192,
+      "attributes": {
+        "affordances": [
+          "carrying",
+          "throwing away"
+        ]
+      },
+      "cad_source": "scanned_geometry"
+    }
+  ]
+}
