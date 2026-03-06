@@ -93,8 +93,8 @@ def compute_thickness(obj):
     category = obj["Material_Info"]["Category"]
 
     if volume > 0 and area > 0:
-        return volume / area
-    return DEFAULT_THICKNESS.get(category, 0.025)
+        return min(volume / area, 0.1)
+    return min(DEFAULT_THICKNESS.get(category, 0.025), 0.1)
 
 
 def inject(idf, mapping):
