@@ -128,28 +128,30 @@ def inject(idf, mapping):
                       f"for {obj_id}, skipping")
                 continue
 
-            # Material name: e.g. "Mat_Z001_O001_Wood_0.0294m"
-            mat_name = f"Mat_{obj_id}_{category}_{thickness:.4f}m"
+            # Material name: include zone_id for uniqueness
+            mat_name = f"Mat_{zone_id}_{obj_id}_{category}_{thickness:.4f}m"
 
-            new_mat = idf.newidfobject("MATERIAL")
-            new_mat.Name = mat_name
-            new_mat.Roughness = mat_props["Roughness"]
-            new_mat.Thickness = round(thickness, 6)
-            new_mat.Conductivity = mat_props["Conductivity"]
-            new_mat.Density = mat_props["Density"]
-            new_mat.Specific_Heat = mat_props["Specific_Heat"]
-            new_mat.Thermal_Absorptance = 0.9
-            new_mat.Solar_Absorptance = 0.7
-            new_mat.Visible_Absorptance = 0.7
-            added_materials.add(mat_name)
+            if mat_name not in added_materials:
+                new_mat = idf.newidfobject("MATERIAL")
+                new_mat.Name = mat_name
+                new_mat.Roughness = mat_props["Roughness"]
+                new_mat.Thickness = round(thickness, 6)
+                new_mat.Conductivity = mat_props["Conductivity"]
+                new_mat.Density = mat_props["Density"]
+                new_mat.Specific_Heat = mat_props["Specific_Heat"]
+                new_mat.Thermal_Absorptance = 0.9
+                new_mat.Solar_Absorptance = 0.7
+                new_mat.Visible_Absorptance = 0.7
+                added_materials.add(mat_name)
 
-            # Construction name: e.g. "Constr_Z001_O001_Wood_0.0294m"
-            constr_name = f"Constr_{obj_id}_{category}_{thickness:.4f}m"
+            # Construction name: include zone_id for uniqueness
+            constr_name = f"Constr_{zone_id}_{obj_id}_{category}_{thickness:.4f}m"
 
-            new_constr = idf.newidfobject("CONSTRUCTION")
-            new_constr.Name = constr_name
-            new_constr.Outside_Layer = mat_name
-            added_constructions.add(constr_name)
+            if constr_name not in added_constructions:
+                new_constr = idf.newidfobject("CONSTRUCTION")
+                new_constr.Name = constr_name
+                new_constr.Outside_Layer = mat_name
+                added_constructions.add(constr_name)
 
             # InternalMass — one per object
             im_name = f"{zone_name}_{obj_id}_{obj_type}"
