@@ -72,7 +72,7 @@ def load_scanned_points(base_dir, scan_id, object_id):
 def load_cad_mesh(shapenet_dir, cad_source, obb_dimensions):
     """Load and scale CAD mesh to match scanned OBB."""
     # Parse cad_source: "shapenet:SYNSET/MODEL_ID"
-    parts = cad_source.replace('shapenet:', '').split('/')
+    parts = cad_source.replace('shapenet:', '').replace('crossover:', '').split('/')
     if len(parts) < 2:
         return None
     synset_id, model_id = parts[0], parts[1]
