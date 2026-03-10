@@ -9,7 +9,7 @@ Usage:
     python scan2therm/visualize_scan_vs_cad.py \
         --base_dir scan2therm/object_images \
         --gates_dir scan2therm/pipeline_v3_gates/object_images \
-        --shapenet_dir Scan2CAD/Assets/shapenet-sample \
+        --shapenet_dir ShapeNetCore \
         --out scan2therm/scan_vs_cad_comparison.html \
         --top_k 10
 """
@@ -405,7 +405,7 @@ def main():
                         default='scan2therm/pipeline_v3_gates/object_images',
                         help='Dir with objects_cad.json (CAD-augmented)')
     parser.add_argument('--shapenet_dir', type=str,
-                        default='Scan2CAD/Assets/shapenet-sample',
+                        default='ShapeNetCore',
                         help='ShapeNet models root')
     parser.add_argument('--out', type=str,
                         default='scan2therm/scan_vs_cad_comparison.html',
