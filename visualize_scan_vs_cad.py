@@ -203,7 +203,7 @@ def find_comparison_samples(base_dir, gates_dir):
                 continue
 
             cad_src = g_obj.get('cad_source', '')
-            if 'shapenet' not in cad_src:
+            if 'shapenet' not in cad_src and 'crossover' not in cad_src:
                 continue
 
             b_area = b_obj.get('surface_area_m2', 0)
@@ -247,6 +247,67 @@ def find_comparison_samples(base_dir, gates_dir):
             diverse.append(r)
 
     return diverse
+
+
+def find_specific_objects(base_dir, gates_dir, scan_id, object_ids=None):
+    """Find specific objects from a scan for visualization."""
+    gates_json = osp.join(gates_dir, scan_id, 'objects_cad.json')
+    base_json = osp.join(base_dir, scan_id, 'objects.json')
+
+    if not osp.isfile(gates_json):
+        print(f"No objects_cad.json for scan {scan_id}")
+        return []
+    if not osp.isfile(base_json):
+        print(f"No objects.json for scan {scan_id}")
+        return []
+
+    with open(base_json) as f:
+        base = json.load(f)
+    with open(gates_json) as f:
+        gates = json.load(f)
+
+    base_objs = {o['object_id']: o for o in base['objects']}
+    gates_objs = {o['object_id']: o for o in gates['objects']}
+
+    results = []
+    for oid, g_obj in gates_objs.items():
+        if object_ids and oid not in object_ids:
+            continue
+
+        b_obj = base_objs.get(oid)
+        if not b_obj:
+            continue
+
+        label = g_obj['label'].lower().strip()
+        if label in STRUCTURAL_LABELS:
+            continue
+
+        cad_src = g_obj.get('cad_source', '')
+        if 'shapenet' not in cad_src and 'crossover' not in cad_src:
+            continue
+
+        b_area = b_obj.get('surface_area_m2', 0)
+        g_area = g_obj.get('surface_area_m2', 0)
+
+        img_data, img_name = get_object_image_base64(
+            base_dir, scan_id, g_obj['label'])
+
+        results.append({
+            'scan_id': scan_id,
+            'object_id': oid,
+            'label': g_obj['label'],
+            'scanned_area': b_area,
+            'cad_area': g_area,
+            'ratio': g_area / b_area if b_area > 0 else 0,
+            'obb_dimensions': g_obj['obb_dimensions'],
+            'cad_source': cad_src,
+            'num_points': b_obj.get('num_points', 0),
+            'img_data': img_data,
+            'img_name': img_name,
+        })
+
+    results.sort(key=lambda x: x['object_id'])
+    return results
 
 
 def build_single_html(sample, rank, base_dir, shapenet_dir, output_path):
@@ -416,8 +477,31 @@ def main():
                         help='Range of samples to generate, e.g. "20-28" or "5" (0-indexed)')
     parser.add_argument('--top_k', type=int, default=None,
                         help='Only consider top K samples (default: all)')
+    parser.add_argument('--scan_id', type=str, default=None,
+                        help='Visualize objects from a specific scan ID')
+    parser.add_argument('--object_id', type=int, nargs='+', default=None,
+                        help='Visualize specific object IDs (requires --scan_id)')
     args = parser.parse_args()
 
+    # --- Mode 1: specific scan/objects ---
+    if args.scan_id:
+        samples = find_specific_objects(
+            args.base_dir, args.gates_dir, args.scan_id, args.object_id)
+        if not samples:
+            print("No matching objects found!")
+            return
+        print(f"Found {len(samples)} objects for scan {args.scan_id}\n")
+        os.makedirs(args.out_dir, exist_ok=True)
+        for i, sample in enumerate(samples):
+            filename = (f"{sample['scan_id'][:8]}_obj{sample['object_id']:03d}_"
+                        f"{sample['label'].lower().replace(' ', '_')}.html")
+            output_path = osp.join(args.out_dir, filename)
+            build_single_html(sample, i, args.base_dir, args.shapenet_dir, output_path)
+            print(f"    -> {output_path}")
+        print(f"\nDone! {len(samples)} files in {args.out_dir}/")
+        return
+
+    # --- Mode 2: ranked comparison samples ---
     print("Finding comparison samples...")
     samples = find_comparison_samples(args.base_dir, args.gates_dir)
     print(f"Found {len(samples)} total samples\n")
