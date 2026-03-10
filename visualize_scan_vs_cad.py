@@ -2,16 +2,24 @@
 """
 Visualize scanned point clouds vs. retrieved CAD models side-by-side.
 
-Generates an interactive HTML file with 3D scatter/mesh views for each sample,
+Generates one HTML file per sample with 3D scatter/mesh views,
 plus the 2D object image and surface area comparison.
 
 Usage:
+    # One HTML per sample for top 10:
     python scan2therm/visualize_scan_vs_cad.py \
         --base_dir scan2therm/object_images \
         --gates_dir scan2therm/pipeline_v3_gates/object_images \
         --shapenet_dir ShapeNetCore \
-        --out scan2therm/scan_vs_cad_comparison.html \
-        --top_k 10
+        --out_dir scan2therm/scan_vs_cad_html
+
+    # Range: samples 20-28 (0-indexed from sorted results):
+    python scan2therm/visualize_scan_vs_cad.py \
+        --range 20-28 --out_dir scan2therm/scan_vs_cad_html
+
+    # Single sample by index:
+    python scan2therm/visualize_scan_vs_cad.py \
+        --range 5 --out_dir scan2therm/scan_vs_cad_html
 """
 
 import os
@@ -22,7 +30,6 @@ import glob
 import numpy as np
 import trimesh
 import plotly.graph_objects as go
-from plotly.subplots import make_subplots
 import base64
 from pathlib import Path
 
@@ -30,6 +37,8 @@ import sys
 sys.path.insert(0, osp.join(osp.dirname(__file__), '..'))
 from scan2therm.scan3r_utils import load_ply_data
 from scan2therm.cad_geometry import STRUCTURAL_LABELS
+
+PLOTLY_CDN = '<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>'
 
 
 def load_scanned_points(base_dir, scan_id, object_id):
@@ -166,7 +175,7 @@ def make_mesh_trace(mesh, name='CAD', color='orange', opacity=0.6):
     )
 
 
-def find_comparison_samples(base_dir, gates_dir, top_k=10):
+def find_comparison_samples(base_dir, gates_dir):
     """Find objects where CAD area > scanned area, ranked by ratio."""
     results = []
 
@@ -234,139 +243,128 @@ def find_comparison_samples(base_dir, gates_dir, top_k=10):
     diverse = sorted(seen.values(), key=lambda x: x['ratio'], reverse=True)
 
     # If not enough unique labels, add more of the same
-    if len(diverse) < top_k:
-        for r in results:
-            if r not in diverse:
-                diverse.append(r)
-            if len(diverse) >= top_k:
-                break
+    for r in results:
+        if r not in diverse:
+            diverse.append(r)
 
-    return diverse[:top_k]
+    return diverse
 
 
-def build_html(samples, base_dir, shapenet_dir, output_path):
-    """Build a single HTML file with all comparisons."""
-    html_parts = ["""<!DOCTYPE html>
+def build_single_html(sample, rank, base_dir, shapenet_dir, output_path):
+    """Build one HTML file for a single sample."""
+    print(f"  [#{rank}] {sample['label']} "
+          f"({sample['scan_id'][:8]}...) ratio={sample['ratio']:.2f}x")
+
+    # Load scanned point cloud
+    scan_data = load_scanned_points(
+        base_dir, sample['scan_id'], sample['object_id'])
+
+    # Load CAD mesh
+    cad_mesh = load_cad_mesh(
+        shapenet_dir, sample['cad_source'],
+        np.array(sample['obb_dimensions']))
+
+    # --- Scanned point cloud ---
+    fig_scan = go.Figure()
+    if scan_data:
+        pts = scan_data['points']
+        pts_centered = pts - pts.mean(axis=0)
+        fig_scan.add_trace(make_pointcloud_trace(
+            pts_centered, scan_data['colors'],
+            name='Scanned (visible only)', color='steelblue'))
+    fig_scan.update_layout(
+        title=f"Scanned: {sample['scanned_area']:.2f} m²",
+        scene=dict(aspectmode='data',
+                   xaxis=dict(showbackground=False),
+                   yaxis=dict(showbackground=False),
+                   zaxis=dict(showbackground=False)),
+        margin=dict(l=0, r=0, t=40, b=0),
+        height=450, width=500,
+    )
+
+    # --- CAD mesh ---
+    fig_cad = go.Figure()
+    if cad_mesh:
+        fig_cad.add_trace(make_mesh_trace(
+            cad_mesh, name='CAD (complete)', color='#FF8C00', opacity=0.7))
+        edges = cad_mesh.vertices[cad_mesh.edges_unique]
+        if len(edges) > 5000:
+            idx = np.random.choice(len(edges), 5000, replace=False)
+            edges = edges[idx]
+        xe, ye, ze = [], [], []
+        for e in edges:
+            xe.extend([e[0, 0], e[1, 0], None])
+            ye.extend([e[0, 1], e[1, 1], None])
+            ze.extend([e[0, 2], e[1, 2], None])
+        fig_cad.add_trace(go.Scatter3d(
+            x=xe, y=ye, z=ze, mode='lines',
+            line=dict(color='rgba(0,0,0,0.15)', width=1),
+            name='Edges', showlegend=False))
+    fig_cad.update_layout(
+        title=f"CAD: {sample['cad_area']:.2f} m²",
+        scene=dict(aspectmode='data',
+                   xaxis=dict(showbackground=False),
+                   yaxis=dict(showbackground=False),
+                   zaxis=dict(showbackground=False)),
+        margin=dict(l=0, r=0, t=40, b=0),
+        height=450, width=500,
+    )
+
+    # --- Overlay ---
+    fig_overlay = go.Figure()
+    if scan_data:
+        pts_centered = scan_data['points'] - scan_data['points'].mean(axis=0)
+        fig_overlay.add_trace(make_pointcloud_trace(
+            pts_centered, scan_data['colors'],
+            name='Scanned', color='steelblue'))
+    if cad_mesh:
+        fig_overlay.add_trace(make_mesh_trace(
+            cad_mesh, name='CAD', color='#FF8C00', opacity=0.3))
+    fig_overlay.update_layout(
+        title="Overlay",
+        scene=dict(aspectmode='data',
+                   xaxis=dict(showbackground=False),
+                   yaxis=dict(showbackground=False),
+                   zaxis=dict(showbackground=False)),
+        margin=dict(l=0, r=0, t=40, b=0),
+        height=450, width=500,
+    )
+
+    # Use CDN instead of inlining plotly.js
+    scan_html = fig_scan.to_html(full_html=False, include_plotlyjs=False)
+    cad_html = fig_cad.to_html(full_html=False, include_plotlyjs=False)
+    overlay_html = fig_overlay.to_html(full_html=False, include_plotlyjs=False)
+
+    html = f"""<!DOCTYPE html>
 <html><head>
 <meta charset="utf-8">
-<title>Scanned vs CAD Surface Area Comparison</title>
+<title>#{rank}: {sample['label']} - Scan vs CAD</title>
+{PLOTLY_CDN}
 <style>
-  body { font-family: 'Segoe UI', Arial, sans-serif; margin: 20px;
-         background: #f5f5f5; }
-  h1 { color: #333; }
-  .sample { background: white; border-radius: 12px; padding: 20px;
-            margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-  .sample-header { display: flex; align-items: center; gap: 20px;
-                   margin-bottom: 15px; }
-  .sample-header img { max-width: 200px; max-height: 200px;
-                       border-radius: 8px; border: 1px solid #ddd; }
-  .stats { flex: 1; }
-  .stats h2 { margin: 0 0 8px 0; color: #1a73e8; }
-  .stats table { border-collapse: collapse; }
-  .stats td { padding: 3px 12px 3px 0; }
-  .stats .val { font-weight: bold; font-family: monospace; font-size: 1.1em; }
-  .ratio { color: #d93025; font-size: 1.3em; font-weight: bold; }
-  .views { display: flex; gap: 10px; flex-wrap: wrap; }
-  .view-container { flex: 1; min-width: 450px; }
+  body {{ font-family: 'Segoe UI', Arial, sans-serif; margin: 20px;
+         background: #f5f5f5; }}
+  h1 {{ color: #333; }}
+  .sample {{ background: white; border-radius: 12px; padding: 20px;
+            margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }}
+  .sample-header {{ display: flex; align-items: center; gap: 20px;
+                   margin-bottom: 15px; }}
+  .sample-header img {{ max-width: 200px; max-height: 200px;
+                       border-radius: 8px; border: 1px solid #ddd; }}
+  .stats {{ flex: 1; }}
+  .stats h2 {{ margin: 0 0 8px 0; color: #1a73e8; }}
+  .stats table {{ border-collapse: collapse; }}
+  .stats td {{ padding: 3px 12px 3px 0; }}
+  .stats .val {{ font-weight: bold; font-family: monospace; font-size: 1.1em; }}
+  .ratio {{ color: #d93025; font-size: 1.3em; font-weight: bold; }}
+  .views {{ display: flex; gap: 10px; flex-wrap: wrap; }}
+  .view-container {{ flex: 1; min-width: 450px; }}
 </style>
 </head><body>
-<h1>Scanned Point Cloud vs. Retrieved CAD Model</h1>
-<p>Objects where CAD augmentation reveals occluded surfaces not captured by the scanner.
-   Left: scanned points (partial). Right: complete CAD mesh scaled to object bounding box.</p>
-"""]
-
-    for i, sample in enumerate(samples):
-        print(f"  [{i+1}/{len(samples)}] {sample['label']} "
-              f"({sample['scan_id'][:8]}...) ratio={sample['ratio']:.2f}x")
-
-        # Load scanned point cloud
-        scan_data = load_scanned_points(
-            base_dir, sample['scan_id'], sample['object_id'])
-
-        # Load CAD mesh
-        cad_mesh = load_cad_mesh(
-            shapenet_dir, sample['cad_source'],
-            np.array(sample['obb_dimensions']))
-
-        # Build plotly figures
-        # --- Scanned point cloud ---
-        fig_scan = go.Figure()
-        if scan_data:
-            pts = scan_data['points']
-            pts_centered = pts - pts.mean(axis=0)
-            fig_scan.add_trace(make_pointcloud_trace(
-                pts_centered, scan_data['colors'],
-                name='Scanned (visible only)', color='steelblue'))
-        fig_scan.update_layout(
-            title=f"Scanned: {sample['scanned_area']:.2f} m²",
-            scene=dict(aspectmode='data',
-                       xaxis=dict(showbackground=False),
-                       yaxis=dict(showbackground=False),
-                       zaxis=dict(showbackground=False)),
-            margin=dict(l=0, r=0, t=40, b=0),
-            height=450, width=500,
-        )
-
-        # --- CAD mesh ---
-        fig_cad = go.Figure()
-        if cad_mesh:
-            fig_cad.add_trace(make_mesh_trace(
-                cad_mesh, name='CAD (complete)', color='#FF8C00', opacity=0.7))
-            # Also show wireframe edges
-            edges = cad_mesh.vertices[cad_mesh.edges_unique]
-            # Subsample edges
-            if len(edges) > 5000:
-                idx = np.random.choice(len(edges), 5000, replace=False)
-                edges = edges[idx]
-            xe, ye, ze = [], [], []
-            for e in edges:
-                xe.extend([e[0, 0], e[1, 0], None])
-                ye.extend([e[0, 1], e[1, 1], None])
-                ze.extend([e[0, 2], e[1, 2], None])
-            fig_cad.add_trace(go.Scatter3d(
-                x=xe, y=ye, z=ze, mode='lines',
-                line=dict(color='rgba(0,0,0,0.15)', width=1),
-                name='Edges', showlegend=False))
-        fig_cad.update_layout(
-            title=f"CAD: {sample['cad_area']:.2f} m²",
-            scene=dict(aspectmode='data',
-                       xaxis=dict(showbackground=False),
-                       yaxis=dict(showbackground=False),
-                       zaxis=dict(showbackground=False)),
-            margin=dict(l=0, r=0, t=40, b=0),
-            height=450, width=500,
-        )
-
-        # --- Overlay: both together ---
-        fig_overlay = go.Figure()
-        if scan_data:
-            pts_centered = scan_data['points'] - scan_data['points'].mean(axis=0)
-            fig_overlay.add_trace(make_pointcloud_trace(
-                pts_centered, scan_data['colors'],
-                name='Scanned', color='steelblue'))
-        if cad_mesh:
-            fig_overlay.add_trace(make_mesh_trace(
-                cad_mesh, name='CAD', color='#FF8C00', opacity=0.3))
-        fig_overlay.update_layout(
-            title="Overlay",
-            scene=dict(aspectmode='data',
-                       xaxis=dict(showbackground=False),
-                       yaxis=dict(showbackground=False),
-                       zaxis=dict(showbackground=False)),
-            margin=dict(l=0, r=0, t=40, b=0),
-            height=450, width=500,
-        )
-
-        scan_html = fig_scan.to_html(full_html=False, include_plotlyjs=(i == 0))
-        cad_html = fig_cad.to_html(full_html=False, include_plotlyjs=False)
-        overlay_html = fig_overlay.to_html(full_html=False, include_plotlyjs=False)
-
-        html_parts.append(f"""
+<h1>#{rank}: {sample['label']} — Scanned vs CAD</h1>
 <div class="sample">
   <div class="sample-header">
     <img src="{sample['img_data']}" alt="{sample['label']}">
     <div class="stats">
-      <h2>#{i+1}: {sample['label']}</h2>
       <table>
         <tr><td>Scan ID:</td><td class="val">{sample['scan_id'][:16]}...</td></tr>
         <tr><td>Object ID:</td><td class="val">{sample['object_id']}</td></tr>
@@ -385,14 +383,21 @@ def build_html(samples, base_dir, shapenet_dir, output_path):
     <div class="view-container">{overlay_html}</div>
   </div>
 </div>
-""")
-
-    html_parts.append("</body></html>")
+</body></html>"""
 
     os.makedirs(osp.dirname(output_path) or '.', exist_ok=True)
     with open(output_path, 'w') as f:
-        f.write('\n'.join(html_parts))
-    print(f"\nSaved: {output_path}")
+        f.write(html)
+
+
+def parse_range(range_str):
+    """Parse range string like '20-28' or '5' into (start, end) inclusive."""
+    if '-' in range_str:
+        parts = range_str.split('-', 1)
+        return int(parts[0]), int(parts[1])
+    else:
+        idx = int(range_str)
+        return idx, idx
 
 
 def main():
@@ -407,24 +412,47 @@ def main():
     parser.add_argument('--shapenet_dir', type=str,
                         default='ShapeNetCore',
                         help='ShapeNet models root')
-    parser.add_argument('--out', type=str,
-                        default='scan2therm/scan_vs_cad_comparison.html',
-                        help='Output HTML path')
-    parser.add_argument('--top_k', type=int, default=10,
-                        help='Number of samples to visualize')
+    parser.add_argument('--out_dir', type=str,
+                        default='scan2therm/scan_vs_cad_html_v2',
+                        help='Output directory for per-sample HTML files')
+    parser.add_argument('--range', type=str, default=None,
+                        help='Range of samples to generate, e.g. "20-28" or "5" (0-indexed)')
+    parser.add_argument('--top_k', type=int, default=None,
+                        help='Only consider top K samples (default: all)')
     args = parser.parse_args()
 
-    print("Finding best comparison samples...")
-    samples = find_comparison_samples(
-        args.base_dir, args.gates_dir, args.top_k)
-    print(f"Found {len(samples)} samples\n")
+    print("Finding comparison samples...")
+    samples = find_comparison_samples(args.base_dir, args.gates_dir)
+    print(f"Found {len(samples)} total samples\n")
 
     if not samples:
         print("No samples found!")
         return
 
-    print("Building HTML visualization...")
-    build_html(samples, args.base_dir, args.shapenet_dir, args.out)
+    if args.top_k:
+        samples = samples[:args.top_k]
+
+    # Determine which samples to render
+    if args.range:
+        start, end = parse_range(args.range)
+        end = min(end, len(samples) - 1)
+        start = max(start, 0)
+        selected = list(range(start, end + 1))
+    else:
+        selected = list(range(len(samples)))
+
+    print(f"Generating {len(selected)} HTML files (indices {selected[0]}-{selected[-1]})...\n")
+
+    os.makedirs(args.out_dir, exist_ok=True)
+
+    for idx in selected:
+        sample = samples[idx]
+        filename = f"{idx:03d}_{sample['label'].lower().replace(' ', '_')}_{sample['scan_id'][:8]}.html"
+        output_path = osp.join(args.out_dir, filename)
+        build_single_html(sample, idx, args.base_dir, args.shapenet_dir, output_path)
+        print(f"    -> {output_path}")
+
+    print(f"\nDone! {len(selected)} files in {args.out_dir}/")
 
 
 if __name__ == '__main__':
