@@ -38,7 +38,6 @@ sys.path.insert(0, osp.join(osp.dirname(__file__), '..'))
 from scan2therm.scan3r_utils import load_ply_data
 from scan2therm.cad_geometry import STRUCTURAL_LABELS
 
-PLOTLY_CDN = '<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>'
 
 
 def load_scanned_points(base_dir, scan_id, object_id):
@@ -330,8 +329,7 @@ def build_single_html(sample, rank, base_dir, shapenet_dir, output_path):
         height=450, width=500,
     )
 
-    # Use CDN instead of inlining plotly.js
-    scan_html = fig_scan.to_html(full_html=False, include_plotlyjs=False)
+    scan_html = fig_scan.to_html(full_html=False, include_plotlyjs=True)
     cad_html = fig_cad.to_html(full_html=False, include_plotlyjs=False)
     overlay_html = fig_overlay.to_html(full_html=False, include_plotlyjs=False)
 
@@ -339,7 +337,6 @@ def build_single_html(sample, rank, base_dir, shapenet_dir, output_path):
 <html><head>
 <meta charset="utf-8">
 <title>#{rank}: {sample['label']} - Scan vs CAD</title>
-{PLOTLY_CDN}
 <style>
   body {{ font-family: 'Segoe UI', Arial, sans-serif; margin: 20px;
          background: #f5f5f5; }}
