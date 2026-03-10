@@ -41,8 +41,8 @@ def identify_material(
                 {
                     "type": "text",
                     "text": (
-                        f"This is a mesh from a 3D room scan. "
-                        f"Identify the primary material of the '{label}' object visible in the texture. "
+                        f"This is an image from a 3D room scan. "
+                        f"Identify the primary material of the '{label}' object visible in the image. "
                         f"Reply with with one of the following materials: Wood, Metal, Plastic, Fabric, Books, Gypsum, Concrete. Answer with exactly one of these materials."
                         f"If the object is not made of one of these materials, reply with the material that is most similar to the object in terms of thermodynamic properties."
                     ),
