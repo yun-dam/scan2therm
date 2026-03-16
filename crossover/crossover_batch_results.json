@@ -1,0 +1,581 @@
+{
+  "num_scans": 50,
+  "num_objects": 1286,
+  "top1_accuracy": 1.63,
+  "top3_accuracy": 11.98,
+  "top5_accuracy": 27.6,
+  "per_class": {
+    "bag": {
+      "correct": 0,
+      "total": 16,
+      "accuracy": 0.0
+    },
+    "bathtub": {
+      "correct": 0,
+      "total": 1,
+      "accuracy": 0.0
+    },
+    "bed": {
+      "correct": 0,
+      "total": 15,
+      "accuracy": 0.0
+    },
+    "blinds": {
+      "correct": 0,
+      "total": 9,
+      "accuracy": 0.0
+    },
+    "books": {
+      "correct": 0,
+      "total": 2,
+      "accuracy": 0.0
+    },
+    "bookshelf": {
+      "correct": 0,
+      "total": 2,
+      "accuracy": 0.0
+    },
+    "box": {
+      "correct": 0,
+      "total": 83,
+      "accuracy": 0.0
+    },
+    "cabinet": {
+      "correct": 4,
+      "total": 52,
+      "accuracy": 7.69
+    },
+    "chair": {
+      "correct": 0,
+      "total": 93,
+      "accuracy": 0.0
+    },
+    "clothes": {
+      "correct": 0,
+      "total": 26,
+      "accuracy": 0.0
+    },
+    "counter": {
+      "correct": 0,
+      "total": 14,
+      "accuracy": 0.0
+    },
+    "curtain": {
+      "correct": 0,
+      "total": 37,
+      "accuracy": 0.0
+    },
+    "desk": {
+      "correct": 0,
+      "total": 16,
+      "accuracy": 0.0
+    },
+    "door": {
+      "correct": 6,
+      "total": 39,
+      "accuracy": 15.38
+    },
+    "dresser": {
+      "correct": 0,
+      "total": 1,
+      "accuracy": 0.0
+    },
+    "floor mat": {
+      "correct": 0,
+      "total": 1,
+      "accuracy": 0.0
+    },
+    "lamp": {
+      "correct": 0,
+      "total": 46,
+      "accuracy": 0.0
+    },
+    "mirror": {
+      "correct": 0,
+      "total": 7,
+      "accuracy": 0.0
+    },
+    "nightstand": {
+      "correct": 0,
+      "total": 6,
+      "accuracy": 0.0
+    },
+    "other furniture": {
+      "correct": 0,
+      "total": 63,
+      "accuracy": 0.0
+    },
+    "other prop": {
+      "correct": 0,
+      "total": 328,
+      "accuracy": 0.0
+    },
+    "other structure": {
+      "correct": 0,
+      "total": 83,
+      "accuracy": 0.0
+    },
+    "picture": {
+      "correct": 3,
+      "total": 40,
+      "accuracy": 7.5
+    },
+    "pillow": {
+      "correct": 5,
+      "total": 77,
+      "accuracy": 6.49
+    },
+    "refrigerator": {
+      "correct": 0,
+      "total": 7,
+      "accuracy": 0.0
+    },
+    "shelves": {
+      "correct": 0,
+      "total": 67,
+      "accuracy": 0.0
+    },
+    "sink": {
+      "correct": 0,
+      "total": 15,
+      "accuracy": 0.0
+    },
+    "sofa": {
+      "correct": 0,
+      "total": 18,
+      "accuracy": 0.0
+    },
+    "table": {
+      "correct": 0,
+      "total": 44,
+      "accuracy": 0.0
+    },
+    "television": {
+      "correct": 0,
+      "total": 6,
+      "accuracy": 0.0
+    },
+    "toilet": {
+      "correct": 0,
+      "total": 6,
+      "accuracy": 0.0
+    },
+    "towel": {
+      "correct": 0,
+      "total": 23,
+      "accuracy": 0.0
+    },
+    "whiteboard": {
+      "correct": 0,
+      "total": 1,
+      "accuracy": 0.0
+    },
+    "window": {
+      "correct": 3,
+      "total": 42,
+      "accuracy": 7.14
+    }
+  },
+  "per_scan": [
+    {
+      "scan_id": "09582228-e2c2-2de1-953d-f6f1ee4b3699",
+      "num_objects": 5,
+      "top1_correct": 0,
+      "top3_correct": 0,
+      "top5_correct": 1,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "0cac75f6-8d6f-2d13-8d7b-dc01a394149c",
+      "num_objects": 22,
+      "top1_correct": 0,
+      "top3_correct": 4,
+      "top5_correct": 10,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "0cac7648-8d6f-2d13-8e30-76663c19baa4",
+      "num_objects": 28,
+      "top1_correct": 1,
+      "top3_correct": 4,
+      "top5_correct": 6,
+      "top1_accuracy": 3.57
+    },
+    {
+      "scan_id": "1713f857-5300-2104-85c7-5e6e0b50713c",
+      "num_objects": 30,
+      "top1_correct": 0,
+      "top3_correct": 4,
+      "top5_correct": 9,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "198aaa74-0ba3-26f6-8792-66b6388b17ca",
+      "num_objects": 30,
+      "top1_correct": 1,
+      "top3_correct": 11,
+      "top5_correct": 13,
+      "top1_accuracy": 3.33
+    },
+    {
+      "scan_id": "1d2f8514-d757-207c-8e40-377957df6f67",
+      "num_objects": 32,
+      "top1_correct": 0,
+      "top3_correct": 5,
+      "top5_correct": 17,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "1dd7209f-2ba0-22d9-8b9e-b5e270b2580f",
+      "num_objects": 24,
+      "top1_correct": 0,
+      "top3_correct": 4,
+      "top5_correct": 12,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "20c993c9-698f-29c5-850e-2a93df894437",
+      "num_objects": 50,
+      "top1_correct": 1,
+      "top3_correct": 4,
+      "top5_correct": 14,
+      "top1_accuracy": 2.0
+    },
+    {
+      "scan_id": "2e36954d-e133-204c-92aa-5cf8c2f8b46f",
+      "num_objects": 11,
+      "top1_correct": 0,
+      "top3_correct": 0,
+      "top5_correct": 2,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "41385847-a238-2435-838b-61864922c518",
+      "num_objects": 39,
+      "top1_correct": 0,
+      "top3_correct": 1,
+      "top5_correct": 8,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "422885ce-192d-25fc-851a-df2d675a6559",
+      "num_objects": 39,
+      "top1_correct": 0,
+      "top3_correct": 5,
+      "top5_correct": 17,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "422885e0-192d-25fc-844a-62e395291839",
+      "num_objects": 33,
+      "top1_correct": 0,
+      "top3_correct": 4,
+      "top5_correct": 16,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "48005c65-7d67-29ec-85e0-6a925eb15a27",
+      "num_objects": 32,
+      "top1_correct": 2,
+      "top3_correct": 6,
+      "top5_correct": 14,
+      "top1_accuracy": 6.25
+    },
+    {
+      "scan_id": "531cff04-0021-28f6-8d49-e51826f43468",
+      "num_objects": 40,
+      "top1_correct": 0,
+      "top3_correct": 6,
+      "top5_correct": 16,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "5341b7ab-8a66-2cdd-865a-c27c4263d24a",
+      "num_objects": 10,
+      "top1_correct": 0,
+      "top3_correct": 0,
+      "top5_correct": 1,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "55551068-36f1-29c0-8896-0fa81b7a1fe7",
+      "num_objects": 17,
+      "top1_correct": 1,
+      "top3_correct": 2,
+      "top5_correct": 3,
+      "top1_accuracy": 5.88
+    },
+    {
+      "scan_id": "5630cfcd-12bf-2860-87f0-65937859709c",
+      "num_objects": 27,
+      "top1_correct": 0,
+      "top3_correct": 6,
+      "top5_correct": 9,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "569d8f09-72aa-2f24-887c-26497a35f26a",
+      "num_objects": 28,
+      "top1_correct": 0,
+      "top3_correct": 2,
+      "top5_correct": 4,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "6a360523-fa53-2915-9506-4b95fa02cc56",
+      "num_objects": 25,
+      "top1_correct": 2,
+      "top3_correct": 5,
+      "top5_correct": 6,
+      "top1_accuracy": 8.0
+    },
+    {
+      "scan_id": "6a36053f-fa53-2915-9579-3938283bc154",
+      "num_objects": 26,
+      "top1_correct": 3,
+      "top3_correct": 3,
+      "top5_correct": 6,
+      "top1_accuracy": 11.54
+    },
+    {
+      "scan_id": "6bde605f-9162-246f-8d03-644a980c1cbb",
+      "num_objects": 14,
+      "top1_correct": 0,
+      "top3_correct": 1,
+      "top5_correct": 5,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "6bde60a3-9162-246f-8ca3-48f7e86e95b8",
+      "num_objects": 17,
+      "top1_correct": 0,
+      "top3_correct": 6,
+      "top5_correct": 6,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "6bde60ec-9162-246f-8d34-324b01605c9c",
+      "num_objects": 46,
+      "top1_correct": 0,
+      "top3_correct": 3,
+      "top5_correct": 14,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "7272e161-a01b-20f6-8b5a-0b97efeb6545",
+      "num_objects": 29,
+      "top1_correct": 0,
+      "top3_correct": 1,
+      "top5_correct": 4,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "7272e190-a01b-20f6-8bde-769bcd548633",
+      "num_objects": 25,
+      "top1_correct": 2,
+      "top3_correct": 8,
+      "top5_correct": 12,
+      "top1_accuracy": 8.0
+    },
+    {
+      "scan_id": "751a5581-fe61-2c3b-8cac-76cacfb277e0",
+      "num_objects": 29,
+      "top1_correct": 0,
+      "top3_correct": 0,
+      "top5_correct": 9,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "787ed580-9d98-2c97-8167-6d3b445da2c0",
+      "num_objects": 20,
+      "top1_correct": 0,
+      "top3_correct": 1,
+      "top5_correct": 8,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "7ab2a9c9-ebc6-2056-89b6-c78dbb4290d3",
+      "num_objects": 16,
+      "top1_correct": 0,
+      "top3_correct": 0,
+      "top5_correct": 0,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "7ab2a9d1-ebc6-2056-8880-07b5c7404d58",
+      "num_objects": 20,
+      "top1_correct": 0,
+      "top3_correct": 1,
+      "top5_correct": 1,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "87e6cf6d-9d1a-289f-879a-543d3fa7ba74",
+      "num_objects": 13,
+      "top1_correct": 0,
+      "top3_correct": 1,
+      "top5_correct": 1,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "8e0f1c53-9e28-2339-8588-2b24d9e9f3e8",
+      "num_objects": 42,
+      "top1_correct": 0,
+      "top3_correct": 4,
+      "top5_correct": 13,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "8eabc418-5af7-2f32-85a1-a2709b29c46d",
+      "num_objects": 22,
+      "top1_correct": 0,
+      "top3_correct": 0,
+      "top5_correct": 1,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "8f0f1437-55de-28ce-828e-dbf210a7f472",
+      "num_objects": 7,
+      "top1_correct": 0,
+      "top3_correct": 0,
+      "top5_correct": 0,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "a38a57de-8a91-2e91-90b2-910244171e92",
+      "num_objects": 21,
+      "top1_correct": 0,
+      "top3_correct": 4,
+      "top5_correct": 5,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "aa20278c-8bc8-2c5b-9d18-016312e4463a",
+      "num_objects": 38,
+      "top1_correct": 3,
+      "top3_correct": 6,
+      "top5_correct": 7,
+      "top1_accuracy": 7.89
+    },
+    {
+      "scan_id": "ab835f8b-54c6-29a1-9a7a-4770a0eb74ff",
+      "num_objects": 8,
+      "top1_correct": 0,
+      "top3_correct": 3,
+      "top5_correct": 3,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "ab835f92-54c6-29a1-99eb-63169a21d553",
+      "num_objects": 9,
+      "top1_correct": 0,
+      "top3_correct": 0,
+      "top5_correct": 3,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "ab835fa3-54c6-29a1-9a47-92dbaf9eb4b9",
+      "num_objects": 30,
+      "top1_correct": 0,
+      "top3_correct": 3,
+      "top5_correct": 4,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "ad408c97-84db-2095-88e0-de11e52a06ef",
+      "num_objects": 24,
+      "top1_correct": 1,
+      "top3_correct": 5,
+      "top5_correct": 12,
+      "top1_accuracy": 4.17
+    },
+    {
+      "scan_id": "b05fddcf-fca0-2d4f-8a01-c6bdcc9fba8d",
+      "num_objects": 40,
+      "top1_correct": 1,
+      "top3_correct": 2,
+      "top5_correct": 3,
+      "top1_accuracy": 2.5
+    },
+    {
+      "scan_id": "b1d87fb0-e72e-2c8c-9f01-25dafeddf472",
+      "num_objects": 12,
+      "top1_correct": 0,
+      "top3_correct": 1,
+      "top5_correct": 3,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "baf0a8e8-26d4-2033-8bbb-975c6002fbb7",
+      "num_objects": 52,
+      "top1_correct": 2,
+      "top3_correct": 5,
+      "top5_correct": 9,
+      "top1_accuracy": 3.85
+    },
+    {
+      "scan_id": "baf0a8fb-26d4-2033-8a28-2001356bbb9a",
+      "num_objects": 14,
+      "top1_correct": 0,
+      "top3_correct": 1,
+      "top5_correct": 3,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "bf9a3dd3-45a5-2e80-8163-8a5b2573aca4",
+      "num_objects": 20,
+      "top1_correct": 1,
+      "top3_correct": 3,
+      "top5_correct": 6,
+      "top1_accuracy": 5.0
+    },
+    {
+      "scan_id": "c7895f35-339c-2d13-805c-47570e126422",
+      "num_objects": 15,
+      "top1_correct": 0,
+      "top3_correct": 3,
+      "top5_correct": 4,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "c92fb594-f771-2064-879b-cc598a9dabe5",
+      "num_objects": 38,
+      "top1_correct": 0,
+      "top3_correct": 8,
+      "top5_correct": 14,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "f38169cf-378c-2a65-855f-05d491a3f26e",
+      "num_objects": 21,
+      "top1_correct": 0,
+      "top3_correct": 4,
+      "top5_correct": 6,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "f62fd5fd-9a3f-2f44-883a-1e5cf819608e",
+      "num_objects": 52,
+      "top1_correct": 0,
+      "top3_correct": 2,
+      "top5_correct": 10,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "fcf66d98-622d-291c-851a-a16c117a91bb",
+      "num_objects": 17,
+      "top1_correct": 0,
+      "top3_correct": 1,
+      "top5_correct": 3,
+      "top1_accuracy": 0.0
+    },
+    {
+      "scan_id": "fcf66db8-622d-291c-8502-863b391b9ef1",
+      "num_objects": 27,
+      "top1_correct": 0,
+      "top3_correct": 1,
+      "top5_correct": 2,
+      "top1_accuracy": 0.0
+    }
+  ]
+}

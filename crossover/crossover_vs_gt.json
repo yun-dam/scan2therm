@@ -1,0 +1,1000 @@
+{
+  "scan_id": "1d2f8514-d757-207c-8e40-377957df6f67",
+  "accuracy": 0.0,
+  "correct": 0,
+  "total": 32,
+  "objects": [
+    {
+      "object_id": 2,
+      "ground_truth": {
+        "nyu40_id": 3,
+        "nyu40_class": "cabinet",
+        "label": "kitchen cabinet"
+      },
+      "predicted": {
+        "nyu40_id": 17,
+        "nyu40_class": "dresser"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 17,
+          "class": "dresser",
+          "similarity": 0.4423
+        },
+        {
+          "nyu40_id": 26,
+          "class": "paper",
+          "similarity": 0.4124
+        },
+        {
+          "nyu40_id": 34,
+          "class": "sink",
+          "similarity": 0.385
+        }
+      ],
+      "num_points": 2920
+    },
+    {
+      "object_id": 3,
+      "ground_truth": {
+        "nyu40_id": 12,
+        "nyu40_class": "counter",
+        "label": "kitchen counter"
+      },
+      "predicted": {
+        "nyu40_id": 18,
+        "nyu40_class": "pillow"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 18,
+          "class": "pillow",
+          "similarity": 0.1996
+        },
+        {
+          "nyu40_id": 20,
+          "class": "floor mat",
+          "similarity": 0.1256
+        },
+        {
+          "nyu40_id": 17,
+          "class": "dresser",
+          "similarity": 0.1218
+        }
+      ],
+      "num_points": 5389
+    },
+    {
+      "object_id": 6,
+      "ground_truth": {
+        "nyu40_id": 3,
+        "nyu40_class": "cabinet",
+        "label": "cabinet"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.5794
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.5229
+        },
+        {
+          "nyu40_id": 8,
+          "class": "door",
+          "similarity": 0.4355
+        }
+      ],
+      "num_points": 2644
+    },
+    {
+      "object_id": 7,
+      "ground_truth": {
+        "nyu40_id": 38,
+        "nyu40_class": "other structure",
+        "label": "oven"
+      },
+      "predicted": {
+        "nyu40_id": 1,
+        "nyu40_class": "wall"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.2091
+        },
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1846
+        },
+        {
+          "nyu40_id": 8,
+          "class": "door",
+          "similarity": 0.1712
+        }
+      ],
+      "num_points": 757
+    },
+    {
+      "object_id": 9,
+      "ground_truth": {
+        "nyu40_id": 15,
+        "nyu40_class": "shelves",
+        "label": "shelf"
+      },
+      "predicted": {
+        "nyu40_id": 17,
+        "nyu40_class": "dresser"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 17,
+          "class": "dresser",
+          "similarity": 0.3483
+        },
+        {
+          "nyu40_id": 32,
+          "class": "nightstand",
+          "similarity": 0.3401
+        },
+        {
+          "nyu40_id": 3,
+          "class": "cabinet",
+          "similarity": 0.2689
+        }
+      ],
+      "num_points": 4048
+    },
+    {
+      "object_id": 11,
+      "ground_truth": {
+        "nyu40_id": 9,
+        "nyu40_class": "window",
+        "label": "window"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1373
+        },
+        {
+          "nyu40_id": 18,
+          "class": "pillow",
+          "similarity": 0.1114
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.0967
+        }
+      ],
+      "num_points": 2258
+    },
+    {
+      "object_id": 12,
+      "ground_truth": {
+        "nyu40_id": 16,
+        "nyu40_class": "curtain",
+        "label": "curtain"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.2691
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.2371
+        },
+        {
+          "nyu40_id": 8,
+          "class": "door",
+          "similarity": 0.2052
+        }
+      ],
+      "num_points": 1145
+    },
+    {
+      "object_id": 13,
+      "ground_truth": {
+        "nyu40_id": 40,
+        "nyu40_class": "other prop",
+        "label": "fruits"
+      },
+      "predicted": {
+        "nyu40_id": 1,
+        "nyu40_class": "wall"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.1449
+        },
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1418
+        },
+        {
+          "nyu40_id": 28,
+          "class": "shower curtain",
+          "similarity": 0.1378
+        }
+      ],
+      "num_points": 114
+    },
+    {
+      "object_id": 14,
+      "ground_truth": {
+        "nyu40_id": 29,
+        "nyu40_class": "box",
+        "label": "box"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1512
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.1198
+        },
+        {
+          "nyu40_id": 8,
+          "class": "door",
+          "similarity": 0.0863
+        }
+      ],
+      "num_points": 540
+    },
+    {
+      "object_id": 15,
+      "ground_truth": {
+        "nyu40_id": 40,
+        "nyu40_class": "other prop",
+        "label": "can"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1699
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.1678
+        },
+        {
+          "nyu40_id": 8,
+          "class": "door",
+          "similarity": 0.1176
+        }
+      ],
+      "num_points": 116
+    },
+    {
+      "object_id": 16,
+      "ground_truth": {
+        "nyu40_id": 40,
+        "nyu40_class": "other prop",
+        "label": "squeezer"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1462
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.1102
+        },
+        {
+          "nyu40_id": 40,
+          "class": "other prop",
+          "similarity": 0.0963
+        }
+      ],
+      "num_points": 430
+    },
+    {
+      "object_id": 17,
+      "ground_truth": {
+        "nyu40_id": 34,
+        "nyu40_class": "sink",
+        "label": "sink"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1485
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.1216
+        },
+        {
+          "nyu40_id": 8,
+          "class": "door",
+          "similarity": 0.0897
+        }
+      ],
+      "num_points": 1014
+    },
+    {
+      "object_id": 19,
+      "ground_truth": {
+        "nyu40_id": 15,
+        "nyu40_class": "shelves",
+        "label": "shelf"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1799
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.1722
+        },
+        {
+          "nyu40_id": 8,
+          "class": "door",
+          "similarity": 0.1714
+        }
+      ],
+      "num_points": 2372
+    },
+    {
+      "object_id": 20,
+      "ground_truth": {
+        "nyu40_id": 40,
+        "nyu40_class": "other prop",
+        "label": "kitchen appliance"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1367
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.1211
+        },
+        {
+          "nyu40_id": 28,
+          "class": "shower curtain",
+          "similarity": 0.1137
+        }
+      ],
+      "num_points": 202
+    },
+    {
+      "object_id": 21,
+      "ground_truth": {
+        "nyu40_id": 40,
+        "nyu40_class": "other prop",
+        "label": "coffee maker"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1385
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.1337
+        },
+        {
+          "nyu40_id": 28,
+          "class": "shower curtain",
+          "similarity": 0.1153
+        }
+      ],
+      "num_points": 242
+    },
+    {
+      "object_id": 23,
+      "ground_truth": {
+        "nyu40_id": 38,
+        "nyu40_class": "other structure",
+        "label": "windowsill"
+      },
+      "predicted": {
+        "nyu40_id": 1,
+        "nyu40_class": "wall"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.2232
+        },
+        {
+          "nyu40_id": 8,
+          "class": "door",
+          "similarity": 0.2042
+        },
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1885
+        }
+      ],
+      "num_points": 531
+    },
+    {
+      "object_id": 26,
+      "ground_truth": {
+        "nyu40_id": 40,
+        "nyu40_class": "other prop",
+        "label": "plant"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1426
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.1402
+        },
+        {
+          "nyu40_id": 8,
+          "class": "door",
+          "similarity": 0.1022
+        }
+      ],
+      "num_points": 147
+    },
+    {
+      "object_id": 27,
+      "ground_truth": {
+        "nyu40_id": 40,
+        "nyu40_class": "other prop",
+        "label": "plant"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.144
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.1193
+        },
+        {
+          "nyu40_id": 28,
+          "class": "shower curtain",
+          "similarity": 0.1067
+        }
+      ],
+      "num_points": 366
+    },
+    {
+      "object_id": 28,
+      "ground_truth": {
+        "nyu40_id": 15,
+        "nyu40_class": "shelves",
+        "label": "shelf"
+      },
+      "predicted": {
+        "nyu40_id": 18,
+        "nyu40_class": "pillow"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 18,
+          "class": "pillow",
+          "similarity": 0.176
+        },
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1305
+        },
+        {
+          "nyu40_id": 39,
+          "class": "other furniture",
+          "similarity": 0.1238
+        }
+      ],
+      "num_points": 987
+    },
+    {
+      "object_id": 32,
+      "ground_truth": {
+        "nyu40_id": 40,
+        "nyu40_class": "other prop",
+        "label": "cup"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.141
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.1206
+        },
+        {
+          "nyu40_id": 28,
+          "class": "shower curtain",
+          "similarity": 0.1159
+        }
+      ],
+      "num_points": 133
+    },
+    {
+      "object_id": 33,
+      "ground_truth": {
+        "nyu40_id": 40,
+        "nyu40_class": "other prop",
+        "label": "kitchen appliance"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1549
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.1262
+        },
+        {
+          "nyu40_id": 40,
+          "class": "other prop",
+          "similarity": 0.1012
+        }
+      ],
+      "num_points": 776
+    },
+    {
+      "object_id": 34,
+      "ground_truth": {
+        "nyu40_id": 38,
+        "nyu40_class": "other structure",
+        "label": "doorframe"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.4225
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.4166
+        },
+        {
+          "nyu40_id": 8,
+          "class": "door",
+          "similarity": 0.3944
+        }
+      ],
+      "num_points": 823
+    },
+    {
+      "object_id": 35,
+      "ground_truth": {
+        "nyu40_id": 40,
+        "nyu40_class": "other prop",
+        "label": "basket"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1445
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.1363
+        },
+        {
+          "nyu40_id": 28,
+          "class": "shower curtain",
+          "similarity": 0.1237
+        }
+      ],
+      "num_points": 105
+    },
+    {
+      "object_id": 46,
+      "ground_truth": {
+        "nyu40_id": 40,
+        "nyu40_class": "other prop",
+        "label": "microwave"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1537
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.1195
+        },
+        {
+          "nyu40_id": 40,
+          "class": "other prop",
+          "similarity": 0.1
+        }
+      ],
+      "num_points": 1008
+    },
+    {
+      "object_id": 49,
+      "ground_truth": {
+        "nyu40_id": 40,
+        "nyu40_class": "other prop",
+        "label": "bowl"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.136
+        },
+        {
+          "nyu40_id": 39,
+          "class": "other furniture",
+          "similarity": 0.0915
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.0674
+        }
+      ],
+      "num_points": 351
+    },
+    {
+      "object_id": 51,
+      "ground_truth": {
+        "nyu40_id": 40,
+        "nyu40_class": "other prop",
+        "label": "plant"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1467
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.1065
+        },
+        {
+          "nyu40_id": 40,
+          "class": "other prop",
+          "similarity": 0.0887
+        }
+      ],
+      "num_points": 263
+    },
+    {
+      "object_id": 53,
+      "ground_truth": {
+        "nyu40_id": 40,
+        "nyu40_class": "other prop",
+        "label": "item"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1437
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.1378
+        },
+        {
+          "nyu40_id": 28,
+          "class": "shower curtain",
+          "similarity": 0.1006
+        }
+      ],
+      "num_points": 95
+    },
+    {
+      "object_id": 54,
+      "ground_truth": {
+        "nyu40_id": 40,
+        "nyu40_class": "other prop",
+        "label": "bread"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1325
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.1124
+        },
+        {
+          "nyu40_id": 28,
+          "class": "shower curtain",
+          "similarity": 0.1024
+        }
+      ],
+      "num_points": 232
+    },
+    {
+      "object_id": 55,
+      "ground_truth": {
+        "nyu40_id": 40,
+        "nyu40_class": "other prop",
+        "label": "item"
+      },
+      "predicted": {
+        "nyu40_id": 1,
+        "nyu40_class": "wall"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.1828
+        },
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1748
+        },
+        {
+          "nyu40_id": 28,
+          "class": "shower curtain",
+          "similarity": 0.1374
+        }
+      ],
+      "num_points": 93
+    },
+    {
+      "object_id": 56,
+      "ground_truth": {
+        "nyu40_id": 40,
+        "nyu40_class": "other prop",
+        "label": "item"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1377
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.121
+        },
+        {
+          "nyu40_id": 40,
+          "class": "other prop",
+          "similarity": 0.0917
+        }
+      ],
+      "num_points": 145
+    },
+    {
+      "object_id": 57,
+      "ground_truth": {
+        "nyu40_id": 40,
+        "nyu40_class": "other prop",
+        "label": "bread"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1606
+        },
+        {
+          "nyu40_id": 1,
+          "class": "wall",
+          "similarity": 0.1521
+        },
+        {
+          "nyu40_id": 8,
+          "class": "door",
+          "similarity": 0.1131
+        }
+      ],
+      "num_points": 759
+    },
+    {
+      "object_id": 58,
+      "ground_truth": {
+        "nyu40_id": 40,
+        "nyu40_class": "other prop",
+        "label": "clutter"
+      },
+      "predicted": {
+        "nyu40_id": 11,
+        "nyu40_class": "picture"
+      },
+      "correct": false,
+      "top3": [
+        {
+          "nyu40_id": 11,
+          "class": "picture",
+          "similarity": 0.1547
+        },
+        {
+          "nyu40_id": 18,
+          "class": "pillow",
+          "similarity": 0.1292
+        },
+        {
+          "nyu40_id": 39,
+          "class": "other furniture",
+          "similarity": 0.1271
+        }
+      ],
+      "num_points": 2786
+    }
+  ]
+}

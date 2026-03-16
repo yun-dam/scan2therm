@@ -1,0 +1,824 @@
+{
+  "scan_id": "1d2f8514-d757-207c-8e40-377957df6f67",
+  "num_objects": 32,
+  "num_with_3dssg_material": 5,
+  "objects": [
+    {
+      "object_id": 2,
+      "label": "kitchen cabinet",
+      "nyu40_class": "cabinet",
+      "material": "wooden",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 18.9654,
+      "obb_dimensions": [
+        2.1,
+        3.521,
+        1.1146
+      ],
+      "centroid": [
+        1.7854,
+        0.021,
+        -0.915
+      ],
+      "num_points": 2920,
+      "attributes": {
+        "affordances": [
+          "placing items in",
+          "storing in"
+        ]
+      }
+    },
+    {
+      "object_id": 3,
+      "label": "kitchen counter",
+      "nyu40_class": "counter",
+      "material": "stone",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 13.2407,
+      "obb_dimensions": [
+        2.585,
+        3.36,
+        0.44
+      ],
+      "centroid": [
+        1.9935,
+        -0.1328,
+        -0.5237
+      ],
+      "num_points": 5389,
+      "attributes": {
+        "affordances": [
+          "placing items in",
+          "placing items on"
+        ]
+      }
+    },
+    {
+      "object_id": 6,
+      "label": "cabinet",
+      "nyu40_class": "cabinet",
+      "material": "wooden",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 13.6473,
+      "obb_dimensions": [
+        0.92,
+        2.6751,
+        2.3217
+      ],
+      "centroid": [
+        -0.2296,
+        0.6313,
+        -0.3219
+      ],
+      "num_points": 2644,
+      "attributes": {
+        "affordances": [
+          "placing items in",
+          "placing items on"
+        ]
+      }
+    },
+    {
+      "object_id": 7,
+      "label": "oven",
+      "nyu40_class": "otherstructure",
+      "material": "glass",
+      "material_source": "3dssg",
+      "surface_area_m2": 1.7795,
+      "obb_dimensions": [
+        0.6244,
+        0.56,
+        1.12
+      ],
+      "centroid": [
+        -0.4909,
+        -0.5047,
+        -0.3785
+      ],
+      "num_points": 757,
+      "attributes": {
+        "color": [
+          "silver"
+        ]
+      }
+    },
+    {
+      "object_id": 9,
+      "label": "shelf",
+      "nyu40_class": "shelves",
+      "material": "wooden",
+      "material_source": "3dssg",
+      "surface_area_m2": 4.8355,
+      "obb_dimensions": [
+        1.6879,
+        0.7494,
+        1.0216
+      ],
+      "centroid": [
+        2.4139,
+        1.3974,
+        0.5129
+      ],
+      "num_points": 4048,
+      "attributes": {
+        "shape": [
+          "rectangular"
+        ],
+        "state": [
+          "full"
+        ],
+        "affordances": [
+          "placing items on",
+          "hanging"
+        ]
+      }
+    },
+    {
+      "object_id": 11,
+      "label": "window",
+      "nyu40_class": "window",
+      "material": "glass",
+      "material_source": "3dssg",
+      "surface_area_m2": 2.4504,
+      "obb_dimensions": [
+        0.7744,
+        1.16,
+        0.6228
+      ],
+      "centroid": [
+        3.1738,
+        0.0248,
+        -0.1852
+      ],
+      "num_points": 2258,
+      "attributes": {
+        "shape": [
+          "rectangular"
+        ],
+        "state": [
+          "closed"
+        ],
+        "affordances": [
+          "looking outside",
+          "throwing out of"
+        ]
+      }
+    },
+    {
+      "object_id": 12,
+      "label": "curtain",
+      "nyu40_class": "curtain",
+      "material": "carpet",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 1.9724,
+      "obb_dimensions": [
+        0.3563,
+        1.38,
+        0.7288
+      ],
+      "centroid": [
+        2.9089,
+        0.0462,
+        0.4387
+      ],
+      "num_points": 1145,
+      "attributes": {
+        "affordances": [
+          "hanging",
+          "washing in general"
+        ]
+      }
+    },
+    {
+      "object_id": 13,
+      "label": "fruits",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.091,
+      "obb_dimensions": [
+        0.2,
+        0.2167,
+        0.1079
+      ],
+      "centroid": [
+        1.9793,
+        1.598,
+        -0.4264
+      ],
+      "num_points": 114,
+      "attributes": {
+        "affordances": [
+          "eating"
+        ]
+      }
+    },
+    {
+      "object_id": 14,
+      "label": "box",
+      "nyu40_class": "box",
+      "material": "cardboard",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.6118,
+      "obb_dimensions": [
+        0.66,
+        0.3907,
+        0.3973
+      ],
+      "centroid": [
+        2.3155,
+        1.501,
+        -0.4202
+      ],
+      "num_points": 540,
+      "attributes": {
+        "shape": [
+          "rectangular"
+        ],
+        "affordances": [
+          "carrying",
+          "throwing away"
+        ]
+      }
+    },
+    {
+      "object_id": 15,
+      "label": "can",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.1718,
+      "obb_dimensions": [
+        0.3427,
+        0.1338,
+        0.2819
+      ],
+      "centroid": [
+        2.7199,
+        1.4807,
+        -0.3395
+      ],
+      "num_points": 116,
+      "attributes": {
+        "affordances": [
+          "drinking from"
+        ]
+      }
+    },
+    {
+      "object_id": 16,
+      "label": "squeezer",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.4995,
+      "obb_dimensions": [
+        0.4627,
+        0.4456,
+        0.3051
+      ],
+      "centroid": [
+        2.93,
+        1.3241,
+        -0.3092
+      ],
+      "num_points": 430,
+      "attributes": {
+        "affordances": [
+          "using"
+        ]
+      }
+    },
+    {
+      "object_id": 17,
+      "label": "sink",
+      "nyu40_class": "sink",
+      "material": "metal",
+      "material_source": "3dssg",
+      "surface_area_m2": 0.9057,
+      "obb_dimensions": [
+        0.5458,
+        0.58,
+        0.3636
+      ],
+      "centroid": [
+        2.6093,
+        -0.2761,
+        -0.6479
+      ],
+      "num_points": 1014,
+      "attributes": {
+        "color": [
+          "silver"
+        ],
+        "state": [
+          "empty"
+        ],
+        "affordances": [
+          "cleaning"
+        ]
+      }
+    },
+    {
+      "object_id": 19,
+      "label": "shelf",
+      "nyu40_class": "shelves",
+      "material": "wooden",
+      "material_source": "3dssg",
+      "surface_area_m2": 2.8043,
+      "obb_dimensions": [
+        0.68,
+        1.2083,
+        1.1
+      ],
+      "centroid": [
+        2.5565,
+        -1.2834,
+        0.0875
+      ],
+      "num_points": 2372,
+      "attributes": {
+        "color": [
+          "brown"
+        ],
+        "shape": [
+          "rectangular"
+        ],
+        "affordances": [
+          "placing items on",
+          "hanging"
+        ]
+      }
+    },
+    {
+      "object_id": 20,
+      "label": "kitchen appliance",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.2065,
+      "obb_dimensions": [
+        0.3,
+        0.32,
+        0.1793
+      ],
+      "centroid": [
+        2.9647,
+        0.8783,
+        -0.4213
+      ],
+      "num_points": 202,
+      "attributes": {
+        "affordances": [
+          "cooking"
+        ]
+      }
+    },
+    {
+      "object_id": 21,
+      "label": "coffee maker",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.2685,
+      "obb_dimensions": [
+        0.4591,
+        0.18,
+        0.315
+      ],
+      "centroid": [
+        2.8943,
+        0.6367,
+        -0.3596
+      ],
+      "num_points": 242
+    },
+    {
+      "object_id": 23,
+      "label": "windowsill",
+      "nyu40_class": "otherstructure",
+      "material": "concrete",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 2.2724,
+      "obb_dimensions": [
+        0.4778,
+        1.234,
+        0.6492
+      ],
+      "centroid": [
+        3.0325,
+        0.2793,
+        -0.0535
+      ],
+      "num_points": 531,
+      "attributes": {
+        "shape": [
+          "flat"
+        ],
+        "affordances": [
+          "placing items on"
+        ]
+      }
+    },
+    {
+      "object_id": 26,
+      "label": "plant",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.1717,
+      "obb_dimensions": [
+        0.2993,
+        0.24,
+        0.22
+      ],
+      "centroid": [
+        2.9017,
+        -0.4288,
+        -0.3912
+      ],
+      "num_points": 147,
+      "attributes": {
+        "affordances": [
+          "watering",
+          "moving"
+        ]
+      }
+    },
+    {
+      "object_id": 27,
+      "label": "plant",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.3628,
+      "obb_dimensions": [
+        0.2693,
+        0.62,
+        0.26
+      ],
+      "centroid": [
+        2.5788,
+        -1.0565,
+        0.0871
+      ],
+      "num_points": 366,
+      "attributes": {
+        "affordances": [
+          "watering",
+          "moving"
+        ]
+      }
+    },
+    {
+      "object_id": 28,
+      "label": "shelf",
+      "nyu40_class": "shelves",
+      "material": "wooden",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 2.8257,
+      "obb_dimensions": [
+        2.0282,
+        1.029,
+        0.4425
+      ],
+      "centroid": [
+        1.7453,
+        -1.1155,
+        0.7473
+      ],
+      "num_points": 987,
+      "attributes": {
+        "shape": [
+          "rectangular"
+        ],
+        "affordances": [
+          "placing items on",
+          "hanging"
+        ]
+      }
+    },
+    {
+      "object_id": 32,
+      "label": "cup",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.1823,
+      "obb_dimensions": [
+        0.3846,
+        0.3133,
+        0.1296
+      ],
+      "centroid": [
+        2.3859,
+        -0.7488,
+        -0.5041
+      ],
+      "num_points": 133,
+      "attributes": {
+        "affordances": [
+          "drinking from"
+        ]
+      }
+    },
+    {
+      "object_id": 33,
+      "label": "kitchen appliance",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.5033,
+      "obb_dimensions": [
+        0.5474,
+        0.4643,
+        0.3799
+      ],
+      "centroid": [
+        2.5212,
+        -0.9667,
+        -0.4331
+      ],
+      "num_points": 776,
+      "attributes": {
+        "affordances": [
+          "cooking"
+        ]
+      }
+    },
+    {
+      "object_id": 34,
+      "label": "doorframe",
+      "nyu40_class": "otherstructure",
+      "material": "concrete",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 4.7009,
+      "obb_dimensions": [
+        0.9825,
+        0.4128,
+        2.0431
+      ],
+      "centroid": [
+        1.385,
+        1.9756,
+        -0.3041
+      ],
+      "num_points": 823,
+      "attributes": {
+        "affordances": [
+          "walking through",
+          "standing in"
+        ]
+      }
+    },
+    {
+      "object_id": 35,
+      "label": "basket",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.1115,
+      "obb_dimensions": [
+        0.32,
+        0.1476,
+        0.1478
+      ],
+      "centroid": [
+        2.3292,
+        1.352,
+        0.1638
+      ],
+      "num_points": 105,
+      "attributes": {
+        "affordances": [
+          "placing items in",
+          "moving"
+        ]
+      }
+    },
+    {
+      "object_id": 46,
+      "label": "microwave",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.6977,
+      "obb_dimensions": [
+        0.5723,
+        0.5,
+        0.3803
+      ],
+      "centroid": [
+        -0.6557,
+        -0.5593,
+        -0.0118
+      ],
+      "num_points": 1008,
+      "attributes": {
+        "color": [
+          "white"
+        ]
+      }
+    },
+    {
+      "object_id": 49,
+      "label": "bowl",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.5789,
+      "obb_dimensions": [
+        0.665,
+        0.54,
+        0.1705
+      ],
+      "centroid": [
+        0.8146,
+        -1.0991,
+        -0.4283
+      ],
+      "num_points": 351,
+      "attributes": {
+        "affordances": [
+          "placing items on",
+          "storing in"
+        ]
+      }
+    },
+    {
+      "object_id": 51,
+      "label": "plant",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.504,
+      "obb_dimensions": [
+        0.4956,
+        0.54,
+        0.2844
+      ],
+      "centroid": [
+        2.9319,
+        -0.2441,
+        -0.4421
+      ],
+      "num_points": 263,
+      "attributes": {
+        "affordances": [
+          "watering",
+          "moving"
+        ]
+      }
+    },
+    {
+      "object_id": 53,
+      "label": "item",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.1208,
+      "obb_dimensions": [
+        0.2205,
+        0.2312,
+        0.2059
+      ],
+      "centroid": [
+        1.6644,
+        1.4253,
+        -0.4448
+      ],
+      "num_points": 95,
+      "attributes": {
+        "affordances": [
+          "carrying",
+          "moving",
+          "holding",
+          "hanging"
+        ]
+      }
+    },
+    {
+      "object_id": 54,
+      "label": "bread",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.3051,
+      "obb_dimensions": [
+        0.5095,
+        0.3025,
+        0.1466
+      ],
+      "centroid": [
+        1.2296,
+        -0.986,
+        -0.4202
+      ],
+      "num_points": 232,
+      "attributes": {
+        "affordances": [
+          "eating",
+          "cutting"
+        ]
+      }
+    },
+    {
+      "object_id": 55,
+      "label": "item",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.0839,
+      "obb_dimensions": [
+        0.1249,
+        0.1,
+        0.2418
+      ],
+      "centroid": [
+        0.9239,
+        -0.8544,
+        -0.341
+      ],
+      "num_points": 93,
+      "attributes": {
+        "affordances": [
+          "carrying",
+          "moving",
+          "holding",
+          "hanging"
+        ]
+      }
+    },
+    {
+      "object_id": 56,
+      "label": "item",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.2139,
+      "obb_dimensions": [
+        0.42,
+        0.3047,
+        0.1727
+      ],
+      "centroid": [
+        1.0526,
+        -1.2587,
+        -0.4306
+      ],
+      "num_points": 145,
+      "attributes": {
+        "affordances": [
+          "carrying",
+          "moving",
+          "holding",
+          "hanging"
+        ]
+      }
+    },
+    {
+      "object_id": 57,
+      "label": "bread",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.3959,
+      "obb_dimensions": [
+        0.4137,
+        0.2555,
+        0.3516
+      ],
+      "centroid": [
+        1.5656,
+        -1.1008,
+        -0.3232
+      ],
+      "num_points": 759,
+      "attributes": {
+        "affordances": [
+          "eating",
+          "cutting"
+        ]
+      }
+    },
+    {
+      "object_id": 58,
+      "label": "clutter",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 1.6743,
+      "obb_dimensions": [
+        0.849,
+        0.9,
+        0.4949
+      ],
+      "centroid": [
+        2.2511,
+        -1.287,
+        -0.3468
+      ],
+      "num_points": 2786
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+name: "CrossOver-BEM"
+
+# ---- Data paths ----
+scan_data_dir: /path/to/3RScan          # Root of 3RScan dataset (contains scans/ subdir)
+process_dir: /path/to/preprocess_feats/Scan3R  # Preprocessed features (for inference mode)
+csv_path: /home/yunda/3DSSG/files/3RScan.v2 Semantic Classes - Mapping.csv
+label_file_name: labels.instances.align.annotated.v2.ply
+output_dir: bem_output/
+
+# ---- Geometry extraction ----
+min_points: 50           # Minimum point count to include an object
+skip_structural: true    # Skip wall (NYU40=1), floor (2), ceiling (22)
+
+# ---- CrossOver model inference (optional) ----
+run_inference: false
+ckpt_scene: ""           # Path to scene-level checkpoint dir (contains model.safetensors)
+ckpt_instance: ""        # Path to instance-level checkpoint dir
+
+modalities: ['rgb', 'point', 'cad', 'referral']
+input_dim_3d: 384
+input_dim_2d: 1536
+input_dim_1d: 768
+out_dim: 768
+
+# ---- Validation ----
+room_type: default       # bedroom, kitchen, office, bathroom, living_room, default
+no_validate: false
+
+# ---- Reproducibility ----
+seed: 42

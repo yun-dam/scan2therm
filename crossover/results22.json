@@ -1,0 +1,367 @@
+{
+  "scan_id": "0cac754d-8d6f-2d13-8c81-d134a19b0045",
+  "num_objects": 14,
+  "num_with_3dssg_material": 1,
+  "objects": [
+    {
+      "object_id": 4,
+      "label": "picture",
+      "nyu40_class": "picture",
+      "material": "glass",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 4.7547,
+      "obb_dimensions": [
+        0.9373,
+        0.8822,
+        1.88
+      ],
+      "centroid": [
+        -1.84,
+        0.951,
+        0.208
+      ],
+      "num_points": 1962,
+      "attributes": {
+        "affordances": [
+          "hanging",
+          "moving",
+          "placing"
+        ]
+      }
+    },
+    {
+      "object_id": 5,
+      "label": "armchair",
+      "nyu40_class": "chair",
+      "material": "wooden",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 2.23,
+      "obb_dimensions": [
+        0.8367,
+        0.8085,
+        0.7771
+      ],
+      "centroid": [
+        -0.8171,
+        1.489,
+        -1.191
+      ],
+      "num_points": 1894,
+      "attributes": {
+        "affordances": [
+          "laying on",
+          "sleeping",
+          "moving"
+        ]
+      }
+    },
+    {
+      "object_id": 6,
+      "label": "armchair",
+      "nyu40_class": "chair",
+      "material": "wooden",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 2.2011,
+      "obb_dimensions": [
+        0.8484,
+        0.8299,
+        0.7669
+      ],
+      "centroid": [
+        -2.0911,
+        0.2139,
+        -1.215
+      ],
+      "num_points": 1349,
+      "attributes": {
+        "affordances": [
+          "laying on",
+          "sleeping",
+          "moving"
+        ]
+      }
+    },
+    {
+      "object_id": 7,
+      "label": "table",
+      "nyu40_class": "table",
+      "material": "wooden",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 1.9602,
+      "obb_dimensions": [
+        0.86,
+        0.8875,
+        0.5321
+      ],
+      "centroid": [
+        -1.4894,
+        0.8038,
+        -1.273
+      ],
+      "num_points": 807,
+      "attributes": {
+        "affordances": [
+          "placing items on",
+          "cleaning",
+          "carrying"
+        ]
+      }
+    },
+    {
+      "object_id": 8,
+      "label": "plant",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 5.1626,
+      "obb_dimensions": [
+        0.8037,
+        0.9834,
+        2.6733
+      ],
+      "centroid": [
+        -3.1421,
+        -0.4803,
+        -0.3636
+      ],
+      "num_points": 8729,
+      "attributes": {
+        "affordances": [
+          "watering",
+          "moving"
+        ]
+      }
+    },
+    {
+      "object_id": 25,
+      "label": "door",
+      "nyu40_class": "door",
+      "material": "wooden",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 2.608,
+      "obb_dimensions": [
+        0.6463,
+        0.44,
+        2.34
+      ],
+      "centroid": [
+        0.7441,
+        1.8562,
+        -0.9155
+      ],
+      "num_points": 1239,
+      "attributes": {
+        "shape": [
+          "flat"
+        ],
+        "state": [
+          "closed"
+        ],
+        "affordances": [
+          "slamming"
+        ]
+      }
+    },
+    {
+      "object_id": 30,
+      "label": "desk",
+      "nyu40_class": "desk",
+      "material": "wooden",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.7379,
+      "obb_dimensions": [
+        0.7629,
+        0.6216,
+        0.3053
+      ],
+      "centroid": [
+        0.0108,
+        2.2349,
+        -0.5252
+      ],
+      "num_points": 588,
+      "attributes": {
+        "affordances": [
+          "placing items on",
+          "moving"
+        ]
+      }
+    },
+    {
+      "object_id": 31,
+      "label": "monitor",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.5738,
+      "obb_dimensions": [
+        0.56,
+        0.43,
+        0.3485
+      ],
+      "centroid": [
+        0.1354,
+        2.4575,
+        -0.2683
+      ],
+      "num_points": 295,
+      "attributes": {
+        "color": [
+          "black"
+        ],
+        "affordances": [
+          "placing"
+        ]
+      }
+    },
+    {
+      "object_id": 32,
+      "label": "window",
+      "nyu40_class": "window",
+      "material": "glass",
+      "material_source": "3dssg",
+      "surface_area_m2": 5.7702,
+      "obb_dimensions": [
+        0.8009,
+        0.7849,
+        3.1054
+      ],
+      "centroid": [
+        0.2003,
+        2.9281,
+        0.3742
+      ],
+      "num_points": 3744,
+      "attributes": {
+        "shape": [
+          "rectangular"
+        ],
+        "state": [
+          "closed"
+        ],
+        "affordances": [
+          "looking outside",
+          "throwing out of"
+        ]
+      }
+    },
+    {
+      "object_id": 35,
+      "label": "chair",
+      "nyu40_class": "chair",
+      "material": "wooden",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 1.5569,
+      "obb_dimensions": [
+        0.525,
+        0.5695,
+        0.9497
+      ],
+      "centroid": [
+        0.4381,
+        2.1826,
+        -1.2442
+      ],
+      "num_points": 1363,
+      "attributes": {
+        "affordances": [
+          "placing items on"
+        ]
+      }
+    },
+    {
+      "object_id": 38,
+      "label": "decoration",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.3031,
+      "obb_dimensions": [
+        0.3248,
+        0.2264,
+        0.4273
+      ],
+      "centroid": [
+        -1.1466,
+        1.5777,
+        -0.404
+      ],
+      "num_points": 453,
+      "attributes": {
+        "affordances": [
+          "covering with",
+          "throwing away",
+          "placing"
+        ]
+      }
+    },
+    {
+      "object_id": 39,
+      "label": "kids bicycle",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 1.8285,
+      "obb_dimensions": [
+        0.7633,
+        0.8068,
+        0.8701
+      ],
+      "centroid": [
+        -0.2227,
+        2.2538,
+        -1.3306
+      ],
+      "num_points": 1670,
+      "attributes": {
+        "affordances": [
+          "riding"
+        ]
+      }
+    },
+    {
+      "object_id": 41,
+      "label": "box",
+      "nyu40_class": "box",
+      "material": "cardboard",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.4569,
+      "obb_dimensions": [
+        0.4192,
+        0.3564,
+        0.4393
+      ],
+      "centroid": [
+        0.4585,
+        2.0628,
+        -0.393
+      ],
+      "num_points": 320,
+      "attributes": {
+        "affordances": [
+          "carrying",
+          "throwing away"
+        ]
+      }
+    },
+    {
+      "object_id": 42,
+      "label": "clutter",
+      "nyu40_class": "otherprop",
+      "material": "plastic",
+      "material_source": "nyu40_fallback",
+      "surface_area_m2": 0.4419,
+      "obb_dimensions": [
+        0.38,
+        0.6116,
+        0.2809
+      ],
+      "centroid": [
+        -0.2485,
+        2.3691,
+        -0.4101
+      ],
+      "num_points": 566
+    }
+  ]
+}

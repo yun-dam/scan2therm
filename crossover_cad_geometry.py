@@ -29,6 +29,7 @@ from tqdm import tqdm
 
 import sys
 sys.path.insert(0, osp.join(osp.dirname(__file__), '..'))
+sys.path.insert(0, osp.join(osp.dirname(__file__), 'crossover'))
 
 from scan2therm.extract_objects import extract_objects
 from scan2therm.cad_geometry import (
@@ -59,7 +60,7 @@ def load_crossover_model(ckpt_path, i2pmae_ckpt=None, device='cuda'):
     from omegaconf import DictConfig
 
     # BLIP uses `from models.vit import ...` which requires third_party/BLIP on sys.path
-    blip_path = osp.join(osp.dirname(__file__), '..', 'third_party', 'BLIP')
+    blip_path = osp.join(osp.dirname(__file__), 'crossover', 'third_party', 'BLIP')
     if osp.isdir(blip_path) and blip_path not in sys.path:
         sys.path.insert(0, osp.abspath(blip_path))
 

@@ -1,0 +1,312 @@
+{
+  "num_scenes": 50,
+  "scene_retrieval": {
+    "recall_at_1": 22.0,
+    "recall_at_3": 44.0,
+    "recall_at_5": 56.0,
+    "mean_rank": 9.02,
+    "median_rank": 4.0
+  },
+  "per_scene": [
+    {
+      "scan_id": "09582228-e2c2-2de1-953d-f6f1ee4b3699",
+      "description": "a room with 2 chairs, a trash can, a blinds, a box. the wall is attached to the floor. the chair is standing on the floor. the chair is standing on the floor",
+      "rank": 1,
+      "self_similarity": 0.4169
+    },
+    {
+      "scan_id": "0cac75f6-8d6f-2d13-8d7b-dc01a394149c",
+      "description": "a room with 3 pictures, 2 shelfs, 2 kitchen cabinets, 2 chairs, 2 items, a curtain, a kitchen counter, a towel. the wall is attached to the floor. the wall is attached to the floor. the wall is attached to the floor",
+      "rank": 1,
+      "self_similarity": 0.5949
+    },
+    {
+      "scan_id": "0cac7648-8d6f-2d13-8e30-76663c19baa4",
+      "description": "a room with 5 pillows, 3 curtains, 2 shelfs, 2 nightstands, 2 lamps, 2 blankets, 2 items, 2 racks. the bed is standing on the floor. the wall is attached to the floor. the wall is attached to the floor",
+      "rank": 1,
+      "self_similarity": 0.5039
+    },
+    {
+      "scan_id": "1713f857-5300-2104-85c7-5e6e0b50713c",
+      "description": "a room with 5 boxs, 3 bags, 2 tables, 2 chairs, 2 clothes dryers, 2 shelfs, 2 clothess, a cabinet. the wall is attached to the floor. the bed is standing on the floor. the wall is attached to the floor",
+      "rank": 2,
+      "self_similarity": 0.42
+    },
+    {
+      "scan_id": "198aaa74-0ba3-26f6-8792-66b6388b17ca",
+      "description": "a room with 9 doors, 8 doorframes, 3 clothes dryers, 2 clothess, 2 plants, a commode, a laundry basket, a heater. the clothes dryer is standing on the floor. the wall is attached to the floor. the wall is attached to the floor",
+      "rank": 1,
+      "self_similarity": 0.6475
+    },
+    {
+      "scan_id": "1d2f8514-d757-207c-8e40-377957df6f67",
+      "description": "a room with 3 shelfs, 3 plants, 3 items, 2 curtains, 2 kitchen appliances, 2 breads, a cabinet, a window. the kitchen cabinet is standing on the floor. the kitchen counter is part of the kitchen cabinet. the wall is attached to the floor",
+      "rank": 4,
+      "self_similarity": 0.3626
+    },
+    {
+      "scan_id": "1dd7209f-2ba0-22d9-8b9e-b5e270b2580f",
+      "description": "a room with 3 objects, 2 doors, 2 pictures, a bedside table, a table, a ironing board, a iron, a table lamp. the wall is attached to the floor. the door is hanging on the wall. the wall is attached to the floor",
+      "rank": 11,
+      "self_similarity": 0.1971
+    },
+    {
+      "scan_id": "20c993c9-698f-29c5-850e-2a93df894437",
+      "description": "a room with 5 pictures, 5 plants, 4 boxs, 3 chairs, 3 desks, 3 shelfs, 3 commodes, 2 racks. the chair is standing on the floor. the wall is attached to the floor. the wall is attached to the floor",
+      "rank": 27,
+      "self_similarity": -0.0125
+    },
+    {
+      "scan_id": "2e36954d-e133-204c-92aa-5cf8c2f8b46f",
+      "description": "a room with 3 bar stools, 2 objects, a rolled carpet, a armchair, a bar, a clothes, a cushion, a air conditioner. the object is attached to the wall. the bar is standing on the floor. the wall is attached to the floor",
+      "rank": 8,
+      "self_similarity": 0.1904
+    },
+    {
+      "scan_id": "41385847-a238-2435-838b-61864922c518",
+      "description": "a room with 6 lamps, 5 shelfs, 5 pillows, 3 curtains, 3 stools, 2 tables, a wardrobe, a clothes. the wall is attached to the floor. the window is attached to the wall. the curtain is hanging on the wall",
+      "rank": 3,
+      "self_similarity": 0.2804
+    },
+    {
+      "scan_id": "422885ce-192d-25fc-851a-df2d675a6559",
+      "description": "a room with 5 chairs, 4 boxs, 4 monitors, 3 items, 2 blackboards, 2 lamps, 2 desks, a window. the wall is attached to the floor. the wall is attached to the floor. the window is supported by the windowsill",
+      "rank": 6,
+      "self_similarity": 0.3491
+    },
+    {
+      "scan_id": "422885e0-192d-25fc-844a-62e395291839",
+      "description": "a room with 3 curtains, 3 shelfs, 3 pillows, 2 beds, 2 luggages, 2 hangers, 2 blankets, a window. the wall is attached to the floor. the wall is attached to the floor. the wall is attached to the floor",
+      "rank": 34,
+      "self_similarity": -0.0963
+    },
+    {
+      "scan_id": "48005c65-7d67-29ec-85e0-6a925eb15a27",
+      "description": "a room with 4 pillows, 4 items, 3 boxs, 3 shelfs, 2 sofas, 2 stools, a picture, a window. the sofa is standing on the floor. the wall is attached to the floor. the picture is hanging on the wall",
+      "rank": 6,
+      "self_similarity": 0.2883
+    },
+    {
+      "scan_id": "531cff04-0021-28f6-8d49-e51826f43468",
+      "description": "a room with 11 objects, 7 beverage crates, 3 baskets, 2 kitchen cabinets, 2 radiators, 2 coffee machines, 2 lights, a windowsill. the wall is attached to the floor. the wall is attached to the floor. the wall is attached to the floor",
+      "rank": 3,
+      "self_similarity": 0.2794
+    },
+    {
+      "scan_id": "5341b7ab-8a66-2cdd-865a-c27c4263d24a",
+      "description": "a room with 7 pillows, a cupboard, a side table, a couch. the pillow is leaning against the pillow. the pillow is lying on the couch. the pillow is lying on the couch",
+      "rank": 4,
+      "self_similarity": 0.3499
+    },
+    {
+      "scan_id": "55551068-36f1-29c0-8896-0fa81b7a1fe7",
+      "description": "a room with 8 clothess, 2 shelfs, 2 boxess, a door, a drawers, a clutter, a wardrobe, a carpet. the clothes is hanging on the shelf. the wall is attached to the floor. the door is hanging on the wall",
+      "rank": 5,
+      "self_similarity": 0.2252
+    },
+    {
+      "scan_id": "5630cfcd-12bf-2860-87f0-65937859709c",
+      "description": "a room with 7 boxs, 2 windows, 2 shelfs, 2 baskets, 2 items, a door, a wardrobe, a refrigerator. the wall is attached to the floor. the heater is connected to the wall. the window is attached to the wall",
+      "rank": 4,
+      "self_similarity": 0.278
+    },
+    {
+      "scan_id": "569d8f09-72aa-2f24-887c-26497a35f26a",
+      "description": "a room with 4 windows, 4 couchs, 4 stools, 2 plants, 2 tables, a door, a wardrobe, a cabinet. the wall is attached to the floor. the wall is attached to the floor. the couch is standing on the floor",
+      "rank": 9,
+      "self_similarity": 0.2174
+    },
+    {
+      "scan_id": "6a360523-fa53-2915-9506-4b95fa02cc56",
+      "description": "a room with 4 plants, 4 trays, 2 curtains, 2 lamps, 2 kitchen towels, a kitchen cabinet, a kitchen counter, a door. the kitchen cabinet is standing on the floor. the kitchen counter is part of the kitchen cabinet. the wall is attached to the floor",
+      "rank": 12,
+      "self_similarity": 0.1463
+    },
+    {
+      "scan_id": "6a36053f-fa53-2915-9579-3938283bc154",
+      "description": "a room with 2 pictures, 2 pillows, 2 magazine filess, 2 items, a object, a wardrobe, a mirror, a commode. the stool is standing on the floor. the table is standing on the floor. the commode is standing on the floor",
+      "rank": 23,
+      "self_similarity": 0.0332
+    },
+    {
+      "scan_id": "6bde605f-9162-246f-8d03-644a980c1cbb",
+      "description": "a room with 3 towels, a bathtub, a item, a mirror, a sink, a toilet, a door, a toilet brush. the stool is standing on the floor. the wall is attached to the floor. the wall is attached to the floor",
+      "rank": 3,
+      "self_similarity": 0.2661
+    },
+    {
+      "scan_id": "6bde60a3-9162-246f-8ca3-48f7e86e95b8",
+      "description": "a room with 6 pictures, 6 armchairs, 3 coffee tables, a lamp, a sofa. the wall is attached to the floor. the picture is hanging on the wall. the picture is hanging on the wall",
+      "rank": 1,
+      "self_similarity": 0.4698
+    },
+    {
+      "scan_id": "6bde60ec-9162-246f-8d34-324b01605c9c",
+      "description": "a room with 5 pillows, 5 towels, 4 lamps, 3 bags, 3 clothess, 2 toilets, 2 nightstands, 2 trash cans. the coffee table is standing on the floor. the clothes is cover the bed. the pillow is lying on the bed",
+      "rank": 20,
+      "self_similarity": 0.1421
+    },
+    {
+      "scan_id": "7272e161-a01b-20f6-8b5a-0b97efeb6545",
+      "description": "a room with 6 pillows, 4 lamps, 3 items, 3 shelfs, 2 windows, 2 lights, 2 boxs, a blanket. the couch is standing on the floor. the wall is attached to the floor. the lamp is standing on the floor",
+      "rank": 14,
+      "self_similarity": 0.1766
+    },
+    {
+      "scan_id": "7272e190-a01b-20f6-8bde-769bcd548633",
+      "description": "a room with 6 pictures, 6 pillows, 2 windows, 2 decorations, 2 curtains, a desk, a chair, a nightstand. the wall is attached to the floor. the wall is attached to the floor. the curtain is hanging on the wall",
+      "rank": 2,
+      "self_similarity": 0.396
+    },
+    {
+      "scan_id": "751a5581-fe61-2c3b-8cac-76cacfb277e0",
+      "description": "a room with 4 shelfs, 2 kitchen cabinets, 2 kettles, a sink, a window, a windowsill, a kitchen rack, a exhaust hood. the blinds is hanging on the wall. the wall is attached to the floor. the wall is attached to the floor",
+      "rank": 1,
+      "self_similarity": 0.5269
+    },
+    {
+      "scan_id": "787ed580-9d98-2c97-8167-6d3b445da2c0",
+      "description": "a room with 8 objects, 3 cabinets, 2 counters, 2 barstools, a microwave, a door, a sink, a stove. the wall is attached to the floor. the ceiling is attached to the wall. the ceiling is attached to the wall",
+      "rank": 2,
+      "self_similarity": 0.4598
+    },
+    {
+      "scan_id": "7ab2a9c9-ebc6-2056-89b6-c78dbb4290d3",
+      "description": "a room with 4 benchs, 2 windows, 2 plants, 2 decorations, 2 tables, a box, a statue, a item. the window is attached to the ceiling. the plant is standing on the floor. the decoration is supported by the window",
+      "rank": 12,
+      "self_similarity": 0.0986
+    },
+    {
+      "scan_id": "7ab2a9d1-ebc6-2056-8880-07b5c7404d58",
+      "description": "a room with 4 desks, 4 chairs, 4 lights, 3 pillars, 2 heaters, 2 partitions, a blinds, a window. the wall is attached to the floor. the blinds is hanging on the wall. the heater is standing on the floor",
+      "rank": 1,
+      "self_similarity": 0.6097
+    },
+    {
+      "scan_id": "87e6cf6d-9d1a-289f-879a-543d3fa7ba74",
+      "description": "a room with 5 plants, 5 chairs, a decoration, a lamp, a table. the plant is standing on the table. the wall is attached to the floor. the wall is attached to the floor",
+      "rank": 5,
+      "self_similarity": 0.2564
+    },
+    {
+      "scan_id": "8e0f1c53-9e28-2339-8588-2b24d9e9f3e8",
+      "description": "a room with 4 pillows, 3 pictures, 3 clothess, 3 blankets, 3 backpacks, 2 shoess, 2 curtains, 2 carpets. the wall is attached to the floor. the wall is attached to the floor. the wall is attached to the floor",
+      "rank": 47,
+      "self_similarity": -0.25
+    },
+    {
+      "scan_id": "8eabc418-5af7-2f32-85a1-a2709b29c46d",
+      "description": "a room with 7 chairs, 3 lights, 2 windows, 2 radiators, 2 monitors, 2 blackboards, a windowsill, a table. the chair is standing on the floor. the wall is attached to the floor. the chair is standing on the floor",
+      "rank": 4,
+      "self_similarity": 0.4083
+    },
+    {
+      "scan_id": "8f0f1437-55de-28ce-828e-dbf210a7f472",
+      "description": "a room with 3 chairs, a box, a curtain, a table, a window. the wall is attached to the floor. the wall is attached to the floor. the wall is attached to the floor",
+      "rank": 3,
+      "self_similarity": 0.3697
+    },
+    {
+      "scan_id": "a38a57de-8a91-2e91-90b2-910244171e92",
+      "description": "a room with 3 curtains, 2 lamps, 2 shelfs, 2 pillows, 2 clothess, 2 bags, a desk, a upholstered wall. the wall is attached to the floor. the desk is standing on the floor. the curtain is supported by the curtain",
+      "rank": 1,
+      "self_similarity": 0.4247
+    },
+    {
+      "scan_id": "aa20278c-8bc8-2c5b-9d18-016312e4463a",
+      "description": "a room with 7 pillows, 4 tables, 4 blankets, 3 plants, 3 items, 2 windows, 2 doorframes, 2 shelfs. the pillow is lying on the sofa. the blanket is lying on the sofa. the blanket is lying on the sofa",
+      "rank": 24,
+      "self_similarity": 0.0859
+    },
+    {
+      "scan_id": "ab835f8b-54c6-29a1-9a7a-4770a0eb74ff",
+      "description": "a room with 3 doorframes, 3 doors, a hanger, a box. the wall is attached to the floor. the wall is attached to the floor. the wall is attached to the floor",
+      "rank": 3,
+      "self_similarity": 0.4617
+    },
+    {
+      "scan_id": "ab835f92-54c6-29a1-99eb-63169a21d553",
+      "description": "a room with 3 doors, 3 doorframes, a hanger, a box, a bag. the wall is attached to the floor. the wall is attached to the floor. the wall is attached to the floor",
+      "rank": 2,
+      "self_similarity": 0.5869
+    },
+    {
+      "scan_id": "ab835fa3-54c6-29a1-9a47-92dbaf9eb4b9",
+      "description": "a room with 11 chairs, 3 tables, 3 lights, 2 pictures, 2 curtains, a plant, a chairs, a floor lamp. the curtain is hanging on the wall. the curtain is hanging on the wall. the wall is attached to the floor",
+      "rank": 3,
+      "self_similarity": 0.3549
+    },
+    {
+      "scan_id": "ad408c97-84db-2095-88e0-de11e52a06ef",
+      "description": "a room with 4 pillows, 3 pictures, 3 blankets, 2 items, a radiator, a window, a armchair, a stool. the wall is attached to the floor. the wall is attached to the floor. the wall is attached to the floor",
+      "rank": 6,
+      "self_similarity": 0.1874
+    },
+    {
+      "scan_id": "b05fddcf-fca0-2d4f-8a01-c6bdcc9fba8d",
+      "description": "a room with 5 lamps, 3 items, 3 chairs, 3 wall frames, 2 cupboards, 2 boxs, 2 shelfs, 2 tvs. the sofa is standing on the floor. the table is standing on the floor. the chair is standing on the floor",
+      "rank": 7,
+      "self_similarity": 0.2199
+    },
+    {
+      "scan_id": "b1d87fb0-e72e-2c8c-9f01-25dafeddf472",
+      "description": "a room with 3 shower walls, 3 towels, a toilet, a counter, a sink, a cabinet, a toilet paper, a shower floor. the wall is attached to the floor. the wall is attached to the floor. the toilet is standing on the floor",
+      "rank": 1,
+      "self_similarity": 0.4368
+    },
+    {
+      "scan_id": "baf0a8e8-26d4-2033-8bbb-975c6002fbb7",
+      "description": "a room with 9 boxs, 4 items, 3 chairs, 3 windows, 3 kitchen cabinets, 3 kitchen appliances, 2 refrigerators, 2 doors. the wall is attached to the floor. the bench is attached to the wall. the wall is attached to the floor",
+      "rank": 33,
+      "self_similarity": -0.0312
+    },
+    {
+      "scan_id": "baf0a8fb-26d4-2033-8a28-2001356bbb9a",
+      "description": "a room with 2 trash cans, 2 towels, 2 shelfs, a light, a sink, a toilet, a toilet paper dispenser, a shower. the box is standing on the floor. the toilet brush is standing on the floor. the wall is attached to the floor",
+      "rank": 1,
+      "self_similarity": 0.5585
+    },
+    {
+      "scan_id": "bf9a3dd3-45a5-2e80-8163-8a5b2573aca4",
+      "description": "a room with 4 towels, 3 shelfs, 2 doors, a sink, a toilet, a shower, a heater, a doorframe. the wall is attached to the floor. the towel is hanging on the wall. the heater is connected to the wall",
+      "rank": 9,
+      "self_similarity": 0.3436
+    },
+    {
+      "scan_id": "c7895f35-339c-2d13-805c-47570e126422",
+      "description": "a room with 3 kitchen cabinets, 3 shelfs, 2 chairs, a kitchen counter, a sink, a stove, a oven, a table. the wall is attached to the floor. the wall is attached to the floor. the ceiling is attached to the wall",
+      "rank": 2,
+      "self_similarity": 0.3834
+    },
+    {
+      "scan_id": "c92fb594-f771-2064-879b-cc598a9dabe5",
+      "description": "a room with 3 lamps, 3 pillows, 3 objects, 2 boxs, 2 curtains, 2 sofa chairs, 2 clothess, 2 bags. the wall is attached to the floor. the mirror is hanging on the wall. the wardrobe is standing on the floor",
+      "rank": 14,
+      "self_similarity": 0.1338
+    },
+    {
+      "scan_id": "f38169cf-378c-2a65-855f-05d491a3f26e",
+      "description": "a room with 6 pillows, 2 lights, 2 blankets, 2 curtains, a side table, a shelf, a poster, a puf. the wall is attached to the floor. the wall is attached to the floor. the curtain is attached to the ceiling",
+      "rank": 1,
+      "self_similarity": 0.4415
+    },
+    {
+      "scan_id": "f62fd5fd-9a3f-2f44-883a-1e5cf819608e",
+      "description": "a room with 9 pillows, 7 chairs, 6 cabinets, 5 lamps, 4 blindss, 4 curtains, 2 plants, 2 stools. the sofa is standing on the floor. the wall is attached to the floor. the wall is attached to the floor",
+      "rank": 17,
+      "self_similarity": 0.1292
+    },
+    {
+      "scan_id": "fcf66d98-622d-291c-851a-a16c117a91bb",
+      "description": "a room with 3 shelfs, 2 kitchen cabinets, 2 chairs, a dining table, a stove, a kitchen counter, a oven, a trash can. the dining chair is standing on the floor. the wall is attached to the floor. the shelf is attached to the wall",
+      "rank": 6,
+      "self_similarity": 0.2983
+    },
+    {
+      "scan_id": "fcf66db8-622d-291c-8502-863b391b9ef1",
+      "description": "a room with 17 boxs, 5 shelfs, 2 windows, a chair, a table, a radiator, a windowsill. the wall is attached to the floor. the wall is attached to the floor. the ceiling is attached to the wall",
+      "rank": 41,
+      "self_similarity": -0.1498
+    }
+  ]
+}
