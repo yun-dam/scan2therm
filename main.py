@@ -1,327 +1,412 @@
+#!/usr/bin/env python3
+"""
+scan2therm pipeline v3: 3RScan raw data → EnergyPlus InternalMass injection.
+
+Extends v2 with CrossOver embedding-based CAD retrieval (--use_crossover).
+Instead of mapping labels to a fixed ShapeNet model per category, CrossOver
+encodes each scanned object and retrieves the most geometrically similar
+CAD model from the ShapeNet database via learned embeddings.
+
+End-to-end pipeline that processes 3RScan scenes through four stages:
+  1. Extract cropped 2D object images from RGB sequences
+  2. Extract per-object geometry + augment with CAD-based surface area & volume
+     - Default: label-based lookup (same as v2)
+     - --use_crossover: CrossOver embedding-based retrieval
+  3. Classify materials via Vertex AI Gemini VLM
+  4. Build zone mapping JSON and inject InternalMass into EnergyPlus IDF
+
+Each stage is idempotent — it checks for existing outputs and skips if found.
+Stages can be run selectively via --steps.
+
+Usage:
+    # Full pipeline with CrossOver (steps 1-4):
+    python scan2therm/main.py \
+        --scene_list scan2therm/office_scenes_105.txt \
+        --rscan_dir 3DSSG/data/3RScan/data/3RScan \
+        --out_dir scan2therm/object_images \
+        --shapenet_dir Scan2CAD/Assets/shapenet-sample \
+        --use_crossover \
+        --ckpt checkpoints/instance_crossover_scannet+scan3r+multiscan+arkitscenes.pth \
+        --i2pmae_ckpt checkpoints/pointbind_i2pmae.pt
+
+    # Step 2 only with CrossOver:
+    python scan2therm/main.py --steps 2 --use_crossover --ckpt <path> ...
+
+    # Step 2 only with label-based lookup (same as v2):
+    python scan2therm/main.py --steps 2 ...
+"""
+
+import sys
+import os
+import os.path as osp
 import argparse
 import json
-from datetime import datetime
+import time
 from pathlib import Path
+from datetime import datetime
 
-import numpy as np
-
-from geometry_estimator import surface_area, volume
-
-
-# -----------------------------
-# Path defaults (relative)
-# -----------------------------
-SCAN2THERM_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCAN2THERM_DIR.parent
-
-DEFAULT_RSCAN_ROOT = PROJECT_ROOT / "3RScan"
-DEFAULT_DSSG_ROOT = PROJECT_ROOT / "3DSSG"
-DEFAULT_OFFICE_JSON = SCAN2THERM_DIR / "office.json"
-DEFAULT_SCENES_TXT = SCAN2THERM_DIR / "office_scenes_105.txt"
-DEFAULT_OUTPUT_DIR = SCAN2THERM_DIR / "jsons"
-
-DEFAULT_SCAN_ID = "569d8f0d-72aa-2f24-8ac6-c6ee8d927c4b"
+sys.path.insert(0, osp.join(osp.dirname(__file__), '..'))
 
 
-# -----------------------------
-# 3RScan: PLY parsing (ASCII)
-# -----------------------------
-def read_3rscan_instances_ply_ascii(ply_path: Path) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    n_vertices = None
-    n_faces = None
-    vertex_props: list[str] = []
-    in_vertex = False
+# ---------------------------------------------------------------------------
+# Material category normalization (VLM raw output → inject_internal_mass categories)
+# ---------------------------------------------------------------------------
 
-    with ply_path.open("r", encoding="utf-8", errors="ignore") as f:
-        while True:
-            line = f.readline()
-            if not line:
-                raise ValueError(f"Unexpected EOF in PLY header: {ply_path}")
-            line = line.strip()
-
-            if line.startswith("element vertex"):
-                n_vertices = int(line.split()[-1])
-                in_vertex = True
-                vertex_props = []
-            elif line.startswith("element face"):
-                n_faces = int(line.split()[-1])
-                in_vertex = False
-            elif line.startswith("property") and in_vertex:
-                parts = line.split()
-                if len(parts) >= 3:
-                    vertex_props.append(parts[-1])
-            elif line == "end_header":
-                break
-
-        if n_vertices is None or n_faces is None:
-            raise ValueError(f"Missing element vertex/face in header: {ply_path}")
-
-        prop_index = {name: i for i, name in enumerate(vertex_props)}
-        required = ["x", "y", "z", "objectId"]
-        missing = [r for r in required if r not in prop_index]
-        if missing:
-            raise ValueError(
-                f"Missing required vertex properties {missing} in {ply_path}\n"
-                f"Found vertex properties: {vertex_props}"
-            )
-
-        verts = np.zeros((n_vertices, 4), dtype=np.float64)
-        for i in range(n_vertices):
-            parts = f.readline().strip().split()
-            verts[i, 0] = float(parts[prop_index["x"]])
-            verts[i, 1] = float(parts[prop_index["y"]])
-            verts[i, 2] = float(parts[prop_index["z"]])
-            verts[i, 3] = int(parts[prop_index["objectId"]])
-
-        faces = np.zeros((n_faces, 3), dtype=np.int64)
-        for i in range(n_faces):
-            parts = f.readline().strip().split()
-            if len(parts) < 4:
-                raise ValueError(f"Bad face row #{i} in {ply_path}: {parts}")
-            if parts[0] != "3":
-                raise ValueError(f"Non-triangle face row #{i} in {ply_path}: {parts[:6]}")
-            faces[i, 0] = int(parts[1])
-            faces[i, 1] = int(parts[2])
-            faces[i, 2] = int(parts[3])
-
-    vertices = verts[:, :3].astype(np.float64)
-    object_ids = verts[:, 3].astype(np.int64)
-    return vertices, faces, object_ids
-
-
-def read_3rscan_semseg_labels(semseg_path: Path) -> dict[int, str]:
-    if not semseg_path.exists():
-        return {}
-    data = json.loads(semseg_path.read_text(encoding="utf-8"))
-    seg_groups = data.get("segGroups") or []
-    out: dict[int, str] = {}
-    for g in seg_groups:
-        oid = g.get("objectId", g.get("id", -1))
-        if oid is None:
-            continue
-        out[int(oid)] = str(g.get("label", "?"))
-    return out
-
-
-def find_one_scan_dir_3rscan(rscan_root: Path, scan_id: str) -> Path:
-    data_root = rscan_root / "3RScan_Data" if (rscan_root / "3RScan_Data").exists() else rscan_root
-    d = data_root / scan_id
-    ply = d / "labels.instances.annotated.v2.ply"
-    if not ply.exists():
-        raise FileNotFoundError(f"Missing {ply}")
-    return d
-
-
-# -----------------------------
-# 3DSSG: ground truth materials
-# -----------------------------
-def find_objects_json_3dssg(dssg_root: Path) -> Path:
-    candidates = [
-        dssg_root / "objects.json",
-        dssg_root / "3DSSG" / "objects.json",
-        dssg_root / "3DSSG" / "3DSSG" / "objects.json",
-    ]
-    for c in candidates:
-        if c.exists():
-            return c
-    for p in dssg_root.rglob("objects.json"):
-        return p
-    raise FileNotFoundError(f"Could not find objects.json anywhere under: {dssg_root}")
-
-
-def load_3dssg_objects(objects_json_path: Path) -> dict[str, dict[int, dict]]:
-    data = json.loads(objects_json_path.read_text(encoding="utf-8"))
-    scans = data.get("scans") or []
-    out: dict[str, dict[int, dict]] = {}
-    for s in scans:
-        sid = str(s.get("scan"))
-        inst_map: dict[int, dict] = {}
-        for o in (s.get("objects") or []):
-            oid = o.get("id")
-            if oid is None:
-                continue
-            try:
-                inst_map[int(oid)] = o
-            except Exception:
-                continue
-        out[sid] = inst_map
-    return out
-
-
-def normalize_material_category(raw: str | None) -> str:
-    if not raw:
-        return "Unknown"
-    r = raw.strip().lower()
-    if any(k in r for k in ["wood", "wooden", "timber", "bamboo"]):
-        return "Wood"
-    if any(k in r for k in ["concrete", "cement"]):
-        return "Concrete"
-    if "glass" in r:
-        return "Glass"
-    if any(k in r for k in ["metal", "steel", "iron", "aluminum", "aluminium", "brass"]):
-        return "Metal"
-    if any(k in r for k in ["plastic", "acrylic", "vinyl"]):
-        return "Plastic"
-    if any(k in r for k in ["fabric", "textile", "cloth", "leather"]):
-        return "Textile"
-    if any(k in r for k in ["ceramic", "tile", "porcelain"]):
-        return "Ceramic/Tile"
-    if any(k in r for k in ["stone", "marble", "granite"]):
-        return "Stone"
-    if any(k in r for k in ["paper", "cardboard"]):
-        return "Paper"
-    return "Other"
-
-
-def oid_to_raw_material(scan_obj_map: dict[int, dict]) -> dict[int, str | None]:
-    out: dict[int, str | None] = {}
-    for oid, rec in scan_obj_map.items():
-        attrs = rec.get("attributes") or {}
-        mats = attrs.get("material")
-        raw = None
-        if isinstance(mats, list) and mats:
-            raw = str(mats[0])
-        elif isinstance(mats, str):
-            raw = mats
-        out[int(oid)] = raw
-    return out
-
-
-# -----------------------------
-# Per-scan processing
-# -----------------------------
-def process_scan(
-    scan_id: str,
-    rscan_root: Path,
-    dssg: dict[str, dict[int, dict]],
-    objects_json_path: Path,
-    office_template: dict,
-    output_dir: Path,
-    skip: set[str],
-) -> None:
-    """Process a single scan and write jsons/<scan_id>.json."""
-    try:
-        scan_dir = find_one_scan_dir_3rscan(rscan_root, scan_id)
-    except FileNotFoundError as e:
-        print(f"[SKIP] {scan_id}: {e}")
-        return
-
-    ply_path = scan_dir / "labels.instances.annotated.v2.ply"
-    semseg_path = scan_dir / "semseg.v2.json"
-
-    try:
-        vertices, faces, object_ids = read_3rscan_instances_ply_ascii(ply_path)
-    except Exception as e:
-        print(f"[SKIP] {scan_id}: PLY read error — {e}")
-        return
-
-    sa_by_oid = surface_area(vertices, faces, object_ids)
-    vol_by_oid = volume(vertices, faces, object_ids)
-
-    labels_3rscan = read_3rscan_semseg_labels(semseg_path)
-
-    scan_obj_map = dssg.get(scan_id, {})
-    mats_by_oid = oid_to_raw_material(scan_obj_map)
-
-    for oid, rec in scan_obj_map.items():
-        if oid not in labels_3rscan:
-            labels_3rscan[oid] = str(rec.get("label", "?"))
-
-    objects_out = []
-    for oid in sorted(sa_by_oid.keys()):
-        label = (labels_3rscan.get(oid) or "?").strip()
-        if label.lower() in skip:
-            continue
-        raw_mat = mats_by_oid.get(oid)
-        objects_out.append(
-            {
-                "ID": f"scanobj_{scan_id}_{oid:04d}",
-                "Type": label,
-                "Scan_Object_ID": int(oid),
-                "Geometry": {
-                    "Surface_Area_m2": float(sa_by_oid.get(oid, 0.0)),
-                    "Volume_m3": float(vol_by_oid.get(oid, 0.0)),
-                },
-                "Material_Info": {
-                    "GroundTruth": raw_mat if raw_mat is not None else None,
-                    "Category": normalize_material_category(raw_mat),
-                    "Source": "3DSSG.attributes.material",
-                },
-            }
-        )
-
-    # Build output doc from template (deep copy to avoid mutation)
-    doc = json.loads(json.dumps(office_template))
-
-    doc.setdefault("Metadata", {})
-    doc["Metadata"]["Date"] = datetime.now().strftime("%Y-%m-%d")
-    doc["Metadata"]["Description"] = f"Auto-filled from 3RScan scan {scan_id} with 3DSSG GT materials"
-    doc["Metadata"]["Source_Scan_ID"] = scan_id
-    doc["Metadata"]["Sources"] = {
-        "3RScan_root": str(rscan_root),
-        "3DSSG_objects_json": str(objects_json_path),
-        "3RScan_scan_dir": str(scan_dir),
-        "3RScan_instances_ply": str(ply_path),
-        "3RScan_semseg_json": str(semseg_path) if semseg_path.exists() else None,
-    }
-
-    # Ensure Zone 0 exists and populate objects
-    if "Zones" not in doc or not doc["Zones"]:
-        doc["Zones"] = [{"Zone_ID": "Z001", "Zone_Name": "Zone_1", "Zone_Properties": {}, "Objects": []}]
-    doc["Zones"][0].setdefault("Objects", [])
-    doc["Zones"][0]["Objects"] = objects_out
-
-    out_path = output_dir / f"{scan_id}.json"
-    out_path.write_text(json.dumps(doc, indent=2), encoding="utf-8")
-
-    mat_warn = " [WARN: no 3DSSG materials]" if scan_id not in dssg else ""
-    print(f"[OK] {scan_id} — {len(objects_out)} objects → {out_path}{mat_warn}")
-
-
-# -----------------------------
-# Remap categories for inject_internal_mass MATERIAL_LIBRARY
-# -----------------------------
-CATEGORY_TO_LIBRARY = {
-    "Wood": "Wood",
-    "Concrete": "Concrete",
-    "Metal": "Metal",
-    "Plastic": "Plastic",
-    "Glass": "Plastic",       # closest thermal match
-    "Textile": "Fabric",
-    "Ceramic/Tile": "Concrete",
-    "Stone": "Concrete",
-    "Paper": "Books",
-    "Other": None,             # skip — no reliable material
-    "Unknown": None,           # skip — no material annotation
+MATERIAL_CATEGORY_MAP = {
+    # Wood
+    'wood': 'Wood', 'wooden': 'Wood', 'timber': 'Wood', 'bamboo': 'Wood',
+    'plywood': 'Wood', 'mdf': 'Wood', 'particleboard': 'Wood', 'oak': 'Wood',
+    'pine': 'Wood', 'walnut': 'Wood', 'veneer': 'Wood', 'laminate': 'Wood',
+    # Concrete
+    'concrete': 'Concrete', 'cement': 'Concrete', 'cinder block': 'Concrete',
+    # Metal
+    'metal': 'Metal', 'steel': 'Metal', 'iron': 'Metal', 'aluminum': 'Metal',
+    'aluminium': 'Metal', 'brass': 'Metal', 'copper': 'Metal', 'chrome': 'Metal',
+    'stainless steel': 'Metal',
+    # Plastic
+    'plastic': 'Plastic', 'acrylic': 'Plastic', 'vinyl': 'Plastic',
+    'polycarbonate': 'Plastic', 'abs': 'Plastic', 'nylon': 'Plastic',
+    'rubber': 'Plastic', 'silicone': 'Plastic', 'resin': 'Plastic',
+    # Fabric / textile
+    'fabric': 'Fabric', 'textile': 'Fabric', 'cloth': 'Fabric',
+    'leather': 'Fabric', 'cotton': 'Fabric', 'polyester': 'Fabric',
+    'upholstery': 'Fabric', 'velvet': 'Fabric', 'linen': 'Fabric',
+    'mesh fabric': 'Fabric', 'padded': 'Fabric', 'foam': 'Fabric',
+    'carpet': 'Fabric', 'felt': 'Fabric',
+    # Glass
+    'glass': 'Glass',
+    # Books / paper
+    'paper': 'Books', 'cardboard': 'Books', 'book': 'Books', 'books': 'Books',
+    # Gypsum
+    'gypsum': 'Gypsum', 'drywall': 'Gypsum', 'plaster': 'Gypsum',
+    # Ceramic
+    'ceramic': 'Ceramic', 'tile': 'Ceramic', 'porcelain': 'Ceramic',
+    # Stone
+    'stone': 'Stone', 'marble': 'Stone', 'granite': 'Stone',
 }
 
 
-def remap_category(category: str) -> str:
-    """Map main.py category to inject_internal_mass MATERIAL_LIBRARY key."""
-    return CATEGORY_TO_LIBRARY.get(category, "Wood")
+def normalize_material_category(raw):
+    """Map VLM/3DSSG raw material string to inject_internal_mass category."""
+    if not raw:
+        return 'Wood'  # safe default for furniture
+    r = raw.strip().lower()
+    # Direct match
+    if r in MATERIAL_CATEGORY_MAP:
+        return MATERIAL_CATEGORY_MAP[r]
+    # Substring match
+    for key, cat in MATERIAL_CATEGORY_MAP.items():
+        if key in r:
+            return cat
+    return 'Wood'  # default
 
 
-# -----------------------------
-# Build combined mapping JSON
-# -----------------------------
-def build_mapping(scan_ids, output_dir, zone_mapping=None, zone_name="Core_ZN"):
-    """Combine per-scan JSONs into a single mapping JSON for inject_internal_mass.
+# ---------------------------------------------------------------------------
+# Structural labels (skip in VLM + mapping output)
+# ---------------------------------------------------------------------------
+
+STRUCTURAL_LABELS = {
+    'wall', 'floor', 'ceiling', 'door', 'window', 'curtain', 'blinds',
+    'pipe', 'beam', 'column', 'railing', 'staircase',
+}
+
+
+# ===================================================================
+# STEP 1: Extract 2D object images from RGB sequences
+# ===================================================================
+
+def step1_extract_images(scan_ids, rscan_dir, out_dir, frame_skip=10,
+                         min_pixels=500):
+    """Extract cropped 2D object images from RGB frames."""
+    from scan2therm.extract_object_images import process_scan
+    from tqdm import tqdm
+
+    print("\n" + "=" * 60)
+    print("STEP 1: Extract 2D object images")
+    print("=" * 60)
+
+    processed = 0
+    skipped = 0
+
+    for scan_id in tqdm(scan_ids, desc="Step 1"):
+        scan_dir = osp.join(rscan_dir, scan_id)
+        seq_dir = osp.join(scan_dir, 'sequence')
+
+        # Skip if no sequence data
+        if not osp.isdir(seq_dir):
+            skipped += 1
+            continue
+
+        # Skip if images already extracted (check for any .jpg in out_dir)
+        scan_out = osp.join(out_dir, scan_id)
+        existing_imgs = list(Path(scan_out).glob('*.jpg')) if osp.isdir(scan_out) else []
+        if existing_imgs:
+            skipped += 1
+            continue
+
+        process_scan(scan_id, rscan_dir, out_dir, frame_skip, min_pixels)
+        processed += 1
+
+    print(f"Step 1 done: {processed} processed, {skipped} skipped (existing/no sequence)")
+
+
+# ===================================================================
+# STEP 2: Extract objects + CAD geometry (label-based, same as v2)
+# ===================================================================
+
+def step2_cad_geometry(scan_ids, data_dir, shapenet_dir, out_dir,
+                       csv_path=None, objects_json_path=None, force=False):
+    """Extract per-object geometry and augment with CAD surface area + volume."""
+    from scan2therm.cad_geometry import process_scan, LABEL_TO_SYNSET
+
+    print("\n" + "=" * 60)
+    print("STEP 2: Extract objects + CAD geometry (label-based)")
+    print("=" * 60)
+
+    # Report ShapeNet coverage
+    available = set()
+    if osp.isdir(shapenet_dir):
+        for d in os.listdir(shapenet_dir):
+            if osp.isdir(osp.join(shapenet_dir, d)):
+                available.add(d)
+    needed = set(LABEL_TO_SYNSET.values())
+    missing = needed - available
+    if missing:
+        print(f"  ShapeNet: {len(available & needed)} categories available, "
+              f"{len(missing)} missing (will use scanned geometry)")
+
+    processed = 0
+    skipped = 0
+
+    for i, scan_id in enumerate(scan_ids):
+        # Skip if objects_cad.json already exists
+        objects_path = osp.join(out_dir, scan_id, 'objects_cad.json')
+        if osp.isfile(objects_path) and not force:
+            skipped += 1
+            continue
+
+        print(f"  [{i+1}/{len(scan_ids)}] {scan_id}")
+        result = process_scan(
+            scan_id=scan_id,
+            data_dir=data_dir,
+            shapenet_dir=shapenet_dir,
+            out_dir=out_dir,
+            csv_path=csv_path,
+            objects_json_path=objects_json_path,
+        )
+        if result:
+            processed += 1
+        else:
+            skipped += 1
+
+    print(f"Step 2 done: {processed} processed, {skipped} skipped")
+
+
+# ===================================================================
+# STEP 2 (CrossOver): Embedding-based CAD retrieval
+# ===================================================================
+
+def step2_crossover_cad(scan_ids, data_dir, shapenet_dir, out_dir,
+                        ckpt, i2pmae_ckpt, cad_cache,
+                        csv_path=None, objects_json_path=None,
+                        device='cuda', force=False):
+    """Extract per-object geometry using CrossOver embedding-based CAD retrieval.
+
+    Instead of mapping labels to a single ShapeNet model per category,
+    this encodes each scanned object with CrossOver's point encoder and
+    retrieves the most similar CAD model from the full ShapeNet database.
+    """
+    from scan2therm.crossover_cad_geometry import (
+        load_crossover_model, build_cad_database, process_scan_crossover,
+    )
+
+    print("\n" + "=" * 60)
+    print("STEP 2: Extract objects + CAD geometry (CrossOver)")
+    print("=" * 60)
+
+    # Load model once
+    print("  Loading CrossOver model ...")
+    model = load_crossover_model(ckpt, i2pmae_ckpt, device)
+    print("  Model loaded.")
+
+    # Build/load CAD embedding database once
+    cad_db = build_cad_database(model, shapenet_dir, cad_cache, device=device)
+    print(f"  CAD database: {len(cad_db)} models")
+
+    processed = 0
+    skipped = 0
+
+    for i, scan_id in enumerate(scan_ids):
+        objects_path = osp.join(out_dir, scan_id, 'objects_cad.json')
+        if osp.isfile(objects_path) and not force:
+            skipped += 1
+            continue
+
+        print(f"  [{i+1}/{len(scan_ids)}] {scan_id}")
+        result = process_scan_crossover(
+            scan_id=scan_id,
+            model=model,
+            cad_db=cad_db,
+            data_dir=data_dir,
+            shapenet_dir=shapenet_dir,
+            out_dir=out_dir,
+            csv_path=csv_path,
+            objects_json_path=objects_json_path,
+            device=device,
+        )
+        if result:
+            processed += 1
+        else:
+            skipped += 1
+
+    print(f"Step 2 done: {processed} processed, {skipped} skipped")
+
+
+# ===================================================================
+# STEP 3: VLM material classification (Vertex AI Gemini)
+# ===================================================================
+
+def step3_vlm_materials(scan_ids, data_dir, gcp_project, gcp_location='us-central1',
+                        gemini_model='gemini-2.0-flash', delay=0.5):
+    """Classify object materials using Vertex AI Gemini."""
+    import vertexai
+    from vertexai.generative_models import GenerativeModel
+
+    from scan2therm.vlm_material_estimator_gemini import (
+        process_scan, find_object_image, STRUCTURAL_LABELS as VLM_STRUCTURAL,
+    )
+
+    print("\n" + "=" * 60)
+    print("STEP 3: VLM material classification (Gemini)")
+    print("=" * 60)
+
+    vertexai.init(project=gcp_project, location=gcp_location)
+    model = GenerativeModel(gemini_model)
+
+    total_updated = 0
+    skipped_scans = 0
+
+    for i, scan_id in enumerate(scan_ids):
+        objects_path = osp.join(data_dir, scan_id, 'objects_cad.json')
+        if not osp.isfile(objects_path):
+            skipped_scans += 1
+            continue
+
+        # Check if VLM already ran (look for vlm_material in first non-structural object)
+        with open(objects_path) as f:
+            data = json.load(f)
+        already_done = any(
+            'vlm_material' in obj for obj in data['objects']
+            if obj['label'].lower().strip() not in VLM_STRUCTURAL
+        )
+        if already_done:
+            skipped_scans += 1
+            continue
+
+        print(f"  [{i+1}/{len(scan_ids)}] {scan_id}")
+        result = process_scan(scan_id, data_dir, model)
+        if result:
+            total_updated += result['updated']
+        if delay > 0:
+            time.sleep(delay)
+
+    print(f"Step 3 done: {total_updated} materials classified, "
+          f"{skipped_scans} scans skipped")
+
+
+# ===================================================================
+# STEP 3 (alt): Import VLM results from jsons_vlm_estimate/
+# ===================================================================
+
+def step3_import_vlm(scan_ids, data_dir, vlm_results_dir, force=False):
+    """Import pre-computed VLM materials from jsons_vlm_estimate/ into objects_cad.json.
+
+    Reads Forecast from jsons_vlm_estimate/<scan_id>.json and writes
+    vlm_material + vlm_material_source into objects_cad.json for each
+    matching object (keyed by Scan_Object_ID == object_id).
+    """
+    print("\n" + "=" * 60)
+    print("STEP 3: Import VLM results from pre-computed JSONs")
+    print("=" * 60)
+
+    total_updated = 0
+    skipped_scans = 0
+
+    for i, scan_id in enumerate(scan_ids):
+        objects_path = osp.join(data_dir, scan_id, 'objects_cad.json')
+        if not osp.isfile(objects_path):
+            skipped_scans += 1
+            continue
+
+        vlm_path = osp.join(vlm_results_dir, f'{scan_id}.json')
+        if not osp.isfile(vlm_path):
+            skipped_scans += 1
+            continue
+
+        # Check if already imported
+        with open(objects_path) as f:
+            cad_data = json.load(f)
+        if not force and any('vlm_material' in obj for obj in cad_data['objects']):
+            skipped_scans += 1
+            continue
+
+        # Build Scan_Object_ID → Forecast mapping from vlm json
+        with open(vlm_path) as f:
+            vlm_data = json.load(f)
+
+        forecast_map = {}
+        for zone in vlm_data.get('Zones', []):
+            for obj in zone.get('Objects', []):
+                oid = obj.get('Scan_Object_ID')
+                forecast = obj.get('Material_Info', {}).get('Forecast')
+                if oid is not None and forecast:
+                    forecast_map[oid] = forecast
+
+        # Patch objects_cad.json
+        updated = 0
+        for obj in cad_data['objects']:
+            oid = obj['object_id']
+            if oid in forecast_map:
+                obj['vlm_material'] = forecast_map[oid]
+                obj['vlm_material_source'] = 'vlm_estimate'
+                updated += 1
+
+        with open(objects_path, 'w') as f:
+            json.dump(cad_data, f, indent=2)
+
+        total_updated += updated
+        print(f"  [{i+1}/{len(scan_ids)}] {scan_id}: {updated} materials imported")
+
+    print(f"Step 3 done: {total_updated} materials imported, "
+          f"{skipped_scans} scans skipped")
+
+
+# ===================================================================
+# STEP 4: Build mapping JSON + inject into EnergyPlus IDF
+# ===================================================================
+
+def step4_build_mapping(scan_ids, data_dir, zone_mapping=None,
+                        zone_name='Core_ZN', zone_id='Z001',
+                        mapping_output=None):
+    """Build zone mapping JSON from objects_cad.json files.
 
     Args:
-        scan_ids: list of scan IDs to include.
-        output_dir: directory containing per-scan JSONs.
-        zone_mapping: dict {zone_name: [scan_ids]} or None (all → one zone).
-        zone_name: fallback zone name if zone_mapping is None.
-
-    Returns:
-        mapping dict.
+        zone_mapping: dict mapping zone_name -> list of scan_ids, e.g.
+            {"Core_ZN": ["scan1", "scan2"], "Perimeter_ZN_1": ["scan3"]}
+            If None, all scans go into a single zone (zone_name/zone_id).
     """
+
+    print("\n" + "=" * 60)
+    print("STEP 4: Build mapping JSON")
+    print("=" * 60)
+
+    # Build zone_mapping if not provided — all scans into one zone
     if zone_mapping is None:
         zone_mapping = {zone_name: scan_ids}
 
     ZONE_IDS = {}
     for i, zn in enumerate(zone_mapping.keys(), 1):
-        ZONE_IDS[zn] = f"Z{i:03d}"
+        ZONE_IDS[zn] = f'Z{i:03d}'
 
     zones = []
     total_objects = 0
@@ -329,196 +414,374 @@ def build_mapping(scan_ids, output_dir, zone_mapping=None, zone_name="Core_ZN"):
     for zn, zn_scan_ids in zone_mapping.items():
         zid = ZONE_IDS[zn]
         zone_objects = []
+        obj_counter = 0
 
-        seen_ids = set()
         for scan_id in zn_scan_ids:
-            scan_json = output_dir / f"{scan_id}.json"
-            if not scan_json.exists():
+            if scan_id not in scan_ids:
+                print(f"  [WARN] scan {scan_id} in zone {zn} not in scene list, skipping")
                 continue
 
-            data = json.loads(scan_json.read_text())
-            for zone in data.get("Zones", []):
-                for obj in zone.get("Objects", []):
-                    obj_id = obj["ID"]
-                    if obj_id in seen_ids:
-                        continue  # skip duplicate (e.g. template objects)
-                    seen_ids.add(obj_id)
-                    mi = obj.get("Material_Info", {})
-                    raw_category = mi.get("Category", "Unknown")
-                    remapped = remap_category(raw_category)
-                    if remapped is None:
-                        continue  # skip Other/Unknown — no reliable material
-                    zone_objects.append({
-                        "ID": obj_id,
-                        "Type": obj["Type"],
-                        "Scan_Object_ID": obj.get("Scan_Object_ID"),
-                        "Geometry": obj["Geometry"],
-                        "Material_Info": {
-                            "GroundTruth": mi.get("GroundTruth"),
-                            "Category": remapped,
-                            "Source": mi.get("Source", "3DSSG.attributes.material"),
-                            "Forecast": mi.get("Forecast"),
-                        },
-                    })
+            objects_path = osp.join(data_dir, scan_id, 'objects_cad.json')
+            if not osp.isfile(objects_path):
+                continue
+
+            with open(objects_path) as f:
+                data = json.load(f)
+
+            for obj in data['objects']:
+                label = obj['label'].lower().strip()
+                if label in STRUCTURAL_LABELS:
+                    continue
+
+                obj_counter += 1
+
+                area = obj.get('surface_area_m2', 0)
+                vol = obj.get('volume_m3', 0)
+                if vol == 0 and area > 0:
+                    obb = obj.get('obb_dimensions', [0, 0, 0])
+                    vol = obb[0] * obb[1] * obb[2] if len(obb) == 3 else 0
+
+                gt_material = obj.get('material')   # 3DSSG ground truth
+                vlm_material = obj.get('vlm_material')  # VLM prediction
+
+                # Category priority: VLM forecast > ground truth > Unknown
+                # VLM forecast is already a valid MATERIAL_LIBRARY key
+                # (Wood, Metal, Plastic, Fabric, Books, Gypsum, Concrete)
+                if vlm_material:
+                    category = vlm_material
+                    source = 'vlm_estimate'
+                elif gt_material:
+                    category = normalize_material_category(gt_material)
+                    source = obj.get('material_source',
+                                     '3DSSG.attributes.material')
+                else:
+                    category = 'Unknown'
+                    source = obj.get('material_source',
+                                     '3DSSG.attributes.material')
+
+                zone_objects.append({
+                    'ID': f'scanobj_{scan_id}_{obj["object_id"]:04d}',
+                    'Type': obj['label'],
+                    'Scan_Object_ID': obj['object_id'],
+                    'Geometry': {
+                        'Surface_Area_m2': round(area, 4),
+                        'Volume_m3': round(vol, 4),
+                    },
+                    'Material_Info': {
+                        'GroundTruth': gt_material,
+                        'Category': category,
+                        'Source': source,
+                        'Forecast': vlm_material,
+                    },
+                })
 
         zones.append({
-            "Zone_ID": zid,
-            "Zone_Name": zn,
-            "Zone_Properties": {},
-            "Objects": zone_objects,
+            'Zone_ID': zid,
+            'Zone_Name': zn,
+            'Zone_Properties': {},
+            'Objects': zone_objects,
         })
         total_objects += len(zone_objects)
-        print(f"  Zone {zn} ({zid}): {len(zone_objects)} objects")
+        print(f"  Zone {zn} ({zid}): {len(zone_objects)} objects from {len(zn_scan_ids)} scans")
 
+    total_scans = sum(len(sids) for sids in zone_mapping.values())
     mapping = {
-        "Metadata": {
-            "Project_Name": "scan2therm (baseline)",
-            "Date": datetime.now().strftime("%Y-%m-%d"),
-            "Description": f"{len(scan_ids)} 3RScan scenes — raw scanned geometry + 3DSSG GT materials",
-            "Num_Scans": len(scan_ids),
-            "Num_Objects": total_objects,
-            "Num_Zones": len(zones),
+        'Metadata': {
+            'Project_Name': 'scan2therm',
+            'Date': datetime.now().strftime('%Y-%m-%d'),
+            'Description': f'{total_scans} 3RScan scenes → EnergyPlus InternalMass',
+            'Num_Scans': total_scans,
+            'Num_Objects': total_objects,
+            'Num_Zones': len(zones),
         },
-        "Zones": zones,
+        'Zones': zones,
     }
 
-    print(f"  Total: {total_objects} objects across {len(zones)} zones")
+    # Write mapping JSON
+    if mapping_output is None:
+        mapping_output = osp.join(data_dir, 'mapping.json')
+    os.makedirs(osp.dirname(mapping_output) or '.', exist_ok=True)
+    with open(mapping_output, 'w') as f:
+        json.dump(mapping, f, indent=2)
+    print(f"  Mapping JSON: {total_objects} objects → {mapping_output}")
+
     return mapping
 
 
-# -----------------------------
+# ===================================================================
+# STEP 5: Inject InternalMass into EnergyPlus IDF
+# ===================================================================
+
+def step5_inject_idf(mapping_path, idf_path, idd_path, idf_output):
+    """Inject InternalMass objects from mapping JSON into an EnergyPlus IDF."""
+    from scan2therm.inject_internal_mass import inject
+    from eppy.modeleditor import IDF
+
+    print("\n" + "=" * 60)
+    print("STEP 5: Inject InternalMass into EnergyPlus IDF")
+    print("=" * 60)
+
+    if not osp.isfile(mapping_path):
+        print(f"  [SKIP] Mapping JSON not found: {mapping_path}")
+        return
+    if not osp.isfile(idf_path):
+        print(f"  [SKIP] IDF not found: {idf_path}")
+        return
+    if not osp.isfile(idd_path):
+        print(f"  [SKIP] IDD not found: {idd_path}")
+        return
+
+    with open(mapping_path) as f:
+        mapping = json.load(f)
+
+    IDF.setiddname(idd_path)
+    idf = IDF(idf_path)
+
+    # Verify zone names exist in IDF
+    idf_zones = {z.Name for z in idf.idfobjects['ZONE']}
+    for zone in mapping['Zones']:
+        zn = zone['Zone_Name']
+        if zn not in idf_zones:
+            print(f"  WARNING: Zone '{zn}' from JSON not found in IDF. "
+                  f"Available: {idf_zones}")
+
+    inject(idf, mapping)
+    os.makedirs(osp.dirname(idf_output) or '.', exist_ok=True)
+    idf.saveas(idf_output)
+    print(f"  IDF written: {idf_output}")
+
+
+# ===================================================================
 # Main
-# -----------------------------
+# ===================================================================
+
 def main():
-    ap = argparse.ArgumentParser(
-        description="scan2therm baseline: 3RScan raw geometry + 3DSSG GT materials → EnergyPlus IDF"
-    )
-    ap.add_argument("--rscan_root", type=str, default=str(DEFAULT_RSCAN_ROOT))
-    ap.add_argument("--dssg_root", type=str, default=str(DEFAULT_DSSG_ROOT))
-    ap.add_argument("--office_json", type=str, default=str(DEFAULT_OFFICE_JSON))
-    ap.add_argument("--scenes_txt", type=str, default=str(DEFAULT_SCENES_TXT),
-                    help="Text file with one scan ID per line (office_scenes_105.txt)")
-    ap.add_argument("--output_dir", type=str, default=str(DEFAULT_OUTPUT_DIR),
-                    help="Directory to write per-scan JSONs. Default: jsons/")
-    ap.add_argument("--scan", type=str, default=None,
-                    help="Process a single scan ID instead of the full scenes list.")
-    ap.add_argument("--skip", type=str, nargs="*", default=["wall", "floor", "ceiling"],
-                    help="Lowercase labels to skip")
+    parser = argparse.ArgumentParser(
+        description='scan2therm v3: 3RScan → EnergyPlus InternalMass pipeline '
+                    '(with CrossOver CAD retrieval)',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Steps:
+  1  Extract 2D object images from RGB sequences
+  2  Extract objects + CAD geometry → objects_cad.json
+     (default: label-based; --use_crossover: embedding-based)
+  3  VLM material classification via Vertex AI Gemini
+     (or import pre-computed results with --vlm_results_dir)
+  4  Build mapping JSON
+  5  Inject InternalMass into EnergyPlus IDF
 
-    # Mapping + IDF injection
-    ap.add_argument("--zone_mapping", type=str, default=None,
-                    help="JSON file mapping zone names to scan IDs")
-    ap.add_argument("--mapping_output", type=str, default=None,
-                    help="Output path for combined mapping JSON")
-    ap.add_argument("--idf", type=str,
-                    default=str(SCAN2THERM_DIR / "energyplus" / "small-office.idf"),
-                    help="Input EnergyPlus IDF file")
-    ap.add_argument("--idd", type=str,
-                    default=str(SCAN2THERM_DIR / "energyplus" / "Energy+.idd"),
-                    help="EnergyPlus IDD file")
-    ap.add_argument("--idf_output", type=str, default=None,
-                    help="Output IDF file path")
+Examples:
+  # Full pipeline with CrossOver:
+  python scan2therm/main.py --scene_list scan2therm/office_scenes_105.txt \\
+      --use_crossover --ckpt <checkpoint_dir> ...
 
-    args = ap.parse_args()
+  # Step 2 only, CrossOver mode:
+  python scan2therm/main.py --steps 2 --use_crossover --ckpt <path> ...
 
-    rscan_root = Path(args.rscan_root)
-    dssg_root = Path(args.dssg_root)
-    office_json_path = Path(args.office_json)
-    scenes_txt_path = Path(args.scenes_txt)
-    output_dir = Path(args.output_dir)
-    skip = {s.lower() for s in (args.skip or [])}
+  # Step 2 only, label-based (same as v2):
+  python scan2therm/main.py --steps 2 ...
+""")
+    # Scene selection
+    parser.add_argument('--scene_list', type=str, required=True,
+                        help='Text file with one scan_id per line')
+    parser.add_argument('--steps', type=int, nargs='+', default=[1, 2, 3, 4, 5],
+                        help='Which steps to run (default: 1 2 3 4 5)')
 
-    # Validate paths
-    for p, name in [(rscan_root, "3RScan root"), (dssg_root, "3DSSG root"),
-                    (office_json_path, "office.json")]:
-        if not p.exists():
-            raise FileNotFoundError(f"{name} not found: {p}")
+    # Step 1: image extraction
+    parser.add_argument('--rscan_dir', type=str,
+                        default='3DSSG/data/3RScan/data/3RScan',
+                        help='3RScan data root with sequence/ dirs')
+    parser.add_argument('--frame_skip', type=int, default=10,
+                        help='Process every Nth frame in step 1')
 
-    output_dir.mkdir(parents=True, exist_ok=True)
+    # Directories
+    parser.add_argument('--input_dir', type=str,
+                        default='scan2therm/object_images',
+                        help='Input dir with existing scan data (PLY, images, objects.json)')
+    parser.add_argument('--out_dir', type=str, default=None,
+                        help='Output dir for results (default: same as --input_dir)')
+    parser.add_argument('--shapenet_dir', type=str,
+                        default='Scan2CAD/Assets/shapenet-sample',
+                        help='ShapeNet models directory')
+    parser.add_argument('--csv_path', type=str,
+                        default='3DSSG/files/3RScan.v2 Semantic Classes - Mapping.csv',
+                        help='3RScan semantic classes CSV')
+    parser.add_argument('--objects_json', type=str,
+                        default='3DSSG/files/objects.json',
+                        help='3DSSG objects.json')
 
-    # Load shared resources once
-    office_template = json.loads(office_json_path.read_text(encoding="utf-8"))
-    objects_json_path = find_objects_json_3dssg(dssg_root)
-    dssg = load_3dssg_objects(objects_json_path)
+    # Step 2 CrossOver mode
+    parser.add_argument('--use_crossover', action='store_true',
+                        help='Use CrossOver embedding-based CAD retrieval '
+                             'instead of label-based lookup')
+    parser.add_argument('--ckpt', type=str, default=None,
+                        help='Path to CrossOver checkpoint directory '
+                             '(contains model.safetensors)')
+    parser.add_argument('--i2pmae_ckpt', type=str,
+                        default='checkpoints/pointbind_i2pmae.pt',
+                        help='Path to I2PMAE weights (pointbind_i2pmae.pt)')
+    parser.add_argument('--crossover_out_dir', type=str,
+                        default='scan2therm/crossover_output',
+                        help='Output directory for CrossOver results '
+                             '(separate from --out_dir to avoid overwriting)')
+    parser.add_argument('--cad_cache', type=str,
+                        default='scan2therm/cad_embeddings.npz',
+                        help='Path for CAD embedding cache (.npz)')
+    parser.add_argument('--device', type=str, default='cuda',
+                        help='Device for CrossOver model (cuda or cpu)')
 
-    # Determine scan list
-    if args.scan:
-        scan_ids = [args.scan.strip()]
-    else:
-        if not scenes_txt_path.exists():
-            raise FileNotFoundError(f"Scenes list not found: {scenes_txt_path}")
-        scan_ids = [
-            line.strip()
-            for line in scenes_txt_path.read_text(encoding="utf-8").splitlines()
-            if line.strip() and not line.startswith("#")
-        ]
-        print(f"[INFO] Found {len(scan_ids)} scan IDs in {scenes_txt_path.name}")
+    # Step 3: VLM materials
+    parser.add_argument('--gcp_project', type=str,
+                        default=os.environ.get('GOOGLE_CLOUD_PROJECT'),
+                        help='GCP project ID for Vertex AI')
+    parser.add_argument('--gcp_location', type=str, default='us-central1',
+                        help='Vertex AI region')
+    parser.add_argument('--gemini_model', type=str, default='gemini-2.0-flash',
+                        help='Gemini model name')
+    parser.add_argument('--delay', type=float, default=0.5,
+                        help='Seconds between Gemini API calls')
+    parser.add_argument('--vlm_results_dir', type=str, default=None,
+                        help='Import pre-computed VLM results from this directory '
+                             '(e.g. scan2therm/jsons_vlm_estimate) instead of '
+                             'running Gemini. Each file: <scan_id>.json')
 
-    # ── Step 1: Process each scan → per-scan JSONs ──
-    print("\n" + "=" * 60)
-    print("STEP 1: Extract objects from 3RScan + 3DSSG GT materials")
-    print("=" * 60)
-    for i, scan_id in enumerate(scan_ids, 1):
-        print(f"[{i}/{len(scan_ids)}] Processing {scan_id} ...")
-        process_scan(scan_id, rscan_root, dssg, objects_json_path,
-                     office_template, output_dir, skip)
+    # Step 4: Build mapping JSON
+    parser.add_argument('--zone_mapping', type=str, default=None,
+                        help='JSON file mapping zone names to scan IDs '
+                             '(e.g. {"Core_ZN": ["scan1"], "Perimeter_ZN_1": ["scan2"]})')
+    parser.add_argument('--zone_name', type=str, default='Core_ZN',
+                        help='Fallback zone name if --zone_mapping not provided')
+    parser.add_argument('--zone_id', type=str, default='Z001',
+                        help='Fallback zone ID if --zone_mapping not provided')
+    parser.add_argument('--mapping_output', type=str, default=None,
+                        help='Output mapping JSON path (default: <out_dir>/mapping.json)')
 
-    print(f"\n[DONE] Per-scan JSONs → {output_dir}")
+    # Step 5: Inject into EnergyPlus IDF
+    parser.add_argument('--idf', type=str,
+                        default='scan2therm/energyplus/small-office.idf',
+                        help='Input EnergyPlus IDF file')
+    parser.add_argument('--idd', type=str,
+                        default='scan2therm/energyplus/Energy+.idd',
+                        help='EnergyPlus IDD file')
+    parser.add_argument('--idf_output', type=str,
+                        default='scan2therm/energyplus/small-office-bem.idf',
+                        help='Output IDF file path')
 
-    # ── Step 2: Build combined mapping JSON ──
-    print("\n" + "=" * 60)
-    print("STEP 2: Build combined mapping JSON")
-    print("=" * 60)
+    # General
+    parser.add_argument('--force', action='store_true',
+                        help='Re-run steps even if output exists')
 
-    zone_mapping = None
-    if args.zone_mapping:
-        zm_path = Path(args.zone_mapping)
-        zone_mapping = json.loads(zm_path.read_text())
-        print(f"  Loaded zone mapping: {len(zone_mapping)} zones from {zm_path}")
+    args = parser.parse_args()
+    steps = set(args.steps)
 
-    mapping = build_mapping(scan_ids, output_dir, zone_mapping=zone_mapping)
+    # Validate CrossOver args
+    if args.use_crossover and 2 in steps:
+        if not args.ckpt:
+            parser.error("--ckpt is required when using --use_crossover")
 
-    mapping_output = Path(args.mapping_output) if args.mapping_output \
-        else output_dir / "mapping_baseline.json"
-    mapping_output.parent.mkdir(parents=True, exist_ok=True)
-    mapping_output.write_text(json.dumps(mapping, indent=2))
-    print(f"  Mapping JSON → {mapping_output}")
+    # Load scene list
+    with open(args.scene_list) as f:
+        scan_ids = [line.strip() for line in f if line.strip()]
 
-    # ── Step 3: Inject into EnergyPlus IDF ──
-    if args.idf_output:
-        print("\n" + "=" * 60)
-        print("STEP 3: Inject InternalMass into EnergyPlus IDF")
-        print("=" * 60)
+    mode = "CrossOver" if args.use_crossover else "label-based"
+    print(f"scan2therm v3 pipeline — {len(scan_ids)} scenes, steps: {sorted(steps)}, "
+          f"CAD mode: {mode}")
 
-        idf_path = Path(args.idf)
-        idd_path = Path(args.idd)
-        idf_output = Path(args.idf_output)
+    # Resolve paths relative to CWD
+    def resolve(p):
+        return p if (p is None or osp.isabs(p)) else osp.join(os.getcwd(), p)
 
-        if not idf_path.is_file():
-            print(f"  [SKIP] IDF not found: {idf_path}")
-        elif not idd_path.is_file():
-            print(f"  [SKIP] IDD not found: {idd_path}")
+    rscan_dir = resolve(args.rscan_dir)
+    input_dir = resolve(args.input_dir)
+    out_dir = resolve(args.out_dir) if args.out_dir else input_dir
+    crossover_out_dir = resolve(args.crossover_out_dir)
+    shapenet_dir = resolve(args.shapenet_dir)
+    csv_path = resolve(args.csv_path)
+    objects_json = resolve(args.objects_json)
+
+    if out_dir != input_dir:
+        print(f"  Input:  {input_dir}")
+        print(f"  Output: {out_dir}")
+
+    # ── Step 1 ──
+    if 1 in steps:
+        if not osp.isdir(rscan_dir):
+            print(f"\n[SKIP Step 1] 3RScan dir not found: {rscan_dir}")
         else:
-            from inject_internal_mass import inject
-            from eppy.modeleditor import IDF
+            step1_extract_images(scan_ids, rscan_dir, out_dir,
+                                 frame_skip=args.frame_skip)
 
-            IDF.setiddname(str(idd_path))
-            idf = IDF(str(idf_path))
+    # ── Step 2 ──
+    if 2 in steps:
+        if args.use_crossover:
+            step2_crossover_cad(
+                scan_ids, data_dir=input_dir, shapenet_dir=shapenet_dir,
+                out_dir=crossover_out_dir,
+                ckpt=resolve(args.ckpt),
+                i2pmae_ckpt=resolve(args.i2pmae_ckpt),
+                cad_cache=resolve(args.cad_cache),
+                csv_path=csv_path if osp.isfile(csv_path) else None,
+                objects_json_path=objects_json if osp.isfile(objects_json) else None,
+                device=args.device,
+                force=args.force,
+            )
+        else:
+            step2_cad_geometry(
+                scan_ids, data_dir=input_dir, shapenet_dir=shapenet_dir,
+                out_dir=out_dir,
+                csv_path=csv_path if osp.isfile(csv_path) else None,
+                objects_json_path=objects_json if osp.isfile(objects_json) else None,
+                force=args.force,
+            )
 
-            idf_zones = {z.Name for z in idf.idfobjects["ZONE"]}
-            for zone in mapping["Zones"]:
-                zn = zone["Zone_Name"]
-                if zn not in idf_zones:
-                    print(f"  WARNING: Zone '{zn}' not found in IDF. "
-                          f"Available: {idf_zones}")
+    # ── Step 3 ──
+    if 3 in steps:
+        if args.vlm_results_dir:
+            step3_import_vlm(
+                scan_ids, data_dir=out_dir,
+                vlm_results_dir=resolve(args.vlm_results_dir),
+                force=args.force,
+            )
+        elif args.gcp_project:
+            step3_vlm_materials(
+                scan_ids, data_dir=out_dir,
+                gcp_project=args.gcp_project,
+                gcp_location=args.gcp_location,
+                gemini_model=args.gemini_model,
+                delay=args.delay,
+            )
+        else:
+            print("\n[SKIP Step 3] No --gcp_project or --vlm_results_dir provided")
 
-            inject(idf, mapping)
-            idf_output.parent.mkdir(parents=True, exist_ok=True)
-            idf.saveas(str(idf_output))
-            print(f"  IDF written → {idf_output}")
-    else:
-        print("\n[INFO] No --idf_output provided, skipping IDF injection.")
+    # ── Step 4 ──
+    if 4 in steps:
+        zone_mapping = None
+        if args.zone_mapping:
+            zm_path = resolve(args.zone_mapping)
+            with open(zm_path) as f:
+                zone_mapping = json.load(f)
+            print(f"Loaded zone mapping: {len(zone_mapping)} zones from {zm_path}")
+
+        step4_build_mapping(
+            scan_ids, data_dir=out_dir,
+            zone_mapping=zone_mapping,
+            zone_name=args.zone_name, zone_id=args.zone_id,
+            mapping_output=resolve(args.mapping_output),
+        )
+
+    # ── Step 5 ──
+    if 5 in steps:
+        mapping_path = resolve(args.mapping_output) if args.mapping_output \
+            else osp.join(out_dir, 'mapping.json')
+        step5_inject_idf(
+            mapping_path=mapping_path,
+            idf_path=resolve(args.idf),
+            idd_path=resolve(args.idd),
+            idf_output=resolve(args.idf_output),
+        )
+
+    print("\n✓ Pipeline complete.")
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

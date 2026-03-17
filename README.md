@@ -13,14 +13,9 @@ Given a set of [3RScan](https://waldjohannau.github.io/RIO/) indoor scene scans,
 3. 🧠 **Classifies materials** (wood, metal, fabric, etc.) via Vision-Language Models (Gemini)
 4. 🏗️ **Injects InternalMass objects** into EnergyPlus IDF files for thermal simulation
 
-## 🔧 Pipeline Variants
+## 🔧 Pipeline
 
-| Script | Description |
-|--------|-------------|
-| `main.py` | v1 baseline — single scan, uses 3DSSG ground-truth materials |
-| `main_v3.py` | ⭐ **Recommended** — multi-scan, VLM-based materials, optional [CrossOver](https://github.com/GradientSpaces/CrossOver) retrieval |
-
-### CrossOver Integration
+The main entry point is **`main.py`** — a multi-scan pipeline with VLM-based material classification and optional [CrossOver](https://github.com/GradientSpaces/CrossOver) retrieval.
 
 By default, CAD geometry is looked up via label → ShapeNet category mapping. With the `--use_crossover` flag, the pipeline uses learned [CrossOver](https://github.com/GradientSpaces/CrossOver) embeddings to retrieve the most geometrically similar CAD model for each scanned object — significantly improving geometry estimates.
 
@@ -28,8 +23,8 @@ By default, CAD geometry is looked up via label → ShapeNet category mapping. W
 
 ```
 scan2therm/
-├── main.py                        # v1 pipeline
-├── main_v3.py                     # v3 pipeline (recommended)
+├── main.py                        # Main pipeline (VLM + optional CrossOver)
+├── baseline.py                    # v1 baseline (single-scan, 3DSSG materials)
 ├── extract_object_images.py       # Step 1: crop 2D object images from RGB
 ├── cad_geometry.py                # Step 2: label-based CAD geometry lookup
 ├── crossover_cad_geometry.py      # Step 2: CrossOver embedding-based retrieval
@@ -84,7 +79,7 @@ You will need:
 ### Full pipeline (recommended)
 
 ```bash
-python main_v3.py \
+python main.py \
     --scene_list office_scenes_105.txt \
     --rscan_dir /path/to/3RScan \
     --shapenet_dir /path/to/ShapeNet \
@@ -94,7 +89,7 @@ python main_v3.py \
 ### With CrossOver retrieval
 
 ```bash
-python main_v3.py \
+python main.py \
     --scene_list office_scenes_105.txt \
     --rscan_dir /path/to/3RScan \
     --shapenet_dir /path/to/ShapeNet \
@@ -107,20 +102,10 @@ python main_v3.py \
 
 ```bash
 # Only geometry extraction (Step 2):
-python main_v3.py --steps 2 --rscan_dir ... --shapenet_dir ...
+python main.py --steps 2 --rscan_dir ... --shapenet_dir ...
 
 # Only VLM material classification (Step 3):
-python main_v3.py --steps 3 --gcp_project your-gcp-project
-```
-
-### v1 baseline
-
-```bash
-python main.py \
-    --rscan_root /path/to/3RScan \
-    --dssg_root /path/to/3DSSG \
-    --idf energyplus/SmallOffice.idf \
-    --idd energyplus/Energy+.idd
+python main.py --steps 3 --gcp_project your-gcp-project
 ```
 
 ## 📊 Pipeline Steps Overview
